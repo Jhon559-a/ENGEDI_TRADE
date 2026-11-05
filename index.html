@@ -296,9 +296,43 @@ textarea.doc:focus{border-color:#d3b88f!important}
 .hs,.big-hs,#hsBig{font-family:var(--num)!important}
 .btn-danger{background:linear-gradient(180deg,#a9645a,#8c4a41)!important;color:#f6e9e5!important;border:1px solid rgba(217,161,153,.5)!important;box-shadow:none!important;border-radius:2px!important}
 .dlg-btns .btn-ghost{border-color:rgba(232,217,197,.3)!important}
+/* ---- tab1 확장: 검색·아코디언·특성칩·인증 레벨 ---- */
+.srch{position:relative;margin-bottom:14px}
+.srch .ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9a8f7e;pointer-events:none}
+.srch .inp{padding-left:38px!important}
+#catTree{max-height:470px;overflow:auto;padding-right:4px}
+#catTree::-webkit-scrollbar{width:6px}#catTree::-webkit-scrollbar-thumb{background:rgba(232,217,197,.2)}
+.acc{border-top:1px solid rgba(232,217,197,.12)}
+.acc-h{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;color:#ece4d6;font:600 13px var(--font);letter-spacing:1px;padding:12px 2px;cursor:pointer;text-align:left}
+.acc-h .n,.cg-t .n{font:500 11px var(--num);font-style:normal;color:#9a8f7e;margin-left:8px;letter-spacing:.5px}
+.acc-h .chev{color:#d3b88f;font-size:18px;transition:.2s}.acc.open .chev{transform:rotate(90deg)}
+.acc .optlist{padding-bottom:10px}
+.opt .hsm{margin-left:auto;font:500 11px var(--num);color:#9a8f7e;letter-spacing:.5px;white-space:nowrap;padding-left:10px}
+.opt.on .hsm{color:#d3b88f}
+.flags{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{background:transparent;border:1px solid rgba(232,217,197,.22);color:#cfc6b6;font:600 12px var(--font);padding:8px 11px;border-radius:2px;cursor:pointer;transition:.15s}
+.fchip.on{border-color:#d3b88f;color:#1a1712;background:#d3b88f}
+.sugg{border:1px solid rgba(211,184,143,.5);background:rgba(211,184,143,.07);padding:12px 14px;margin-bottom:14px;border-radius:2px}
+.sugg .sg-t{font-size:13px;color:#ece4d6;line-height:1.55}.sugg .sg-t .ic{color:#d3b88f;vertical-align:-3px}
+.btnchip{cursor:pointer;font:600 12px var(--font)}
+.cg{margin-top:18px}.cg:first-of-type{margin-top:6px}
+.cg-t{font:600 11px var(--font);letter-spacing:2px;color:#9a8f7e;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(232,217,197,.12)}
+.clist{display:grid;gap:8px}
+.cert2{display:flex;gap:12px;align-items:flex-start;padding:11px 13px;border:1px solid rgba(232,217,197,.12);background:rgba(255,255,255,.015);border-radius:2px}
+.cert2 .ct{font-size:13.5px;line-height:1.6;color:#e4dccd}
+.cert2 .law{font-size:11.5px;color:#9a8f7e;margin-top:3px;letter-spacing:.2px}
+.lv{flex:none;font:700 10.5px var(--font);letter-spacing:1px;padding:3px 7px;border-radius:2px;border:1px solid;white-space:nowrap;margin-top:2px}
+.lv.must{color:#e0a59b;border-color:rgba(201,133,122,.6);background:rgba(201,133,122,.09)}
+.lv.chk{color:#d3b88f;border-color:rgba(211,184,143,.55);background:rgba(211,184,143,.08)}
+.lv.rec{color:#a9b9a5;border-color:rgba(159,181,154,.5);background:rgba(159,181,154,.08)}
+.legal{margin-top:18px;padding:12px 14px;border-left:2px solid #d3b88f;background:rgba(255,255,255,.02);font-size:12.5px;line-height:1.9;color:#bdb4a4}
+.legal .lv{margin:0 2px}
+.olinks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px}
+.olinks a{color:#d3b88f;text-decoration:none;border-bottom:1px solid rgba(211,184,143,.4);font-size:12.5px}
+tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;font:600 11px var(--font)!important;letter-spacing:2px;padding:9px 14px!important}
 
 </style></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
 <header class="top"><div class="wrap">
   <div class="top-in">
     <div class="brand"><div class="logo">E</div><div>
@@ -334,12 +368,14 @@ textarea.doc:focus{border-color:#d3b88f!important}
   <div class="lay lay1">
     <div class="stack">
       <div class="card"><div class="card-title"><span class="ix">1</span>도착 국가</div><div class="g2 s" id="countryBtns"></div></div>
-      <div class="card"><div class="card-title"><span class="ix">2</span>품목 카테고리</div><div id="catTree"></div></div>
+      <div class="card"><div class="card-title"><span class="ix">2</span>품목 카테고리 <small id="catCount"></small></div><div class="srch"><svg class="ic"><use href="#i-search"/></svg><input id="catSearch" class="inp" placeholder="검색: 낚시릴, 게임기, 화장품, 티셔츠, 보조배터리…" autocomplete="off"></div><div id="catTree"></div></div>
       <div class="card"><div class="card-title"><span class="ix">3</span>상품 정보</div>
-        <div class="field"><label class="lb">상품 이미지</label><label class="drop"><input id="imgFile" type="file" accept="image/*" class="hidden"><div id="imgPrev"><svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)</div></label></div>
+        <div class="field"><label class="lb">상품 이미지</label><label class="drop"><input id="imgFile" type="file" accept="image/*" class="hidden"><div id="imgPrev"><svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)</div></label><div class="tiny dim mt8">사진은 기록·썸네일용입니다. 사진만으로 HS코드를 자동 판별하지는 않으니 <b>상품명을 함께 입력</b>하세요.</div></div>
         <div class="field"><label class="lb">상품명</label><input id="pname" class="inp" placeholder="예: Ashwood Dining Chair"></div>
+        <div id="sugg"></div>
+        <div class="field"><label class="lb">상품 특성 체크 <span class="dim">(인증 요건이 달라집니다)</span></label><div id="flagBox" class="flags"></div></div>
         <div class="field"><label class="lb">브랜드명 (있는 경우)</label><input id="brand" class="inp" placeholder="예: 자체 브랜드 / 로고 문구"></div>
-        <button class="btn btn-pri block mt8" data-act="run"><svg class="ic"><use href="#i-bolt"/></svg> AI 통합 진단 실행</button></div>
+        <button class="btn btn-pri block mt8" data-act="run"><svg class="ic"><use href="#i-bolt"/></svg> 통합 진단 실행</button></div>
     </div>
     <div id="t1res" class="stack"></div>
   </div>
@@ -507,7 +543,7 @@ const CONT={'20':{name:'20FT Dry',cbm:28,ton:18,L:5.90,W:2.35,H:2.39},'40':{name
 const COLORS=['#d9bf93','#b0793f','#8fb09a','#8aa0b5','#c79a97','#a59882','#a58ab0','#b5b78a'];
 const IC=n=>'<svg class="ic"><use href="#i-'+n+'"/></svg>';
 const PALS={t11:{name:'T-11 · 1100×1100 (한국 표준)',l:1.1,w:1.1},p1210:{name:'1200×1000 (국제 표준)',l:1.2,w:1.0},euro:{name:'유로 · 1200×800',l:1.2,w:0.8},none:{name:'파렛트 없음 (바닥 직접 적재)'}};
-const BRAND_RE=/ikea|hoshizaki|philips|osram|nike|adidas|disney|lego|toto|kohler|vitra|eames|wishbone|tolix|muji|samsung|hay\b|이케아|필립스|호시자키|디즈니|나이키|삼성|이임스/i;
+const BRAND_RE=/nintendo|닌텐도|playstation|플레이스테이션|\bps[345]\b|xbox|엑스박스|sony|소니|pokemon|포켓몬|sanrio|산리오|hello kitty|marvel|마블|apple|애플|airpods|iphone|galaxy|갤럭시|shimano|시마노|daiwa|다이와|abu garcia|gucci|구찌|louis vuitton|루이비통|chanel|샤넬|rolex|롤렉스|dyson|다이슨|ikea|hoshizaki|philips|osram|nike|adidas|disney|lego|toto|kohler|vitra|eames|wishbone|tolix|muji|samsung|hay\b|이케아|필립스|호시자키|디즈니|나이키|삼성|이임스/i;
 
 const CATS={
  wood:{group:'인테리어/가구',name:'원목 가구 (애쉬우드 등)',short:'원목 가구',hs:'9401.69 / 9403.60',hsDesc:'목제 프레임 의자(비 실내장식), 기타 목제 가구',
@@ -572,7 +608,7 @@ const CATS={
    PH:[{t:'60Hz 주파수 모터 스펙 강제 지정',tag:'필리핀 수입'},{t:'BPS(PS/ICC) 확인 · 아세안 Form E',tag:'필리핀 수입'}],
    US:[{t:'UL/ETL · NSF(업소용 식품설비) · DOE 에너지 규정',tag:'미국 수입'},{t:'120V / 60Hz 스펙 지정',tag:'미국 수입'}],
    EU:[{t:'CE (LVD/EMC/기계지침) · F-gas 규정',tag:'EU 수입'},{t:'230V / 50Hz 스펙 지정',tag:'EU 수입'}]}},
- hardware:{group:'이우 소상품',name:'일반 데코 · 철물 하드웨어',short:'데코·철물',hs:'8302.41 / 7318.15',hsDesc:'건축용 금속 부속품, 볼트·나사류',
+ hardware:{group:'기타 소상품',name:'일반 데코 · 철물 하드웨어',short:'데코·철물',hs:'8302.41 / 7318.15',hsDesc:'건축용 금속 부속품, 볼트·나사류',
   duty:{KR:[8,4],PH:[10,5],US:[3.9,null],EU:[2.7,null]},
   ip:{level:'g',text:'무브랜드 일반 철물·소품은 대체로 안전합니다. 단, 브랜드 각인 제품이나 캐릭터·디자인 상품은 제외하고 확인하세요.'},
   cost:{KR:[20,60,3,7],PH:[20,50,3,7],US:[60,180,7,14],EU:[50,150,7,14]},
@@ -647,8 +683,8 @@ function dataChip(cat,co){
 function resetRates(){R.duty={};R.cost={};R.freight={};R.vat={};R.meta={};R.ins=0.003}
 
 /* ============================ 프로젝트 상태 ============================ */
-const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText'];
-function blankProject(){return {name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:195,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:''}}
+const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor'];
+function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:195,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:''}}
 function sampleProject(){const p=blankProject();p.name='광저우 레스토랑 프로젝트';p.client='광저우 OO 레스토랑 (샘플)';p.pname='Ashwood Dining Chair (애쉬우드 다이닝 체어)';p.items=SAMPLE.map((x,i)=>({...x,id:i+1}));p.nextId=SAMPLE.length+1;return p}
 const S=Object.assign({id:null,diag:null,bid:false,pickFreight:null},blankProject());
 let curTab=1;
@@ -694,6 +730,305 @@ function applyProject(p){
   S.nextId=Math.max(S.nextId,...S.items.map(i=>i.id+1),1);
 }
 
+/* ===== 확장 카테고리 · 상품특성(플래그) · 인증 팩 =====
+   원칙: 세율·비용은 '참고 추정값'(설정 탭에서 확인값으로 교체), 인증·법적 요건은 법령명을 함께 표기하고
+   lv(필수 / 대상확인 / 권장)로 확정 정도를 구분한다. 법령은 수시 개정되므로 발주 전 공식 조회가 필요하다. */
+const FLAGS={
+ elec:{n:'전기·전원 사용',ic:'bolt'},
+ radio:{n:'무선통신 (블루투스·Wi-Fi·RF)',ic:'wifi'},
+ battery:{n:'배터리 내장·포함',ic:'bolt'},
+ child:{n:'어린이용 (만 14세 이하)',ic:'user'},
+ foodc:{n:'식품·입에 닿는 용기',ic:'box'},
+ food:{n:'식품 자체 (가공식품 등)',ic:'box'},
+ textile:{n:'의류·섬유·피부 접촉',ic:'box'},
+ cosm:{n:'화장품·바르는 제품',ic:'box'},
+ plant:{n:'목재·식물 성분',ic:'box'},
+ chem:{n:'액체·화학·가스·향료',ic:'alert'}
+};
+const LV={'필수':'must','대상확인':'chk','권장':'rec'};
+/* 인증 팩: [lv, 내용, 근거 법령/기관] */
+const PK={
+ base:{
+  CN:[['필수','수출신고(报关) · 인보이스 · 패킹리스트 · 선적서류','중국 해관'],['대상확인','수출 법정검사(法检) 대상 HS 여부 확인 — 대상이면 검사검역 통관 서류 필요','중국 해관총서'],['권장','원산지증명(CO 또는 FTA C/O) — 관세 혜택 위해 선적 전 발급','CCPIT/해관']],
+  KR:[['필수','수입신고 · 관세/부가세 납부 · 원산지표시(Made in China)','관세법 · 대외무역법'],['대상확인','수입요건 확인(타법령 요건 — 세관장확인대상 여부)','관세법 제226조 · UNI-PASS']],
+  PH:[['필수','수입신고(BOC) · 관세/부가세 · 수입자 등록','Customs Modernization and Tariff Act (CMTA)'],['대상확인','수입 허가·승인 필요 품목 여부(수입규제 품목)','BOC · 관계부처']],
+  US:[['필수','수입신고(Entry) · ISF(선적 24시간 전 신고) · 원산지 표시(Made in China)','19 USC 1304 · 19 CFR 149'],['필수','Customs Bond(통관 보증) · 수입자 번호(IOR)','CBP']],
+  EU:[['필수','EORI 번호 · 수입신고 · 수입 VAT','EU Union Customs Code'],['필수','소비자 제품 : EU 내 책임자(EU Responsible Person) 및 제품 추적 정보 · 안전 정보','GPSR — Reg.(EU) 2023/988']]
+ },
+ elec:{
+  KR:[['필수','전기용품 KC 안전인증 · 안전확인 · 공급자적합성확인 (품목별 구분)','전기용품 및 생활용품 안전관리법'],['필수','전자파 적합성(EMC) KC 적합성평가','전파법 · 방송통신기자재']],
+  PH:[['대상확인','BPS 수입상품 인증(PS/ICC 마크) — 전기·조명·배터리 등 규제품목','DTI-BPS (RA 4109 · PNS)'],['필수','220V / 60Hz 규격 · 플러그 규격 일치','PNS / 현지 전기 규격']],
+  US:[['권장','UL / ETL(NRTL) 안전인증 — 법정 필수는 아니나 유통·보험상 사실상 요구','UL / OSHA NRTL'],['필수','FCC Part 15 — 전자파(비의도 방사) 적합성 선언(SDoC)','FCC 47 CFR Part 15 B']],
+  EU:[['필수','CE 마킹(LVD 저전압 + EMC) · EU 적합성선언(DoC) · 기술문서','LVD 2014/35/EU · EMC 2014/30/EU'],['필수','RoHS 유해물질 제한 · WEEE 등록/수거 의무(회원국별)','RoHS 2011/65/EU · WEEE 2012/19/EU'],['대상확인','에코디자인·에너지 라벨(EPREL) — 대상 품목','ErP 2009/125/EC']]
+ },
+ radio:{
+  KR:[['필수','방송통신기자재 적합성평가(KC 전파인증 — 적합인증/적합등록)','전파법 제58조의2'],['권장','국내 대리 신청자(수입자) 명의 인증 · 인증번호 라벨 부착','국립전파연구원(RRA)']],
+  PH:[['필수','NTC 형식승인(Type Approval) — 무선 장비 수입·판매 전 필수','National Telecommunications Commission']],
+  US:[['필수','FCC ID 인증(의도적 방사체 Certification) + FCC 라벨','FCC 47 CFR Part 15 C']],
+  EU:[['필수','RED 무선장비지침 CE — 사이버보안 요건(위임규정 2022/30) 2025.8 적용','RED 2014/53/EU']]
+ },
+ battery:{
+  CN:[['필수','리튬전지 UN38.3 시험보고서 · MSDS · 위험물 포장 사용감정서(危包证, 해상/항공)','UN Manual of Tests §38.3 · IMDG/IATA']],
+  KR:[['필수','이차전지·보조배터리 KC 안전확인(KC 62133-2) · 에너지 용량 표기','전기용품 및 생활용품 안전관리법']],
+  PH:[['대상확인','배터리 수입 BPS PS/ICC 대상 여부 확인','DTI-BPS']],
+  US:[['필수','운송 : UN38.3 · DOT/PHMSA 위험물 규정 (항공 100Wh 초과 제한)','49 CFR 173.185'],['권장','UL 2054 / UL 1642 (배터리) 시험','UL']],
+  EU:[['필수','EU 배터리 규정 — 라벨·성능·분리 가능성 등 단계 적용, CE 적합성','Reg.(EU) 2023/1542'],['필수','운송 UN38.3 · ADR/IATA','UN 38.3']]
+ },
+ child:{
+  KR:[['필수','어린이제품 안전인증/안전확인/공급자적합성확인(품목별) — KC 마크 필수','어린이제품안전 특별법'],['필수','납·카드뮴·프탈레이트 등 유해물질 기준 · 연령 표기','어린이제품 안전특별법 시행규칙']],
+  PH:[['대상확인','장난감·유아용품 안전 표시 · 제품 허가(FDA PH 또는 DTI) 확인','RA 10620 (Toy and Game Safety Labeling Act) · FDA PH']],
+  US:[['필수','어린이제품 인증서(CPC) + CPSC 인정 시험소 3자 시험 · 추적라벨','CPSIA (15 USC 2063)'],['필수','완구 : ASTM F963 · 납(100ppm)·프탈레이트 기준 · 소부품 경고라벨','16 CFR 1250 · ASTM F963']],
+  EU:[['필수','완구 : CE 마킹(완구안전지침) · EN 71 시험 · 기술문서','Toy Safety Directive 2009/48/EC'],['필수','제조자·수입자 정보 · 연령 경고 표기 · REACH 화학물질 제한','REACH Annex XVII · GPSR']]
+ },
+ foodc:{
+  CN:[['대상확인','식품접촉재질 수출 : 위생·이행 시험보고서(迁移试验)','중국 GB 4806 계열']],
+  KR:[['필수','식품용 기구·용기·포장 수입신고 및 검사 · 한글표시','식품위생법 · 식약처 수입식품안전관리 특별법']],
+  PH:[['대상확인','식품접촉 용기 FDA PH 등록/인가 요건 확인','FDA PH']],
+  US:[['필수','FDA 식품접촉물질 규정 적합(21 CFR) · 세라믹 납·카드뮴 용출 기준','FDA 21 CFR 170-189 · CPG 545.450'],['대상확인','캘리포니아 Prop 65 경고 대상 여부','CA Health & Safety Code 25249.6']],
+  EU:[['필수','식품접촉재료 적합성선언(DoC) · 추적성 · 제조 GMP','Reg.(EC) 1935/2004 · 2023/2006'],['대상확인','플라스틱 : 이행한도 시험(Reg.(EU) 10/2011) · 멜라민 특정이행(SML)','Reg.(EU) 10/2011']]
+ },
+ food:{
+  CN:[['필수','수출식품 생산기업 등록(GACC) · 위생증서 · 해관 수출검사','GACC 수출식품 관리'],['필수','성분표 · 제조공정도 · 첨가물 사용 내역','수입국 요구']],
+  KR:[['필수','수입식품 : 영업등록(수입판매업) · 해외제조업소 등록 · 수입신고(검사)','수입식품안전관리 특별법'],['필수','한글표시사항(제품명·원재료·알레르기·유통기한 등)','식품 등의 표시기준']],
+  PH:[['필수','FDA PH 영업허가(LTO) + 제품등록(CPR) · 영문 라벨','RA 9711 · FDA PH'],['대상확인','BAI/BPI 검역 허가(동물·식물성 원료)','BAI · BPI']],
+  US:[['필수','FDA 식품시설 등록(FFR) · 선적 사전통지(Prior Notice) · FSVP 해외공급자 검증','FDCA · FSMA'],['필수','영양성분표 · 알레르기 표시(9대 알레르겐) · 영문 라벨','21 CFR 101 · FALCPA/FASTER']],
+  EU:[['필수','식품 라벨 규정(원재료·알레르겐·영양) · 위생 규정 · 첨가물 허용 목록','Reg.(EU) 1169/2011 · 852/2004 · 1333/2008'],['필수','동물성 원료 : 3국 승인 시설·국경검사소(BCP) · 일부 고위험 식품 강화 검사','Reg.(EU) 2017/625 · 2019/1793']]
+ },
+ textile:{
+  KR:[['필수','섬유제품 한글 표시(섬유 조성·취급주의·제조국·수입자)','품질경영 및 공산품안전관리법 · 가정용 섬유제품 표시'],['대상확인','어린이용 의류는 어린이제품 KC 대상','어린이제품안전 특별법']],
+  PH:[['대상확인','섬유·의류 라벨(영문 섬유조성·원산지) 요건 확인','Consumer Act (RA 7394)']],
+  US:[['필수','FTC 섬유 라벨링(섬유 조성 · 제조국 · RN 번호) · 취급 라벨','Textile Act · Care Labeling Rule 16 CFR 423'],['대상확인','어린이 잠옷 : 가연성 기준(FFA) · 납/프탈레이트(어린이용)','16 CFR 1615/1616']],
+  EU:[['필수','섬유 조성 라벨 · 안전 정보 (GPSR) · 유해물질 제한(아조염료·니켈 등)','Reg.(EU) 1007/2011 · REACH Annex XVII'],['대상확인','신발 : 소재 픽토그램 라벨','Directive 94/11/EC']]
+ },
+ cosm:{
+  CN:[['대상확인','수출 화장품 : 생산기업 備案 및 해관 검사 요건','GACC · NMPA']],
+  KR:[['필수','화장품책임판매업 등록(수입자) · 한글 표시 · 표준통관예정보고','화장품법'],['대상확인','기능성화장품 심사/보고 · 안전성 자료 보관(수입품 포함)','화장품법 시행규칙']],
+  PH:[['필수','FDA PH 화장품 제품 통지(CPN) · 영업허가(LTO)','FDA PH — Cosmetic Product Notification']],
+  US:[['필수','FDA 시설 등록 · 제품 리스팅 · 부작용 보고 · 안전성 근거 (MoCRA)','MoCRA 2022'],['필수','영문 성분표시 · 라벨 요건','21 CFR 701']],
+  EU:[['필수','EU 책임자(RP) 지정 · CPNP 통지 · 제품안전보고서(CPSR)','Reg.(EC) 1223/2009'],['필수','금지·제한 성분 · 라벨 언어 요건','Reg.(EC) 1223/2009 Annex II-VI']]
+ },
+ plant:{
+  CN:[['필수','식물검역증서 · 훈증증명서 · IPPC(ISPM15) 목재포장 마크','중국 해관 · ISPM 15']],
+  KR:[['대상확인','수입 목재제품 합법성 입증 서류','임업 및 산지 이용 관련 법령'],['대상확인','식물 검역 대상 여부','식물방역법']],
+  PH:[['대상확인','BPI 식물검역 수입 요건 확인','BPI']],
+  US:[['필수','Lacey Act 수입 신고(식물성 성분·종·원산지)','Lacey Act · APHIS PPQ 505'],['대상확인','합판·MDF : 포름알데히드 규정(TSCA Title VI)','TSCA Title VI']],
+  EU:[['대상확인','EUDR 산림전용방지 실사 — 대상 원료·적용 시기 확인','Reg.(EU) 2023/1115'],['대상확인','포름알데히드 방출 시험(E1 수준)','REACH Annex XVII']]
+ },
+ chem:{
+  CN:[['필수','위험화학품 포장/운송 : MSDS · 위험물 적하감정서','GHS · IMDG/IATA']],
+  KR:[['대상확인','생활화학제품 안전확인 · 화평법/화관법 신고·등록 대상 여부','생활화학제품 및 살생물제의 안전관리에 관한 법률 · 화평법']],
+  PH:[['대상확인','화학물질 사전 신고 · MSDS 제출(CCO)','RA 6969 · EMB']],
+  US:[['대상확인','TSCA 신고 · CPSC 연방위험물질법(FHSA) 라벨 · Prop 65','TSCA · FHSA · Prop 65']],
+  EU:[['필수','REACH 사전 등록/SVHC 통지 · CLP 라벨','Reg.(EC) 1907/2006 · 1272/2008']]
+ }
+};
+/* 비용 티어 [만원 min,max / 일 min,max] */
+const TIER={
+ T0:{KR:[5,20,3,7],PH:[10,30,5,10],US:[10,40,5,10],EU:[15,50,5,12]},
+ T1:{KR:[30,120,10,20],PH:[40,120,10,20],US:[60,250,14,28],EU:[80,300,14,30]},
+ T2:{KR:[120,400,15,35],PH:[100,350,15,35],US:[200,700,20,45],EU:[200,650,20,45]},
+ T3:{KR:[80,300,15,40],PH:[80,300,20,45],US:[150,500,20,45],EU:[200,600,25,50]}
+};
+const tierOf=fl=>fl.includes('food')||fl.includes('cosm')?'T3':(fl.includes('elec')||fl.includes('radio')||fl.includes('battery'))?'T2':(fl.length?'T1':'T0');
+const IPT={
+ g:['g','무브랜드 일반 상품은 비교적 안전합니다. 로고·캐릭터·유명 디자인 모방 여부만 확인하세요.'],
+ d:['y','유명 디자인(형태·패턴) 카피에 따른 디자인권·부정경쟁 분쟁이 잦은 품목입니다. 디자인 출처와 로고 각인 여부를 확인하세요.'],
+ b:['y','브랜드·캐릭터 도용(상표권·저작권) 단속이 많은 품목입니다. 정식 라이선스가 없다면 로고·캐릭터 사용 제품은 피하세요.'],
+ h:['y','브랜드 정품·모조품 단속이 매우 강한 품목입니다. 정품 유통 경로·라이선스 서류가 없으면 통관 중 압류 및 폐기 위험이 큽니다.']
+};
+/* 카테고리 정의 : [id, group, name, short, hs, hsDesc, kw, flags, KR[mfn,fta], PH[mfn,fta], US, EU, ipType, extraCerts(옵션)] */
+const NEWC=[
+['console','게임·전자기기','게임기·콘솔 (비디오 게임기)','게임기·콘솔','9504.50','가정용 비디오 게임 콘솔·휴대용 게임기',  '게임기 게임 콘솔 닌텐도 스위치 플레이스테이션 ps5 ps4 xbox 엑스박스 휴대용게임기 레트로 game console handheld 游戏机',['elec','radio','battery'],[8,4],[5,0],0,0,'h',
+  {KR:[['대상확인','정품 가정용 게임기는 KC 전파인증 + 전기안전 확인 필요 (병행수입 시 인증 주체 확인)','전파법 · 전기용품법']],US:[['대상확인','게임 소프트웨어 내장(에뮬레이터·ROM 내장) 제품은 저작권 침해 가능성 — 합법 라이선스 확인','Copyright Act · DMCA']],EU:[['대상확인','내장 게임·콘텐츠 라이선스 확인(저작권 침해 단속)','Reg.(EU) 608/2013 지재권 세관집행']]}],
+['gameacc','게임·전자기기','게임 컨트롤러·액세서리','게임 액세서리','9504.50 / 9504.90','게임 컨트롤러, 조이스틱, 게임기 액세서리','컨트롤러 조이스틱 게임패드 게임 액세서리 충전독 gamepad controller joystick 手柄',['elec','radio','battery'],[8,4],[5,0],0,0,'b'],
+['phonecase','게임·전자기기','스마트폰 케이스·거치대','폰케이스·거치대','3926.90 / 4202.32','휴대폰 케이스, 거치대, 그립톡','폰케이스 휴대폰케이스 케이스 거치대 그립톡 스마트폰 액세서리 phone case holder 手机壳',[],[6.5,3.3],[10,5],0,0,'b'],
+['charger','게임·전자기기','충전기·케이블','충전기·케이블','8504.40 / 8544.42','USB 충전기·어댑터·케이블','충전기 어댑터 케이블 usb c타입 충전 adapter charger cable 充电器',['elec'],[8,4],[5,0],0,0,'g',
+  {KR:[['필수','충전기·어댑터는 안전인증 대상(KC 안전인증)','전기용품 및 생활용품 안전관리법']]}],
+['powerbank','게임·전자기기','보조배터리·리튬배터리','보조배터리','8507.60','리튬이온 배터리, 보조배터리','보조배터리 배터리 리튬 파워뱅크 충전지 power bank battery lithium 充电宝 移动电源',['elec','battery'],[8,4],[10,5],0,0,'g',
+  {KR:[['필수','보조배터리 : 안전인증(KC) — 용량 표기 · 항공 반입 제한(100Wh) 안내','전기용품법']]}],
+['audio','게임·전자기기','이어폰·스피커 (블루투스)','이어폰·스피커','8518.30 / 8518.22','이어폰, 헤드폰, 스피커','이어폰 헤드폰 스피커 블루투스 무선 에어팟 earbuds headphone speaker bluetooth 耳机 音箱',['elec','radio','battery'],[8,4],[10,0],0,0,'b'],
+['wearable','게임·전자기기','스마트워치·웨어러블','스마트워치','8517.62','스마트워치, 웨어러블 통신기기','스마트워치 워치 밴드 웨어러블 스마트밴드 smartwatch wearable 智能手表',['elec','radio','battery'],[0,0],[0,0],0,0,'b'],
+['display','게임·전자기기','TV·모니터·디스플레이','TV·모니터','8528.72 / 8528.52','TV 수신기, 컴퓨터 모니터','tv 티비 모니터 디스플레이 전자칠판 display monitor television 显示器 电视',['elec','radio'],[8,4],[10,0],0,0,'g'],
+['pcperiph','게임·전자기기','키보드·마우스·PC 주변기기','PC 주변기기','8471.60','키보드, 마우스, 입력장치','키보드 마우스 웹캠 pc주변기기 keyboard mouse webcam 键盘 鼠标',['elec','radio'],[0,0],[0,0],0,0,'b'],
+['cctv','게임·전자기기','CCTV·IP카메라','CCTV·IP카메라','8525.89','영상 카메라(CCTV, 방범 카메라)','cctv ip카메라 보안카메라 블랙박스 웹캠 카메라 감시 camera security 监控',['elec','radio'],[8,4],[7,0],0,0,'b',
+  {US:[['필수','FCC Covered List : Hikvision·Dahua·Hytera 등 일부 중국 업체 장비 신규 인증 금지(NDAA §889) — 제조사 확인','FCC · NDAA Sec.889']],KR:[['대상확인','영상정보처리기기 개인정보 보호 요건 · 정보보호 보안 요구사항','개인정보 보호법']],EU:[['대상확인','네트워크 연결 장비 : RED 사이버보안 · 일부 국가 중국 CCTV 제한 확인','RED · NIS2']]}],
+['drone','게임·전자기기','드론','드론','8806','무인 항공기(드론)','드론 쿼드콥터 uav 항공촬영 drone quadcopter 无人机',['elec','radio','battery'],[8,4],[5,0],0,0,'b',
+  {KR:[['대상확인','항공안전법 : 기체 신고·사업 등록(중량 기준) · 조종자 증명','항공안전법']],US:[['필수','FAA Remote ID · 등록(250g 초과) · FCC','FAA Part 89 · 107']],EU:[['필수','EU 드론 클래스 표기(C0–C4) · 운영자 등록 · RED','Delegated Reg.(EU) 2019/945']]}],
+['smallappl','게임·전자기기','소형 가전 (전기포트·믹서·에어프라이어)','소형 가전','8509.40 / 8516.79','가정용 소형 전기기기','전기포트 믹서 에어프라이어 전기밥솥 토스터 가습기 청소기 kettle blender air fryer 小家电',['elec'],[8,4],[10,5],0,0,'g'],
+['beautydev','게임·전자기기','미용 가전 (고데기·드라이어)','미용 가전','8516.31 / 8516.32','헤어드라이어, 고데기, 전기 미용기기','고데기 드라이어 헤어 미용기기 이온 hair dryer straightener 吹风机',['elec'],[8,4],[10,5],0,0,'b'],
+['massager','게임·전자기기','마사지기·건강 가전','마사지기','9019.10','마사지 기기, 안마기','마사지기 안마 마사지건 massager massage gun 按摩',['elec','battery'],[8,0],[0,0],0,0,'g',
+  {KR:[['대상확인','일부 마사지기는 의료기기 해당(품목 확인) — 해당 시 수입업 허가·품목 인증','의료기기법']],US:[['대상확인','치료 효능 표방 시 FDA 의료기기 규제(510(k))','FDCA']],EU:[['대상확인','의료 목적 표방 시 MDR','Reg.(EU) 2017/745']]}],
+['ebike','게임·전자기기','전동킥보드·전기자전거','전동킥보드·E-bike','8711.60','전기 구동 이륜차','전동킥보드 전기자전거 e-bike scooter 킥보드 전동 电动车',['elec','battery','radio'],[8,0],[10,0],0,0,'g',
+  {KR:[['필수','전동킥보드 : KC 안전확인(전기용품·자전거류) · 도로교통법 기준','전기용품법 · 도로교통법']],US:[['필수','CPSC 안전 · UL 2272/2849 배터리·전기시스템 (사실상 필수)','CPSC 16 CFR 1512']],EU:[['대상확인','중국산 전기자전거 EU 반덤핑·상계관세 부과 — 제조사별 세율 확인','EU AD/CVD Reg.(EU) 2019/73'],['필수','EN 15194(전기자전거)/EN 17128(PLEV) · 기계지침 · EMC','Machinery Directive 2006/42/EC']]}],
+
+['toy','완구·취미','일반 완구','완구','9503.00','어린이 완구 일반','장난감 완구 어린이 키즈 토이 toy 玩具',['child'],[8,4],[15,5],0,0,'b'],
+['plush','완구·취미','봉제인형','봉제인형','9503.00','봉제·인형 완구','인형 봉제 곰인형 캐릭터 인형 plush doll stuffed 毛绒',['child'],[8,4],[15,5],0,0,'b'],
+['figure','완구·취미','피규어·수집품·캐릭터 굿즈','피규어·굿즈','9503.00 / 9505.90','피규어, 수집용 모형, 캐릭터 상품','피규어 굿즈 캐릭터 수집 레고 모형 아트토이 figure collectible lego 手办',['child'],[8,4],[15,5],0,0,'h'],
+['boardgame','완구·취미','보드게임·카드게임','보드·카드게임','9504.40 / 9504.90','카드게임, 보드게임, 퍼즐','보드게임 카드게임 트럼프 퍼즐 board game cards puzzle 桌游',['child'],[8,4],[5,0],0,0,'b'],
+['arcade','완구·취미','아케이드·코인 게임기','아케이드 게임기','9504.30','동전·토큰 작동 게임기, 인형뽑기','아케이드 오락실 코인 인형뽑기 크레인 게임기 오락기 arcade claw crane coin 游戏机 街机',['elec'],[8,4],[5,0],0,0,'b',
+  {KR:[['필수','게임물 등급분류(게임물관리위원회) · 유통·설치 영업 등록','게임산업진흥에 관한 법률']],US:[['대상확인','주별 사행성·상금 게임 규제 · 지역 허가','주법']],EU:[['대상확인','국가별 도박·상금 게임 규제','회원국 법']]}],
+['rctoy','완구·취미','RC·전동·무선 완구','RC·전동 완구','9503.00','무선조종 완구, 전동 완구','rc 무선조종 전동완구 라디오 컨트롤 rc car 遥控',['child','elec','radio','battery'],[8,4],[15,5],0,0,'b'],
+
+['reel','낚시·레저·스포츠','낚시 릴','낚시 릴','9507.30','낚시 릴','낚시 릴 스피닝 베이트릴 reel fishing 钓鱼轮 渔轮 낚시릴',[],[8,4],[10,5],0,0,'h',
+  {US:[['대상확인','일부 주(예: NH·ME·VT·NY 등)는 납 낚시추·납 소재 제한 — 납 함유 확인','주별 납 규제']],EU:[['대상확인','납 함유 낚시용 추 제한 확대 중 — REACH 제한 동향 확인','ECHA / REACH']],KR:[['권장','시마노·다이와 등 브랜드 로고 위조품 단속 — 정품 증빙 확보','관세법 지재권']]}],
+['rod','낚시·레저·스포츠','낚싯대','낚싯대','9507.10','낚싯대 (카본·글라스)','낚싯대 낚시대 로드 카본 rod fishing 鱼竿 낚싯대',[],[8,4],[10,5],0,0,'h',
+  {US:[['대상확인','카본 소재 낚싯대는 전기 전도 위험 경고 표시 권장(전선 근처 사용)','업계 안전 표시']],KR:[['권장','브랜드 로고·모델명 각인 시 정품 증빙 확보','관세법 지재권']]}],
+['lure','낚시·레저·스포츠','루어·바늘·채비·소품','루어·바늘·채비','9507.20 / 9507.90','낚시 바늘, 루어, 채비, 낚시 소품','루어 바늘 채비 미끼 웜 지그 봉돌 추 훅 lure hook jig sinker tackle 鱼钩 路亚',[],[8,4],[10,5],0,0,'h',
+  {US:[['대상확인','납 함유 추·지그 헤드 : 주별 규제 / CPSIA 납(어린이 접촉 시)','주별 규제 · CPSIA']],EU:[['대상확인','납 함유 추·지그 제한 동향, 카드뮴 등 REACH 제한','REACH Annex XVII']]}],
+['fishline','낚시·레저·스포츠','낚싯줄·라인','낚싯줄','5404.19 / 9507.90','합성 모노필라멘트 낚싯줄, 낚시용 라인','낚싯줄 낚시줄 라인 합사 카본라인 pe line fishing line 鱼线',[],[8,4],[10,5],0,0,'g'],
+['outwear','낚시·레저·스포츠','아웃도어·낚시 의류 (우비·웨이더)','아웃도어 의류','6201 / 6210 / 6113','방수·아웃도어 의류, 낚시복','낚시복 아웃도어 의류 방수 우비 웨이더 자켓 등산복 outdoor jacket waterproof 户外服',['textile'],[13,6.5],[15,5],0,0,'b'],
+['tent','낚시·레저·스포츠','텐트·캠핑 용품','텐트·캠핑','6306.22 / 6306.29','텐트, 타프, 캠핑 용품','텐트 캠핑 타프 캠핑용품 차박 camping tent tarp 帐篷 露营',['textile'],[8,4],[15,5],0,0,'g',
+  {US:[['권장','텐트 난연성 CPAI-84 · Prop 65','CPAI-84']],EU:[['대상확인','화기 사용 캠핑 용품 : 가스기구 규정 · GPSR','Gas Appliances Reg.(EU) 2016/426']]}],
+['campfurn','낚시·레저·스포츠','캠핑 의자·테이블','캠핑 가구','9401.79 / 9403.20','캠핑용 접이식 의자·테이블','캠핑의자 접이식 캠핑테이블 폴딩 camping chair folding table 折叠椅',[],[8,4],[10,5],0,0,'d'],
+['sleepbag','낚시·레저·스포츠','침낭·매트','침낭·매트','9404.30 / 3926.90','침낭, 캠핑 매트','침낭 에어매트 캠핑매트 sleeping bag mat 睡袋',['textile'],[8,4],[15,5],0,0,'g'],
+['bike','낚시·레저·스포츠','자전거·부품','자전거·부품','8712.00 / 8714.91','자전거 및 부품','자전거 바이크 부품 bicycle bike parts 自行车',[],[8,0],[15,5],0,0,'b',
+  {KR:[['필수','자전거(어린이용 포함) KC 안전확인','전기용품 및 생활용품 안전관리법 · 어린이제품안전 특별법']],US:[['필수','자전거 안전 기준(16 CFR 1512) · CPC','CPSC']],EU:[['필수','EN 14764 등 적합 · GPSR 추적정보','GPSR']]}],
+['fitness','낚시·레저·스포츠','헬스·요가·운동용품','운동용품','9506.91','운동·헬스 기구, 요가매트','헬스 요가 운동 덤벨 매트 폼롤러 fitness yoga gym 健身',[],[8,4],[10,5],0,0,'g'],
+['golf','낚시·레저·스포츠','골프용품','골프용품','9506.31 / 9506.39','골프채·골프공·액세서리','골프 골프채 골프공 골프용품 golf club 高尔夫',[],[8,4],[10,5],0,0,'h'],
+['bag','낚시·레저·스포츠','가방·백팩','가방·백팩','4202.92 / 4202.22','가방, 백팩, 파우치','가방 백팩 파우치 책가방 핸드백 bag backpack pouch 包 背包',['textile'],[8,4],[15,5],0,0,'h'],
+
+['tshirt','패션·잡화','니트 의류 (티셔츠·후드)','니트 의류','6109.10 / 6110','티셔츠, 니트 상의','티셔츠 후드 맨투맨 니트 t-shirt hoodie knit 针织衫',['textile'],[13,6.5],[15,5],0,0,'b'],
+['wovenwear','패션·잡화','우븐 의류 (자켓·바지·셔츠)','우븐 의류','6201–6206','직조 의류 일반','자켓 바지 셔츠 원피스 코트 jacket pants shirt dress 梭织',['textile'],[13,6.5],[15,5],0,0,'b'],
+['socks','패션·잡화','양말·속옷','양말·속옷','6115.95 / 6107','양말, 속옷','양말 속옷 내의 socks underwear 袜子',['textile'],[13,6.5],[15,5],0,0,'g'],
+['shoes','패션·잡화','신발','신발','6402.99 / 6404.11','운동화, 슬리퍼 등 신발','신발 운동화 슬리퍼 샌들 구두 shoes sneakers sandals 鞋',['textile'],[13,6.5],[15,5],0,0,'h',
+  {KR:[['대상확인','어린이 신발 : 어린이제품 KC','어린이제품안전 특별법']],US:[['필수','신발 표시 · 어린이 신발 CPSIA(납)','CPSIA']],EU:[['필수','신발 라벨(소재 픽토그램) · 크롬VI·REACH','94/11/EC']]}],
+['hat','패션·잡화','모자·액세서리','모자·액세서리','6505.00 / 6117.10','모자, 스카프, 장갑','모자 캡 비니 스카프 장갑 hat cap beanie 帽子',['textile'],[13,6.5],[15,5],0,0,'b'],
+['sunglass','패션·잡화','선글라스·안경','선글라스','9004.10','선글라스, 안경 프레임','선글라스 안경 안경테 sunglasses glasses 太阳镜',[],[8,4],[10,5],0,0,'h',
+  {US:[['필수','선글라스는 FDA 규제 의료기기(내충격성)','21 CFR 801.410']],EU:[['필수','PPE Cat.I CE (자외선 차단 EN ISO 12312-1)','PPE Reg.(EU) 2016/425']]}],
+['jewelry','패션·잡화','패션 주얼리·액세서리','주얼리','7117.19 / 7117.90','모조 장신구, 패션 액세서리','목걸이 반지 귀걸이 팔찌 악세사리 주얼리 jewelry necklace ring 饰品',['textile'],[8,4],[15,5],0,0,'h',
+  {KR:[['대상확인','어린이용 장신구 : 중금속(납·카드뮴) 기준','어린이제품안전 특별법']],US:[['필수','어린이용 : 납·카드뮴 기준(CPSIA)','CPSIA']],EU:[['필수','니켈 방출·납·카드뮴 제한','REACH Annex XVII']]}],
+['watch','패션·잡화','시계','시계','9102.11 / 9102.91','손목시계','시계 손목시계 watch wristwatch 手表',['battery'],[8,0],[10,5],0,0,'h'],
+['wallet','패션·잡화','지갑·가죽 소품','지갑·가죽 소품','4202.31 / 4202.32','지갑, 카드지갑, 가죽 제품','지갑 카드지갑 가죽 벨트 wallet leather 钱包',[],[8,4],[15,5],0,0,'h',
+  {KR:[['대상확인','악어·뱀 등 가죽은 CITES 허가','CITES · 야생생물법']],US:[['대상확인','CITES 허가 · 가죽 표시','Lacey/ESA']],EU:[['대상확인','CITES 허가(EU 규정 338/97)','Reg.(EC) 338/97']]}],
+
+['cosmetic','뷰티·생활','화장품·스킨케어','화장품','3304.99 / 3304.91','기초·색조 화장품','화장품 스킨케어 크림 로션 마스크팩 립스틱 파운데이션 cosmetics skincare 化妆品',['cosm'],[6.5,0],[10,5],0,0,'b'],
+['perfume','뷰티·생활','향수·방향제','향수·방향제','3303.00 / 3307.41','향수, 방향제','향수 방향제 디퓨저 perfume fragrance 香水',['cosm','chem'],[8,4],[10,5],0,0,'b'],
+['haircare','뷰티·생활','헤어·바디케어','헤어·바디케어','3305.10 / 3401.30','샴푸, 바디워시, 헤어용품','샴푸 린스 바디워시 헤어 shampoo body wash 洗发水',['cosm'],[6.5,3.3],[10,5],0,0,'b'],
+['nail','뷰티·생활','네일·미용 소품','네일·미용 소품','3304.30 / 8214.20','네일 제품, 미용 도구','네일 매니큐어 네일팁 미용도구 nail beauty tool 美甲',['cosm'],[6.5,3.3],[10,5],0,0,'g'],
+['detergent','뷰티·생활','세제·청소용품','세제·청소용품','3402.20 / 9603.90','세제, 청소용품','세제 세정제 청소 클리너 detergent cleaner 清洁',['chem'],[6.5,3.3],[7,0],0,0,'g'],
+['dailyplastic','뷰티·생활','생활용 플라스틱·수납','생활 플라스틱','3924.90 / 3923.10','플라스틱 생활용품, 수납함','플라스틱 수납 정리함 생활용품 storage plastic 收纳',[],[6.5,3.3],[10,5],0,0,'g'],
+['towel','뷰티·생활','타월·침구','타월·침구','6302.60 / 6302.21','타월, 침구류','타월 수건 침구 이불 베개 towel bedding 毛巾 床品',['textile'],[13,6.5],[15,5],0,0,'g'],
+['stationery','뷰티·생활','문구·사무용품','문구·사무','4820.10 / 9608.10','문구, 필기구, 노트','문구 필기구 노트 펜 stationery notebook pen 文具',['child'],[8,4],[10,5],0,0,'b'],
+['candle','뷰티·생활','향초·캔들','향초·캔들','3406.00','양초, 향초','양초 캔들 향초 candle 蜡烛',['chem'],[8,4],[10,5],0,0,'g'],
+
+['snack','식품·건강','과자·가공식품','과자·가공식품','1905.90 / 2106.90','과자, 스낵, 가공식품','과자 스낵 가공식품 간식 snack 零食',['food'],[8,0],[10,5],0,0,'b'],
+['noodle','식품·건강','면·즉석식품','면·즉석식품','1902.30 / 1902.19','라면, 면류, 즉석식품','라면 면 국수 즉석식품 noodle instant 方便面',['food'],[8,0],[10,5],0,0,'b'],
+['tea','식품·건강','차·커피·음료','차·커피·음료','0902.10 / 2101.11 / 2202.99','차, 커피, 음료','차 커피 음료 티 tea coffee drink 茶',['food'],[8,0],[10,5],0,0,'b'],
+['supplement','식품·건강','건강기능식품·영양제','건강기능식품','2106.90 / 2936.90','비타민, 영양보충제','건강기능식품 영양제 비타민 보충제 supplement vitamin 保健品',['food'],[8,0],[10,5],0,0,'b',
+  {KR:[['필수','건강기능식품 : 수입판매업 영업신고 · 기능성 인정 · 별도 수입검사','건강기능식품에 관한 법률']],US:[['필수','건강보조식품 : 성분·표시 규정 (구조·기능 표시) · 신규 성분 NDI','DSHEA · 21 CFR 111']],EU:[['필수','영양·건강 표시 허가 · 신규식품(Novel Food) 여부','Reg.(EC) 1924/2006 · (EU) 2015/2283']]}],
+['sauce','식품·건강','소스·양념','소스·양념','2103.90 / 2103.20','소스, 조미료','소스 양념 조미료 간장 고추장 sauce seasoning 调味',['food'],[8,0],[10,5],0,0,'g'],
+['petfood','식품·건강','반려동물 사료·간식','반려동물 사료','2309.10','개·고양이 사료·간식','사료 반려견 간식 고양이 펫푸드 pet food 宠物食品',['food'],[8,0],[5,0],0,0,'g',
+  {KR:[['필수','수입 사료 : 검역 · 사료관리법 등록(농림축산검역본부)','사료관리법 · 가축전염병예방법']],US:[['필수','FDA 사료 등록 · AAFCO 라벨','FDCA · AAFCO']],EU:[['필수','동물성 부산물 : 3국 승인 시설 · 수의 증명','Reg.(EC) 1069/2009']]}],
+
+['stroller','유아·반려·차량·공구','유모차·유아용품','유아용품','8715.00 / 9401.82','유모차, 카시트, 유아용품','유모차 카시트 아기띠 유아 stroller baby car seat 婴儿',['child'],[8,4],[10,5],0,0,'b'],
+['babybottle','유아·반려·차량·공구','젖병·유아 식기','젖병·유아 식기','3924.10 / 3923.30','젖병, 유아용 식기','젖병 이유식 유아식기 baby bottle 奶瓶',['child','foodc'],[6.5,3.3],[10,5],0,0,'b'],
+['petsupply','유아·반려·차량·공구','반려동물 용품','반려동물 용품','4201.00 / 3926.90','목줄, 하네스, 반려동물 용품','목줄 하네스 반려동물 용품 펫 pet supplies 宠物用品',[],[8,4],[10,5],0,0,'g'],
+['caracc','유아·반려·차량·공구','자동차 용품·부품','자동차 용품','8708.99 / 8512.20','자동차 부속품·용품','자동차용품 차량 액세서리 매트 거치대 car accessory auto parts 汽车用品',[],[8,0],[10,5],0,0,'b',
+  {KR:[['대상확인','자동차 부품 : 자기인증·부품자기인증 대상 여부','자동차관리법']],US:[['대상확인','FMVSS 적합 · DOT 인증 대상 여부','49 CFR 571']],EU:[['대상확인','ECE 형식승인(R 규정) 대상 여부','UNECE Regulations']]}],
+['handtool','유아·반려·차량·공구','수공구·전동공구','공구','8205.59 / 8467.21','수공구, 전동공구','공구 전동공구 드릴 렌치 tool drill 工具',['elec'],[8,4],[10,5],0,0,'g'],
+['packaging','유아·반려·차량·공구','포장재 (박스·비닐)','포장재','4819.10 / 3923.21','포장용 박스, 비닐','포장재 박스 비닐 에어캡 packaging 包装',[],[8,4],[10,5],0,0,'g'],
+['solar','유아·반려·차량·공구','태양광 패널·모듈','태양광','8541.43','태양광 모듈·패널','태양광 패널 모듈 solar panel 太阳能',['elec'],[8,0],[0,0],0,0,'g',
+  {US:[['필수','중국산 태양전지 AD/CVD(반덤핑·상계관세) · UFLPA(강제노동 방지) 추적 서류','AD/CVD · UFLPA']],EU:[['대상확인','CE · 강제노동 제품 금지 규정 동향','Forced Labour Reg.(EU) 2024/3015']]}],
+
+['sofa','인테리어/가구','소파·실내장식 가구','소파·장식 가구','9401.61 / 9401.71','덮개 있는 의자·소파','소파 쇼파 안락의자 푹신 sofa couch upholstered 沙发',['plant','chem'],[8,4],[15,5],0,0,'d',
+  {US:[['필수','CA TB117-2013 가연성 · 포름알데히드 TSCA VI','TB117-2013']],EU:[['필수','가구 가연성 · 포름알데히드 · REACH','GPSR · REACH']]}],
+['metalfurn','인테리어/가구','금속 가구','금속 가구','9403.20 / 9401.79','철제 의자·선반·테이블','철제 가구 스틸 선반 책상 metal furniture shelf 铁艺',[],[8,4],[10,5],0,0,'d'],
+['mattress','인테리어/가구','매트리스','매트리스','9404.21','폼·스프링 매트리스','매트리스 침대 토퍼 mattress 床垫',['textile'],[8,4],[10,5],0,0,'g',
+  {US:[['필수','매트리스 가연성 16 CFR 1633 (개방염)','CPSC 16 CFR 1632/1633']],EU:[['필수','GPSR · REACH · 난연 요건','GPSR · REACH']]}],
+['curtain','인테리어/가구','커튼·홈텍스타일','커튼·홈텍스','6303.92 / 6304.19','커튼, 쿠션, 홈텍스타일','커튼 쿠션 블라인드 홈텍스타일 curtain cushion 窗帘',['textile'],[13,6.5],[15,5],0,0,'g'],
+['rug','인테리어/가구','러그·카펫','러그·카펫','5703.30 / 5705.00','러그, 카펫, 매트','러그 카펫 매트 rug carpet 地毯',['textile'],[8,4],[15,5],0,0,'g'],
+['flooring','인테리어/가구','마루·바닥재 (SPC·비닐)','바닥재','3918.10 / 4411.14','비닐 바닥재, SPC 마루','마루 장판 SPC 바닥재 flooring vinyl 地板',['plant','chem'],[8,4],[10,5],0,0,'g'],
+['artplant','인테리어/가구','조화·인테리어 소품','조화·소품','6702.90 / 9505.90','인조 식물·꽃, 장식 소품','조화 인조식물 소품 장식 데코 artificial flower decor 仿真花',[],[8,4],[10,5],0,0,'d'],
+['mirror','인테리어/가구','거울·유리 소품','거울·유리','7009.92 / 7020.00','거울, 유리 제품','거울 유리 mirror glass 镜子',[],[8,4],[10,5],0,0,'g'],
+['faucet','인테리어/가구','수전·욕실용품','수전·욕실','8481.80 / 3922.20','수도꼭지, 샤워기','수전 수도꼭지 샤워기 욕실 faucet shower bathroom 水龙头',[],[8,4],[10,5],0,0,'d',
+  {KR:[['필수','수도용 자재·제품 위생안전기준 인증','수도법']],US:[['필수','저납(Lead-Free) 기준 · NSF/ANSI 61 · WaterSense(해당 시)','SDWA · NSF 61']],EU:[['필수','음용수 접촉 재료 규정(승인 4MS 등) · 라벨','Construction Products Reg. · DWD']]}],
+
+['glassware','업소용 주방/식기','유리 식기·컵','유리 식기','7013.49 / 7013.37','유리컵, 유리 식기','유리컵 유리 식기 와인잔 glass cup glassware 玻璃杯',['foodc'],[8,4],[10,5],0,0,'g'],
+['ceramic','업소용 주방/식기','도자기 식기','도자기 식기','6912.00 / 6911.10','도자기 식기, 머그','도자기 식기 머그컵 접시 ceramic tableware mug plate 陶瓷',['foodc'],[8,4],[10,5],0,0,'d',
+  {US:[['필수','도자기 납·카드뮴 용출 시험 (FDA CPG 545.450) · Prop 65','FDA']],EU:[['필수','도자기 납·카드뮴 이행 한도','Directive 84/500/EEC']]}],
+['steelware','업소용 주방/식기','스테인리스 주방용품','스테인리스 주방','7323.93 / 7615.19','스테인리스 조리기구, 주방용품','스테인리스 냄비 후라이팬 주방용품 조리도구 stainless cookware pot pan 不锈钢',['foodc'],[8,4],[10,5],0,0,'g'],
+['flask','업소용 주방/식기','텀블러·보온병','텀블러·보온병','9617.00','진공 보온병, 텀블러','텀블러 보온병 보냉병 물병 tumbler flask vacuum bottle 保温杯',['foodc'],[8,4],[10,5],0,0,'b']
+];
+const GROUP_ORDER=['인테리어/가구','업소용 주방/식기','게임·전자기기','완구·취미','낚시·레저·스포츠','패션·잡화','뷰티·생활','식품·건강','유아·반려·차량·공구','기타 소상품'];
+/* 구형 6개 카테고리 : 플래그·키워드 부여, 중복되는 전기·전파 인증 문구는 팩으로 이관 */
+(function(){
+ const old={wood:{kw:'원목 가구 의자 테이블 책상 목재 우드 애쉬우드 wood furniture chair table 木',flags:['plant']},
+  tile:{kw:'타일 도기 변기 세면대 위생도기 tile ceramic toilet sink 瓷砖',flags:[]},
+  led:{kw:'조명 led 램프 전구 등 lighting lamp light bulb 灯',flags:['elec']},
+  melamine:{kw:'멜라민 식기 그릇 접시 melamine tableware bowl 密胺',flags:['foodc']},
+  motor:{kw:'제빙기 냉장고 냉동 주방설비 업소용 모터 ice machine refrigerator freezer 制冰机',flags:['elec']},
+  hardware:{kw:'철물 볼트 나사 손잡이 경첩 하드웨어 hardware bolt screw handle 五金',flags:[]}};
+ Object.entries(old).forEach(([k,o])=>{const c=CATS[k];c.kw=o.kw;c.flags=o.flags});
+ CATS.hardware.group='기타 소상품';
+ const strip=/\bKC\b|\bUL\b|\bCE\b|FCC|RoHS|ETL|BPS/;
+ ['led','motor'].forEach(k=>{['KR','PH','US','EU'].forEach(co=>{CATS[k].certs[co]=(CATS[k].certs[co]||[]).filter(x=>!strip.test(x.t)||/NSF|F-gas|에너지|ErP|DOE/.test(x.t))})});
+})();
+const USEU={console:[0,0],gameacc:[0,0],phonecase:[5.3,6.5],charger:[0,0],powerbank:[3.4,2.7],audio:[0,0],wearable:[0,0],display:[0,14],pcperiph:[0,0],cctv:[0,3.7],drone:[0,0],smallappl:[2.1,2.2],beautydev:[2.1,2.7],massager:[0,0],ebike:[6,6],
+toy:[0,0],plush:[0,0],figure:[0,0],boardgame:[0,0],arcade:[0,0],rctoy:[0,0],reel:[0,0],rod:[0,0],lure:[6,2.7],fishline:[8,4],outwear:[16,12],tent:[8.8,12],campfurn:[0,2.7],sleepbag:[9.1,3.7],bike:[5.5,14],fitness:[4.6,2.7],golf:[4.9,2.7],bag:[17.6,3.7],
+tshirt:[16.5,12],wovenwear:[16.5,12],socks:[13.5,12],shoes:[20,16],hat:[7.5,2.7],sunglass:[2,2.9],jewelry:[11,4],watch:[4.5,4.5],wallet:[8,3.7],cosmetic:[0,0],perfume:[0,0],haircare:[0,0],nail:[0,0],detergent:[4,6.5],dailyplastic:[3.4,6.5],towel:[9.1,12],stationery:[0,0],candle:[0,0],
+snack:[7,7],noodle:[7,7],tea:[0,3.2],supplement:[6.4,9],sauce:[6.4,7.7],petfood:[0,9],stroller:[3.4,4.7],babybottle:[3.4,6.5],petsupply:[2.8,2.7],caracc:[2.5,3],handtool:[3.7,1.7],packaging:[3,6.5],solar:[0,0],
+sofa:[0,2.7],metalfurn:[0,2.7],mattress:[3,3.7],curtain:[11.6,12],rug:[6,8],flooring:[5.3,6.5],artplant:[11,2.7],mirror:[3.9,3.7],faucet:[4,2.2],glassware:[7,11],ceramic:[9,12],steelware:[2,3.3],flask:[3.4,3.7]};
+NEWC.forEach(a=>{
+ const [id,group,name,short,hs,hsDesc,kw,flags,kr,ph,us,eu,ipT,extra]=a,ipx=IPT[ipT];
+ const z=v=>Array.isArray(v)?v:[v,null];
+ const t=TIER[tierOf(flags)];
+ CATS[id]={group,name,short,hs,hsDesc,kw,flags,
+  duty:{KR:z(kr),PH:z(ph),US:z((USEU[id]||[0,0])[0]),EU:z((USEU[id]||[0,0])[1])},
+  ip:{level:ipx[0],text:ipx[1]},cost:{KR:t.KR,PH:t.PH,US:t.US,EU:t.EU},
+  certs:{base:[],KR:[],PH:[],US:[],EU:[]},xtra:extra||{},ipType:ipT};
+});
+/* 계약서 조항 자동 생성 (신규 카테고리) */
+Object.keys(CATS).forEach(k=>{
+ if(CLAUSES[k])return;
+ const c=CATS[k];
+ CLAUSES[k]=[
+  ['产品须与确认样品的材质、尺寸、颜色、包装完全一致，批量交货偏差不得超出双方书面确认的公差范围。','제품은 확정 샘플과 재질·규격·색상·포장이 완전히 동일해야 하며, 양산 편차는 서면 합의한 공차 범위를 넘을 수 없습니다.'],
+  cc=>{const m={KR:['韩国KC认证/电波认证','한국 KC 인증·전파인증'],PH:['菲律宾PS/ICC及NTC/FDA相关许可','필리핀 PS/ICC 및 NTC·FDA 관련 허가'],US:['美国FCC/CPSC(CPC)/FDA相关合规文件','미국 FCC·CPSC(CPC)·FDA 관련 적합 서류'],EU:['欧盟CE/GPSR/REACH合规文件（含欧盟责任人信息）','EU CE·GPSR·REACH 적합 서류(EU 책임자 정보 포함)']}[cc];
+     return ['须提供目的国要求的'+m[0]+'，认证标识须真实有效，严禁伪造；因证书缺失导致的清关延误及损失由供应商承担。','도착국이 요구하는 '+m[1]+'를 제공해야 하며 인증 마크는 진본이어야 합니다. 서류 미비로 인한 통관 지연·손실은 공급업체가 부담합니다.']},
+  ['产品及外包装须清晰标注“Made in China”，并按目的国要求提供当地语言/英文标签（成分、规格、警示语、进口商信息）。','제품 및 외포장에 “Made in China”를 선명하게 표기하고, 도착국 요구에 따른 현지어/영문 라벨(성분·규격·경고문구·수입자 정보)을 제공해야 합니다.'],
+  ['不得使用任何第三方品牌、商标、角色形象；如需OEM/授权，须提供书面授权文件。','제3자 브랜드·상표·캐릭터를 사용할 수 없으며, OEM/라이선스가 필요한 경우 서면 승인서를 제공해야 합니다.'],
+  ['出货前按 AQL 2.5 标准抽检并提供检验报告；质保期内不良品免费更换。','출고 전 AQL 2.5 기준으로 샘플 검사를 하고 검사 리포트를 제공하며, 보증 기간 내 불량품은 무상 교환합니다.']
+ ];
+});
+/* 활성 플래그 (사용자가 바꾸면 S.flags, 아니면 카테고리 기본값) */
+const flagsNow=()=>(S.flags&&S.flagsFor===S.cat)?S.flags:(CATS[S.cat].flags||[]);
+function certList(cat,co,fl){
+ const c=CATS[cat],out=[];
+ const add=(arr,tag)=>(arr||[]).forEach(x=>{if(!out.some(o=>o.t===x[1]))out.push({lv:x[0],t:x[1],law:x[2],tag})});
+ add(PK.base.CN,'중국 수출');add(PK.base[co],COUNTRIES[co].name+' 수입');
+ fl.forEach(f=>{add((PK[f]||{}).CN,'중국 수출');add((PK[f]||{})[co],COUNTRIES[co].name+' 수입')});
+ add((c.xtra||{})[co],COUNTRIES[co].name+' 수입');
+ const inf=t=>/확인|대상|권장/.test(t)?'대상확인':'필수';
+ (c.certs.base||[]).forEach(x=>out.push({lv:/포장|표기|품질/.test(x.tag)?'권장':inf(x.t),t:x.t,law:'',tag:x.tag}));
+ (c.certs[co]||[]).forEach(x=>out.push({lv:inf(x.t),t:x.t,law:'',tag:x.tag}));
+ return out;
+}
+const OFFICIAL={
+ KR:[['관세청 UNI-PASS (HS·세율·수입요건)','https://unipass.customs.go.kr'],['KC 안전·제품안전정보센터','https://www.safetykorea.kr'],['전파인증(RRA)','https://www.rra.go.kr'],['식약처 수입식품정보마루','https://impfood.mfds.go.kr']],
+ PH:[['DTI Bureau of Product Standards','https://bps.dti.gov.ph'],['FDA Philippines','https://www.fda.gov.ph'],['NTC','https://ntc.gov.ph'],['Tariff Commission','https://tariffcommission.gov.ph']],
+ US:[['USITC HTS (세율)','https://hts.usitc.gov'],['CPSC 수입 안전','https://www.cpsc.gov/Business--Manufacturing/Importing'],['FCC 장비 인증','https://www.fcc.gov/oet/ea'],['FDA 수입','https://www.fda.gov/industry/import-program-food-and-drug-administration-fda']],
+ EU:[['TARIC 세율 조회','https://ec.europa.eu/taxation_customs/dds2/taric'],['Your Europe — 제품 요건','https://europa.eu/youreurope/business/product-requirements/'],['Safety Gate','https://ec.europa.eu/safety-gate'],['ECHA (REACH)','https://echa.europa.eu']]
+};
+/* 상품명·키워드 → 카테고리 자동 매칭 */
+const norm=s=>(s||'').toLowerCase().replace(/[^a-z0-9가-힣一-鿿 ]+/g,' ');
+function matchCats(q){
+ q=norm(q).trim();if(!q)return [];
+ const toks=q.split(/\s+/).filter(Boolean);
+ const res=[];
+ Object.entries(CATS).forEach(([k,c])=>{
+  const hay=norm(c.name+' '+c.short+' '+(c.kw||'')+' '+c.group);
+  let sc=0;
+  toks.forEach(t=>{ if(t.length<1)return;
+   const words=hay.split(/\s+/);
+   if(words.includes(t))sc+=3; else if(hay.includes(t))sc+=(t.length>=2?2:0);
+   else if(t.length>=3){ for(const w of words){ if(w.length>=2&&t.includes(w)){sc+=2;break} } }
+  });
+  if(norm(c.short).includes(q)||norm(c.name).includes(q))sc+=4;
+  if(sc>0)res.push([k,sc]);
+ });
+ return res.sort((a,b)=>b[1]-a[1]).slice(0,6);
+}
+
 /* ============================ 확인 대화상자 (YES / NO) ============================ */
 function ask(o){
   return new Promise(res=>{
@@ -735,10 +1070,34 @@ function updateDataChip(){
 }
 
 /* ============================ TAB 1 ============================ */
+const T1UI={q:'',open:{}};
 function renderT1Inputs(){
   $('#countryBtns').innerHTML=Object.entries(COUNTRIES).map(([k,c])=>'<button class="opt '+(S.country===k?'on':'')+'" data-act="country" data-v="'+k+'"><span class="fl">'+c.flag+'</span>'+c.name+'</button>').join('');
-  const groups={};Object.entries(CATS).forEach(([k,c])=>{(groups[c.group]=groups[c.group]||[]).push([k,c])});
-  $('#catTree').innerHTML=Object.entries(groups).map(([g,arr])=>'<div class="grp">'+g+'</div><div class="optlist">'+arr.map(([k,c])=>'<button class="opt '+(S.cat===k?'on':'')+'" data-act="cat" data-v="'+k+'">'+c.name+'</button>').join('')+'</div>').join('');
+  $('#catCount').textContent='총 '+Object.keys(CATS).length+'개';
+  const optB=(k,c)=>'<button class="opt '+(S.cat===k?'on':'')+'" data-act="cat" data-v="'+k+'">'+c.name+'<span class="hsm">HS '+c.hs.split('/')[0].trim()+'</span></button>';
+  if(T1UI.q.trim()){
+    const m=matchCats(T1UI.q);
+    $('#catTree').innerHTML=m.length?'<div class="grp">검색 결과</div><div class="optlist">'+m.map(([k])=>optB(k,CATS[k])).join('')+'</div>':'<div class="note gray">검색 결과가 없습니다. 다른 단어(예: 영어·중국어·상품 종류)로 검색하거나 아래 분류에서 가장 가까운 항목을 고르세요.</div>';
+  }else{
+    const groups={};Object.entries(CATS).forEach(([k,c])=>{(groups[c.group]=groups[c.group]||[]).push([k,c])});
+    const order=[...GROUP_ORDER,...Object.keys(groups).filter(g=>!GROUP_ORDER.includes(g))].filter(g=>groups[g]);
+    $('#catTree').innerHTML=order.map(g=>{
+      const arr=groups[g],has=arr.some(([k])=>k===S.cat),open=T1UI.open[g]!==undefined?T1UI.open[g]:has;
+      return '<div class="acc'+(open?' open':'')+'"><button class="acc-h" data-act="grp" data-v="'+g+'"><span>'+g+' <i class="n">'+arr.length+'</i></span><span class="chev">›</span></button>'+(open?'<div class="optlist">'+arr.map(([k,c])=>optB(k,c)).join('')+'</div>':'')+'</div>';
+    }).join('');
+  }
+  renderFlags();renderSugg();
+}
+function renderFlags(){
+  const fl=flagsNow();
+  $('#flagBox').innerHTML=Object.entries(FLAGS).map(([k,f])=>'<button class="fchip'+(fl.includes(k)?' on':'')+'" data-act="flag" data-v="'+k+'">'+f.n+'</button>').join('');
+}
+function renderSugg(){
+  const q=(S.pname||'')+' '+(S.brand||''),m=matchCats(q).filter(([k])=>k!==S.cat).slice(0,3);
+  const cur=matchCats(q).find(([k])=>k===S.cat);
+  const top=m[0];
+  const strong=(S.pname||'').trim()&&top&&(!cur||top[1]>cur[1]+1);
+  $('#sugg').innerHTML=strong?'<div class="sugg"><div class="sg-t"><svg class="ic"><use href="#i-alert"/></svg> 입력하신 상품은 선택된 <b>'+CATS[S.cat].short+'</b>보다 아래 카테고리에 가까워 보입니다</div><div class="chips mt8">'+m.map(([k])=>'<button class="chip em btnchip" data-act="cat" data-v="'+k+'">→ '+CATS[k].short+' · HS '+CATS[k].hs.split('/')[0].trim()+'</button>').join('')+'</div></div>':'';
 }
 function ipAssess(){
   const c=CATS[S.cat];let lvl=c.ip.level;const notes=[];
@@ -751,13 +1110,13 @@ function renderT1Results(){
   const c=CATS[S.cat],co=COUNTRIES[S.country],d=getDuty(S.cat,S.country),hasFta=d[1]!=null;
   const ip=ipAssess();
   const sigMap={g:['<i class="dt g"></i> 안전','g'],y:['<i class="dt y"></i> 로고 확인 필요','y'],r:['<i class="dt r"></i> 디자인·상표권 침해 주의','r']};
-  const certs=[...c.certs.base,...(c.certs[S.country]||[])];
-  const cost=getCost(S.cat,S.country),sav=hasFta?(d[0]-d[1]):0,maxR=Math.max(d[0],15);
-  const diagChip=S.diag?'<span class="chip em">✓ AI 진단 완료 '+S.diag+'</span>':'<span class="chip">카테고리 기반 즉시 진단</span>';
+  const certs=certList(S.cat,S.country,flagsNow());
+  const cost=R.cost[dKey(S.cat,S.country)]||TIER[tierOf(flagsNow())][S.country],sav=hasFta?(d[0]-d[1]):0,maxR=Math.max(d[0],15);
+  const diagChip=S.diag?'<span class="chip em">✓ 진단 완료 '+S.diag+'</span>':'<span class="chip">카테고리 · 키워드 매칭 진단</span>';
   const thumb=S.img?'<img src="'+S.img+'" class="thumb" alt="">':'';
   const usNote=S.country==='US'?'<div class="tiny gd mt12">※ 중국산 품목은 기본관세 외 추가관세(Section 301 등)가 별도 부과될 수 있어 최신 확인이 필요합니다.</div>':'';
   const dc=dataChip(S.cat,S.country);
-  $('#t1res').innerHTML=
+  $('#t1res').innerHTML=mismatchBanner()+
   '<div class="card fade"><div class="row gap16">'+thumb+'<div class="f1"><div class="tiny mut">진단 대상</div><div class="big" style="font-size:22px">'+esc(S.pname||c.name)+(S.brand?' <span class="md mut" style="font-weight:500">/ '+esc(S.brand)+'</span>':'')+'</div>'+
     '<div class="chips mt8"><span class="chip gd">'+c.group+' › '+c.short+'</span><span class="chip em">'+co.flag+' '+co.name+'</span>'+dc+'</div></div>'+diagChip+'</div></div>'+
   '<div class="g2">'+
@@ -769,7 +1128,7 @@ function renderT1Results(){
    '<div class="card fade"><div class="card-title"><span class="ix">2</span>지재권 · 상표권 세관 리스크</div><div class="sig '+sigMap[ip.lvl][1]+'"><span class="dot"></span><span>'+sigMap[ip.lvl][0]+'</span></div>'+
      '<div class="sm mt16" style="color:var(--tx2);line-height:1.7">'+c.ip.text+'</div>'+ip.notes.map(n=>'<div class="sm rd mt12" style="line-height:1.7"><svg class="ic"><use href="#i-alert"/></svg> '+n+'</div>').join('')+
      '<div class="tiny mut mt20 mb8">상표권 체크 가이드</div><ul class="ul"><li>'+IP_GUIDE[S.country]+'</li><li>중국 상표망(CNIPA) 및 공장 보유 라이선스 서류 요청</li><li>샘플 사진의 로고 · 각인 · 라벨을 확대 촬영해 대조</li></ul></div></div>'+
-  '<div class="card fade"><div class="card-title"><span class="ix">3</span>'+co.flag+' '+co.name+' 필수 인증 · 법적 요건</div><div class="g2 s">'+certs.map(x=>'<div class="cert"><span class="ck">✓</span><div><div><span class="chip '+(x.tag.indexOf('중국')>=0?'gd':'')+'">'+x.tag+'</span></div>'+x.t+'</div></div>').join('')+'</div></div>'+
+  '<div class="card fade"><div class="card-title"><span class="ix">3</span>'+co.flag+' '+co.name+' 필수 인증 · 법적 요건 <small>총 '+certs.length+'개 · 상품 특성 체크에 따라 달라집니다</small></div>'+certBlock(certs,co)+'</div>'+
   '<div class="card fade"><div class="card-title"><span class="ix">4</span>예상 인증 비용 · 소요 기간 시뮬레이션</div><div class="g3 s">'+
       '<div class="kpi gold"><div class="k">예상 인증·검사 비용</div><div class="v">'+cost[0]+'~'+cost[1]+'만원</div><div class="s">중간값 약 '+fmt((cost[0]+cost[1])/2)+'만원</div></div>'+
       '<div class="kpi"><div class="k">예상 소요 기간</div><div class="v">'+cost[2]+'~'+cost[3]+'일</div><div class="s">서류 준비 포함 (영업일 추정)</div></div>'+
@@ -889,6 +1248,22 @@ function renderT2(){
    r.rows.map((x,k)=>'<tr><td><span class="sw" style="background:'+COLORS[k%COLORS.length]+'"></span>'+esc(x.i.name)+'</td><td>'+x.i.qty+'박스</td><td>'+fmt(x.g)+'</td><td>'+fmt(x.f+x.n)+'</td><td>'+fmt(x.duty)+' <span class="dim">('+(x.dr*100).toFixed(1)+'%)</span></td><td>'+fmt(x.vat)+'</td><td>'+fmt(x.ce)+'</td><td class="gd b">'+fmt(x.total)+'</td><td class="b" style="color:#ece4d6">'+fmt(x.perBox)+'</td><td class="em b">'+fmt(x.perPc)+'</td></tr>').join('')+'</tbody></table></div>'+
    '<div class="tiny dim mt12">※ 해운비·인증비는 CBM 비율로 배분 / 관세 = CIF × 세율, '+co.vatLabel+' = (CIF + 관세) × 세율 / 환율 1위안 = '+S.rate+'원. 확정 견적이 아니라 추정 계산입니다.</div>';
   updateDataChip();
+}
+
+function certBlock(certs,co){
+  const lvl={'필수':'must','대상확인':'chk','권장':'rec'};
+  const grp=(title,arr)=>arr.length?'<div class="cg"><div class="cg-t">'+title+' <i class="n">'+arr.length+'</i></div><div class="clist">'+arr.map(x=>'<div class="cert2"><span class="lv '+lvl[x.lv]+'">'+x.lv+'</span><div class="f1"><div class="ct">'+x.t+'</div>'+(x.law?'<div class="law">근거 · '+x.law+'</div>':'')+'</div></div>').join('')+'</div></div>':'';
+  const cn=certs.filter(x=>x.tag.indexOf('중국')>=0),oth=certs.filter(x=>x.tag.indexOf('중국')<0&&x.tag.indexOf('수입')>=0),q=certs.filter(x=>x.tag.indexOf('중국')<0&&x.tag.indexOf('수입')<0);
+  const links=(OFFICIAL[S.country]||[]).map(([t,u])=>'<a href="'+u+'" target="_blank" rel="noopener">'+t+'</a>').join('');
+  return grp('중국 수출 단계',cn)+grp(co.name+' 수입 단계',oth)+grp('품질 · 포장',q)+
+   '<div class="legal"><b>읽는 법</b> — <span class="lv must">필수</span> 법령상 의무 · <span class="lv chk">대상확인</span> 품목·사양·수량에 따라 해당 여부가 달라 확인 필요 · <span class="lv rec">권장</span> 법적 의무는 아니나 사실상 요구되는 서류<br>법령은 수시 개정됩니다. 발주 전 아래 공식 사이트 또는 관세사·인증기관으로 최종 확인하세요.<div class="olinks">'+links+'</div></div>';
+}
+
+function mismatchBanner(){
+  const q=(S.pname||'')+' '+(S.brand||'');if(!(S.pname||'').trim())return '';
+  const all=matchCats(q),cur=all.find(([k])=>k===S.cat),top=all.filter(([k])=>k!==S.cat)[0];
+  if(!top||(cur&&top[1]<=cur[1]+1))return '';
+  return '<div class="sugg big-sugg fade"><div class="sg-t"><svg class="ic"><use href="#i-alert"/></svg> <b>카테고리를 확인하세요.</b> 입력하신 「'+esc(S.pname)+'」은(는) 선택된 <b>'+CATS[S.cat].short+'</b>(HS '+CATS[S.cat].hs.split("/")[0].trim()+')가 아니라 <b>'+CATS[top[0]].short+'</b>(HS '+CATS[top[0]].hs.split("/")[0].trim()+')에 가까워 보입니다. HS코드·관세·인증은 카테고리 기준으로 나오므로 아래 결과가 상품과 다를 수 있습니다.</div><div class="chips mt8">'+all.filter(([k])=>k!==S.cat).slice(0,3).map(([k])=>'<button class="chip em btnchip" data-act="cat" data-v="'+k+'">→ '+CATS[k].short+'로 변경</button>').join('')+'</div></div>';
 }
 
 /* ============ 정밀 잔여공간 · 컨테이너 최적도 분석 ============ */
@@ -1499,10 +1874,10 @@ function rfqText(){
 const ED={co:'KR'};
 function renderT5(){
   const co=ED.co,c=COUNTRIES[co];
-  const rows=Object.entries(CATS).map(([k,cat])=>{
+  let lastG='';const rows=GROUP_ORDER.flatMap(g=>Object.entries(CATS).filter(([k,c])=>c.group===g)).map(([k,cat])=>{
     const d=getDuty(k,co),cs=getCost(k,co),m=metaOf(dKey(k,co))||{};
     const inp=(kind,i,v,dis)=>'<input class="cellinp" type="number" step="0.1" data-rate="'+kind+'|'+k+'|'+co+'|'+i+'" value="'+(v==null?'':v)+'"'+(dis?' disabled':'')+'>';
-    return '<tr><td>'+cat.short+'</td><td>'+inp('duty',0,d[0])+'</td><td>'+inp('duty',1,d[1],!c.hasFta)+'</td><td>'+inp('cost',0,cs[0])+'</td><td>'+inp('cost',1,cs[1])+'</td><td>'+inp('cost',2,cs[2])+'</td><td>'+inp('cost',3,cs[3])+'</td>'+
+    const gh=cat.group!==lastG?(lastG=cat.group,'<tr class="grow"><td colspan="9">'+cat.group+'</td></tr>'):'';return gh+'<tr><td>'+cat.short+'</td><td>'+inp('duty',0,d[0])+'</td><td>'+inp('duty',1,d[1],!c.hasFta)+'</td><td>'+inp('cost',0,cs[0])+'</td><td>'+inp('cost',1,cs[1])+'</td><td>'+inp('cost',2,cs[2])+'</td><td>'+inp('cost',3,cs[3])+'</td>'+
       '<td><input class="cellinp src" data-rate="src|'+k+'|'+co+'" placeholder="출처 (예: 관세사 홍길동)" value="'+esc(m.src||'')+'"></td><td><label class="chk"><input type="checkbox" data-rate="ok|'+k+'|'+co+'"'+(m.ok?' checked':'')+'> 확인됨</label><div class="tiny dim">'+esc(m.date||'')+'</div></td></tr>';
   }).join('');
   const fm=metaOf('fr|'+co)||{};
@@ -1599,7 +1974,9 @@ document.addEventListener('click',async e=>{
   else if(a==='savenow'){doSave();toast('저장되었습니다')}
   else if(a==='projects')openProjects();
   else if(a==='country'){S.country=v;S.freight=getFreight(v,S.cont);S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
-  else if(a==='cat'){S.cat=v;S.diag=null;renderT1Inputs();renderT1Results();persist()}
+  else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';renderT1Inputs();renderT1Results();persist()}
+  else if(a==='grp'){T1UI.open[v]=!(T1UI.open[v]!==undefined?T1UI.open[v]:(CATS[S.cat].group===v));renderT1Inputs()}
+  else if(a==='flag'){const cur=[...flagsNow()],i=cur.indexOf(v);if(i>=0)cur.splice(i,1);else cur.push(v);S.flags=cur;S.flagsFor=S.cat;S.diag=null;renderFlags();renderT1Results();persist()}
   else if(a==='run'){
     const ov=document.createElement('div');ov.className='overlay';ov.innerHTML='<div class="spin"></div><div id="ovtxt">HS코드 매칭 중…</div>';$('#t1res').appendChild(ov);
     const st=['HS코드 · 세율 매칭 중…','지재권/상표 키워드 스캔 중…','도착국 인증 요건 대조 중…','비용 · 기간 시뮬레이션 중…'];let k=0;
@@ -1677,8 +2054,9 @@ document.addEventListener('change',e=>{
   else if(el.dataset&&el.dataset.rate&&(el.type==='checkbox'))onRateInput(el);
 });
 $('#doc_ko').addEventListener('input',e=>{S.koEdited=true;S.koText=e.target.value;$('#koBadge').classList.remove('hidden');$('#koNote').classList.remove('hidden');scheduleZh(650);persist()});
-$('#pname').addEventListener('input',e=>{S.pname=e.target.value;S.diag=null;renderT1Results();persist()});
-$('#brand').addEventListener('input',e=>{S.brand=e.target.value;S.diag=null;renderT1Results();persist()});
+$('#pname').addEventListener('input',e=>{S.pname=e.target.value;S.diag=null;renderSugg();renderT1Results();persist()});
+$('#catSearch').addEventListener('input',e=>{T1UI.q=e.target.value;renderT1Inputs()});
+$('#brand').addEventListener('input',e=>{S.brand=e.target.value;S.diag=null;renderSugg();renderT1Results();persist()});
 $('#imgFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;shrinkImage(f,d=>{S.img=d;$('#imgPrev').innerHTML='<img src="'+d+'" alt="">';renderT1Results();persist()})});
 $('#s_rate').addEventListener('input',e=>{S.rate=parseFloat(e.target.value)||0;renderT2();persist()});
 $('#s_freight').addEventListener('input',e=>{S.freight=parseFloat(e.target.value)||0;renderT2();persist()});
@@ -1690,7 +2068,7 @@ $('#impFile').addEventListener('change',e=>{const f=e.target.files[0];if(f)impor
 window.addEventListener('beforeunload',()=>{try{doSave()}catch(e){}});
 
 /* ============================ 초기화 ============================ */
-$('#a_cat').innerHTML=Object.entries(CATS).map(([k,c])=>'<option value="'+k+'">'+c.short+'</option>').join('');
+{const g={};Object.entries(CATS).forEach(([k,c])=>{(g[c.group]=g[c.group]||[]).push([k,c])});$('#a_cat').innerHTML=GROUP_ORDER.filter(x=>g[x]).map(x=>'<optgroup label="'+x+'">'+g[x].map(([k,c])=>'<option value="'+k+'">'+c.short+'</option>').join('')+'</optgroup>').join('')}
 $('#palSel').innerHTML=Object.entries(PALS).map(([k,p])=>'<option value="'+k+'">'+p.name+'</option>').join('');
 loadDB();
 (function boot(){
