@@ -323,13 +323,28 @@ textarea.doc:focus{border-color:#d3b88f!important}
 .cert2 .law{font-size:11.5px;color:#9a8f7e;margin-top:3px;letter-spacing:.2px}
 .lv{flex:none;font:700 10.5px var(--font);letter-spacing:1px;padding:3px 7px;border-radius:2px;border:1px solid;white-space:nowrap;margin-top:2px}
 .lv.must{color:#e0a59b;border-color:rgba(201,133,122,.6);background:rgba(201,133,122,.09)}
-.lv.chk{color:#d3b88f;border-color:rgba(211,184,143,.55);background:rgba(211,184,143,.08)}
+.lv.ask{color:#d3b88f;border-color:rgba(211,184,143,.55);background:rgba(211,184,143,.08)}
 .lv.rec{color:#a9b9a5;border-color:rgba(159,181,154,.5);background:rgba(159,181,154,.08)}
 .legal{margin-top:18px;padding:12px 14px;border-left:2px solid #d3b88f;background:rgba(255,255,255,.02);font-size:12.5px;line-height:1.9;color:#bdb4a4}
 .legal .lv{margin:0 2px}
 .olinks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px}
 .olinks a{color:#d3b88f;text-decoration:none;border-bottom:1px solid rgba(211,184,143,.4);font-size:12.5px}
 tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;font:600 11px var(--font)!important;letter-spacing:2px;padding:9px 14px!important}
+/* ---- ! 정보 버튼 · 패널 · CBM 입력 · 사진 삭제 ---- */
+.info{display:inline-grid;place-items:center;width:18px;height:18px;margin-left:6px;border-radius:50%;border:1px solid #d3b88f;background:transparent;color:#d3b88f;font:700 11px var(--font);cursor:pointer;vertical-align:1px;padding:0;line-height:1;transition:.15s}
+.info:hover,.info.on{background:#d3b88f;color:#1a1712}.info.static{cursor:default}
+.infopanel{margin-top:18px;border:1px solid rgba(211,184,143,.45);background:rgba(211,184,143,.045);padding:16px 18px;border-radius:2px}
+.ip-h{display:flex;align-items:center;gap:8px;font:600 13px var(--font);letter-spacing:1px;color:#ece4d6;margin-bottom:12px}
+.ip-h .x{margin-left:auto;background:none;border:0;color:#9a8f7e;cursor:pointer;font-size:14px}
+.ip-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px}
+@media(max-width:1100px){.ip-g{grid-template-columns:minmax(0,1fr)}}
+.ip-t{font:600 11px var(--font);letter-spacing:1.5px;color:#d3b88f;margin-bottom:8px}
+.ip-ul{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:13px;line-height:1.55;color:#e4dccd}
+.ip-ul.dimul{color:#a39a8a}
+.ip-ul .lv{margin-right:6px}
+.ip-p{font-size:13px;line-height:1.7;color:#d9d1c2}
+.estb{color:#d3b88f;border:1px solid rgba(211,184,143,.5);padding:0 5px;border-radius:2px;font-size:10.5px;letter-spacing:.5px}
+.cbmhint{margin-bottom:-4px}
 
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
@@ -370,7 +385,7 @@ tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;fo
       <div class="card"><div class="card-title"><span class="ix">1</span>도착 국가</div><div class="g2 s" id="countryBtns"></div></div>
       <div class="card"><div class="card-title"><span class="ix">2</span>품목 카테고리 <small id="catCount"></small></div><div class="srch"><svg class="ic"><use href="#i-search"/></svg><input id="catSearch" class="inp" placeholder="검색: 낚시릴, 게임기, 화장품, 티셔츠, 보조배터리…" autocomplete="off"></div><div id="catTree"></div></div>
       <div class="card"><div class="card-title"><span class="ix">3</span>상품 정보</div>
-        <div class="field"><label class="lb">상품 이미지</label><label class="drop"><input id="imgFile" type="file" accept="image/*" class="hidden"><div id="imgPrev"><svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)</div></label><div class="tiny dim mt8">사진은 기록·썸네일용입니다. 사진만으로 HS코드를 자동 판별하지는 않으니 <b>상품명을 함께 입력</b>하세요.</div></div>
+        <div class="field"><label class="lb">상품 이미지</label><label class="drop"><input id="imgFile" type="file" accept="image/*" class="hidden"><div id="imgPrev"><svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)</div></label><button id="imgDel" class="btn btn-ghost sm hidden mt8" data-act="imgdel" type="button"><svg class="ic"><use href="#i-trash"/></svg> 사진 삭제</button><div class="tiny dim mt8">사진은 기록·썸네일용입니다. 사진만으로 HS코드를 자동 판별하지는 않으니 <b>상품명을 함께 입력</b>하세요.</div></div>
         <div class="field"><label class="lb">상품명</label><input id="pname" class="inp" placeholder="예: Ashwood Dining Chair"></div>
         <div id="sugg"></div>
         <div class="field"><label class="lb">상품 특성 체크 <span class="dim">(인증 요건이 달라집니다)</span></label><div id="flagBox" class="flags"></div></div>
@@ -394,9 +409,11 @@ tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;fo
         <div class="g2 s">
           <div style="grid-column:1/-1"><label class="lb">품목명</label><input id="a_name" class="inp" placeholder="예: 애쉬우드 체어"></div>
           <div style="grid-column:1/-1"><label class="lb">카테고리 (관세율 적용)</label><select id="a_cat" class="inp"></select></div>
+          <div style="grid-column:1/-1" class="cbmhint"><div class="tiny dim">치수를 알면 가로·세로·높이를, 모르면 아래 <b>박스당 CBM</b>만 입력해도 됩니다.</div></div>
           <div><label class="lb">가로 (cm)</label><input id="a_l" type="number" min="1" class="inp"></div>
           <div><label class="lb">세로 (cm)</label><input id="a_w" type="number" min="1" class="inp"></div>
           <div><label class="lb">높이 (cm)</label><input id="a_h" type="number" min="1" class="inp"></div>
+          <div style="grid-column:1/-1"><label class="lb">박스당 CBM <span class="dim">(치수 대신 입력 · 선택)</span></label><input id="a_cbm" type="number" min="0" step="0.001" class="inp" placeholder="예: 0.12 — 치수를 입력하면 이 값은 무시됩니다"></div>
           <div><label class="lb">박스당 중량 (kg)</label><input id="a_kg" type="number" min="0" class="inp"></div>
           <div><label class="lb">발주 박스 수량</label><input id="a_qty" type="number" min="1" class="inp"></div>
           <div><label class="lb">박스당 EXW (¥)</label><input id="a_price" type="number" min="0" class="inp"></div>
@@ -745,7 +762,7 @@ const FLAGS={
  plant:{n:'목재·식물 성분',ic:'box'},
  chem:{n:'액체·화학·가스·향료',ic:'alert'}
 };
-const LV={'필수':'must','대상확인':'chk','권장':'rec'};
+const LV={'필수':'must','대상확인':'ask','권장':'rec'};
 /* 인증 팩: [lv, 내용, 근거 법령/기관] */
 const PK={
  base:{
@@ -1058,7 +1075,7 @@ function syncInputs(){
   $$('[data-pf]').forEach(el=>{el.value=S[el.dataset.pf]==null?'':S[el.dataset.pf]});
   $('#pname').value=S.pname||'';$('#brand').value=S.brand||'';
   $('#s_rate').value=S.rate;$('#s_freight').value=S.freight;$('#s_etc').value=S.etc;$('#s_fta').checked=!!S.useFTA;
-  $('#imgPrev').innerHTML=S.img?'<img src="'+S.img+'" alt="">':'<svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)';
+  renderImg();
   $('#palSel').value=S.pallet;$('#stk2').checked=!!S.stack2;
 }
 function updateDataChip(){
@@ -1070,7 +1087,7 @@ function updateDataChip(){
 }
 
 /* ============================ TAB 1 ============================ */
-const T1UI={q:'',open:{}};
+const T1UI={q:'',open:{},cost:false};
 function renderT1Inputs(){
   $('#countryBtns').innerHTML=Object.entries(COUNTRIES).map(([k,c])=>'<button class="opt '+(S.country===k?'on':'')+'" data-act="country" data-v="'+k+'"><span class="fl">'+c.flag+'</span>'+c.name+'</button>').join('');
   $('#catCount').textContent='총 '+Object.keys(CATS).length+'개';
@@ -1130,10 +1147,10 @@ function renderT1Results(){
      '<div class="tiny mut mt20 mb8">상표권 체크 가이드</div><ul class="ul"><li>'+IP_GUIDE[S.country]+'</li><li>중국 상표망(CNIPA) 및 공장 보유 라이선스 서류 요청</li><li>샘플 사진의 로고 · 각인 · 라벨을 확대 촬영해 대조</li></ul></div></div>'+
   '<div class="card fade"><div class="card-title"><span class="ix">3</span>'+co.flag+' '+co.name+' 필수 인증 · 법적 요건 <small>총 '+certs.length+'개 · 상품 특성 체크에 따라 달라집니다</small></div>'+certBlock(certs,co)+'</div>'+
   '<div class="card fade"><div class="card-title"><span class="ix">4</span>예상 인증 비용 · 소요 기간 시뮬레이션</div><div class="g3 s">'+
-      '<div class="kpi gold"><div class="k">예상 인증·검사 비용</div><div class="v">'+cost[0]+'~'+cost[1]+'만원</div><div class="s">중간값 약 '+fmt((cost[0]+cost[1])/2)+'만원</div></div>'+
-      '<div class="kpi"><div class="k">예상 소요 기간</div><div class="v">'+cost[2]+'~'+cost[3]+'일</div><div class="s">서류 준비 포함 (영업일 추정)</div></div>'+
+      '<div class="kpi gold"><div class="k">예상 인증·검사 비용 <button class="info'+(T1UI.cost?' on':'')+'" data-act="costinfo" type="button" title="어떤 인증·검사가 포함되고 금액이 어떻게 산정되는지 보기" aria-label="산정 기준 보기">!</button></div><div class="v">'+cost[0]+'~'+cost[1]+'만원</div><div class="s">중간값 약 '+fmt((cost[0]+cost[1])/2)+'만원</div></div>'+
+      '<div class="kpi"><div class="k">예상 소요 기간 <button class="info'+(T1UI.cost?' on':'')+'" data-act="costinfo" type="button" aria-label="산정 기준 보기">!</button></div><div class="v">'+cost[2]+'~'+cost[3]+'일</div><div class="s">서류 준비 포함 (영업일 추정)</div></div>'+
       '<div class="kpi"><div class="k">비용 구성 (추정)</div><div class="sm b mt8" style="line-height:1.7">시험·검사 60%<br>서류·대행 25% · 기타 15%</div></div></div>'+
-     '<div class="tiny mut mt20 mb8">타임라인</div><div class="tl"><div>서류 수집</div><div>시험 / 검사</div><div>심사 / 발급</div><div>통관 가능</div></div>'+
+     (T1UI.cost?costInfoPanel(certs,cost):'')+'<div class="tiny mut mt20 mb8">타임라인</div><div class="tl"><div>서류 수집</div><div>시험 / 검사</div><div>심사 / 발급</div><div>통관 가능</div></div>'+
      '<div class="tiny dim mt12">※ 발주 전 인증기관·관세사 견적으로 확정하세요. 이 값은 '+(isOk(dKey(S.cat,S.country))?'사용자가 확인한 값':'시연용 추정값')+'입니다.</div></div>';
   updateDataChip();
 }
@@ -1206,7 +1223,7 @@ function ring(pct,color,big,small){
   return '<svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="46" class="ring-bg"/><circle cx="60" cy="60" r="46" class="ring-fg" style="stroke:'+color+';stroke-dasharray:'+p+' '+c+'" transform="rotate(-90 60 60)"/><text x="60" y="60" font-size="21" font-weight="800">'+big+'</text><text x="60" y="78" font-size="10" fill="#9a8f7e" style="fill:#9a8f7e">'+small+'</text></svg>';
 }
 function renderLoadList(){
-  $('#loadlist').innerHTML=S.items.length?S.items.map((i,k)=>'<div class="li"><span class="dot" style="background:'+COLORS[k%COLORS.length]+'"></span><div class="f1"><div class="nm">'+esc(i.name)+'</div><div class="meta">'+CATS[i.cat].short+' · '+i.qty+'박스 · '+(i.l*i.w*i.h/1e6*i.qty).toFixed(2)+' CBM · '+fmt(i.kg*i.qty)+'kg</div></div><button class="x" data-act="del" data-v="'+i.id+'" title="이 항목 삭제">✕</button></div>').join(''):'<div class="dim sm">적재된 품목이 없습니다. 위에서 품목을 추가하세요.</div>';
+  $('#loadlist').innerHTML=S.items.length?S.items.map((i,k)=>'<div class="li"><span class="dot" style="background:'+COLORS[k%COLORS.length]+'"></span><div class="f1"><div class="nm">'+esc(i.name)+'</div><div class="meta">'+CATS[i.cat].short+(i.est?' · <span class="estb">CBM 입력</span>':'')+' · '+i.qty+'박스 · '+(i.l*i.w*i.h/1e6*i.qty).toFixed(2)+' CBM · '+fmt(i.kg*i.qty)+'kg</div></div><button class="x" data-act="del" data-v="'+i.id+'" title="이 항목 삭제">✕</button></div>').join(''):'<div class="dim sm">적재된 품목이 없습니다. 위에서 품목을 추가하세요.</div>';
   $('#legend').innerHTML=S.items.map((i,k)=>'<span class="row gap6"><span class="sw" style="background:'+COLORS[k%COLORS.length]+';margin:0"></span>'+esc(i.name)+' <span class="dim">×'+i.qty+'</span></span>').join('')||'<span class="dim">품목을 추가하면 3D로 적재됩니다.</span>';
 }
 function renderT2(){
@@ -1251,12 +1268,12 @@ function renderT2(){
 }
 
 function certBlock(certs,co){
-  const lvl={'필수':'must','대상확인':'chk','권장':'rec'};
+  const lvl={'필수':'must','대상확인':'ask','권장':'rec'};
   const grp=(title,arr)=>arr.length?'<div class="cg"><div class="cg-t">'+title+' <i class="n">'+arr.length+'</i></div><div class="clist">'+arr.map(x=>'<div class="cert2"><span class="lv '+lvl[x.lv]+'">'+x.lv+'</span><div class="f1"><div class="ct">'+x.t+'</div>'+(x.law?'<div class="law">근거 · '+x.law+'</div>':'')+'</div></div>').join('')+'</div></div>':'';
   const cn=certs.filter(x=>x.tag.indexOf('중국')>=0),oth=certs.filter(x=>x.tag.indexOf('중국')<0&&x.tag.indexOf('수입')>=0),q=certs.filter(x=>x.tag.indexOf('중국')<0&&x.tag.indexOf('수입')<0);
   const links=(OFFICIAL[S.country]||[]).map(([t,u])=>'<a href="'+u+'" target="_blank" rel="noopener">'+t+'</a>').join('');
   return grp('중국 수출 단계',cn)+grp(co.name+' 수입 단계',oth)+grp('품질 · 포장',q)+
-   '<div class="legal"><b>읽는 법</b> — <span class="lv must">필수</span> 법령상 의무 · <span class="lv chk">대상확인</span> 품목·사양·수량에 따라 해당 여부가 달라 확인 필요 · <span class="lv rec">권장</span> 법적 의무는 아니나 사실상 요구되는 서류<br>법령은 수시 개정됩니다. 발주 전 아래 공식 사이트 또는 관세사·인증기관으로 최종 확인하세요.<div class="olinks">'+links+'</div></div>';
+   '<div class="legal"><b>읽는 법</b> — <span class="lv must">필수</span> 법령상 의무 · <span class="lv ask">대상확인</span> 품목·사양·수량에 따라 해당 여부가 달라 확인 필요 · <span class="lv rec">권장</span> 법적 의무는 아니나 사실상 요구되는 서류<br>법령은 수시 개정됩니다. 발주 전 아래 공식 사이트 또는 관세사·인증기관으로 최종 확인하세요.<div class="olinks">'+links+'</div></div>';
 }
 
 function mismatchBanner(){
@@ -1264,6 +1281,37 @@ function mismatchBanner(){
   const all=matchCats(q),cur=all.find(([k])=>k===S.cat),top=all.filter(([k])=>k!==S.cat)[0];
   if(!top||(cur&&top[1]<=cur[1]+1))return '';
   return '<div class="sugg big-sugg fade"><div class="sg-t"><svg class="ic"><use href="#i-alert"/></svg> <b>카테고리를 확인하세요.</b> 입력하신 「'+esc(S.pname)+'」은(는) 선택된 <b>'+CATS[S.cat].short+'</b>(HS '+CATS[S.cat].hs.split("/")[0].trim()+')가 아니라 <b>'+CATS[top[0]].short+'</b>(HS '+CATS[top[0]].hs.split("/")[0].trim()+')에 가까워 보입니다. HS코드·관세·인증은 카테고리 기준으로 나오므로 아래 결과가 상품과 다를 수 있습니다.</div><div class="chips mt8">'+all.filter(([k])=>k!==S.cat).slice(0,3).map(([k])=>'<button class="chip em btnchip" data-act="cat" data-v="'+k+'">→ '+CATS[k].short+'로 변경</button>').join('')+'</div></div>';
+}
+
+function renderImg(){
+  $('#imgPrev').innerHTML=S.img?'<img src="'+S.img+'" alt="">':'<svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)';
+  $('#imgDel').classList.toggle('hidden',!S.img);
+}
+const dimTxt=i=>i.est?('CBM '+(i.l*i.w*i.h/1e6).toFixed(3)+'/박스 · 치수 미입력'):(i.l+'×'+i.w+'×'+i.h+' cm');
+const dimZh=i=>i.est?('单箱体积 '+(i.l*i.w*i.h/1e6).toFixed(3)+' CBM（尺寸待确认）'):('箱规 '+i.l+'×'+i.w+'×'+i.h+' cm');
+const dimKo=i=>i.est?('박스당 부피 '+(i.l*i.w*i.h/1e6).toFixed(3)+' CBM (규격 확인 예정)'):('박스규격 '+i.l+'×'+i.w+'×'+i.h+' cm');
+
+const TIERINFO={
+ T0:['T0 · 서류 중심','안전·전기·식품 등 별도 시험 의무가 없는 일반 상품. 원산지/수출입 서류 준비가 대부분이고, 필요 시 소량 시험성적서만 받는 경우.'],
+ T1:['T1 · 소규모 시험 중심','어린이용·식품접촉·섬유·화학·목재 등 항목별 시험성적서·표시·신고가 필요한 상품(전기 인증은 없음).'],
+ T2:['T2 · 전기안전 + 전파 + 배터리 인증','전기용품 안전인증(KC·CE·UL 등), 무선(전파·FCC·RED), 리튬배터리(UN38.3·KC 62133 등) 시험과 인증서 발급이 필요한 상품.'],
+ T3:['T3 · 식품·화장품 등록','식품·건강식품·화장품은 영업등록·제품등록·성분 검토·라벨 검수와 수입 시 검사가 필요한 상품.']
+};
+function costInfoPanel(certs,cost){
+  const fl=flagsNow(),tier=tierOf(fl),ti=TIERINFO[tier],co=COUNTRIES[S.country];
+  const costRe=/KC|전파|CE|FCC|UL|PS\/ICC|NTC|CPC|CPSC|FDA|RoHS|WEEE|REACH|UN38|MSDS|시험|검사|등록|인증|통지|승인|허가|영업|심사|CPNP|EN \d|ASTM|DoC|적합/;
+  const skipRe=/^수입신고|수출신고|EORI|Customs Bond|원산지증명|원산지 표시|ISF|한글표시|라벨 요건|영문 라벨/;
+  const pay=certs.filter(x=>costRe.test(x.t)&&!skipRe.test(x.t)),paper=certs.filter(x=>!pay.includes(x));
+  const li=x=>'<li><span class="lv '+LV[x.lv]+'">'+x.lv+'</span> '+x.t+'</li>';
+  const fnames=fl.length?fl.map(f=>FLAGS[f].n).join(' · '):'해당 특성 없음(일반 상품)';
+  const src=isOk(dKey(S.cat,S.country))?'<b>사용자가 확인한 값</b>(설정 탭)':'<b>시연용 추정 구간</b> — 실제 견적이 아닙니다';
+  return '<div class="infopanel fade"><div class="ip-h"><span class="info on static">!</span> 이 금액은 이렇게 계산됩니다 <button class="x" data-act="costinfo" type="button" title="닫기">✕</button></div>'+
+   '<div class="ip-g"><div class="ip-b"><div class="ip-t">① 비용이 드는 인증·검사 ('+pay.length+'개)</div><ul class="ip-ul">'+(pay.length?pay.map(li).join(''):'<li class="dim">별도 시험·인증 비용이 큰 항목이 없습니다(서류 중심).</li>')+'</ul>'+
+   (paper.length?'<div class="ip-t mt12">통관·서류 항목 ('+paper.length+'개) — 인증비에 별도 산입하지 않음</div><ul class="ip-ul dimul">'+paper.map(li).join('')+'</ul>':'')+'</div>'+
+   '<div class="ip-b"><div class="ip-t">② 산정 기준</div><div class="ip-p"><b>상품 특성</b> : '+fnames+'<br><b>적용 등급</b> : '+ti[0]+'<div class="tiny dim mt4">'+ti[1]+'</div></div>'+
+   '<div class="ip-p mt12"><b>'+co.name+' 기준 구간</b> : '+cost[0]+'~'+cost[1]+'만원 · '+cost[2]+'~'+cost[3]+'일<div class="tiny dim mt4">상품 특성으로 등급(T0~T3)을 정하고, 도착국별 시험·인증·대행 수수료 구간을 적용한 <b>1개 모델(SKU) 기준</b> 범위입니다. 최소는 단순 사양·1회 통과, 최대는 다사양·재시험·긴급을 가정합니다.</div></div>'+
+   '<div class="ip-p mt12"><b>포함</b> : 시험·검사 수수료, 서류 작성·대행료<br><b>미포함</b> : 샘플 국제운송비, 공장 심사 출장비, 재시험, 번역·공증, 관세·부가세, 모델이 늘 때의 추가 비용</div>'+
+   '<div class="ip-p mt12 tiny">값의 성격 : '+src+'. 정확한 금액은 인증기관·관세사 견적으로 확정하고 설정 탭에서 교체하세요. 소요 기간은 서류 준비·시험·심사·발급을 합친 영업일 추정입니다.</div></div></div></div>';
 }
 
 /* ============ 정밀 잔여공간 · 컨테이너 최적도 분석 ============ */
@@ -1425,7 +1473,7 @@ function renderEff(){
   /* 중단: 정밀 잔여 공간 */
   const bg=fit.big,bigNote=bg.volM3>0.001?'<div class="note em mt12"><svg class="ic"><use href="#i-box"/></svg> <b>남은 빈 공간 중 가장 큰 직사각형 덩어리</b>: 길이 <b>'+bg.l.toFixed(0)+'</b> × 폭 <b>'+bg.w.toFixed(0)+'</b> × 높이 <b>'+bg.h.toFixed(0)+' cm</b> ('+bg.volM3.toFixed(2)+' m³). 이 치수 안에 들어가는 규격의 박스는 추가로 실을 수 있고, 이보다 큰 박스는 들어가지 않습니다. 나머지 남는 공간은 폭·높이가 얇은 틈새입니다.</div>':'<div class="note gray mt12">남은 공간 중 박스를 넣을 수 있는 덩어리가 없습니다.</div>';
   const ov=fit.lay.unplaced>0?'<div class="note rd mt12"><svg class="ic"><use href="#i-truck"/></svg> 현재 적재 목록 중 <b>'+fit.lay.unplaced+'박스</b>는 컨테이너 바닥·높이 한계로 물리적으로 들어가지 않습니다.</div>':'';
-  const rows=fit.per.map(p=>'<tr><td><span class="sw" style="background:'+COLORS[p.k%COLORS.length]+'"></span>'+esc(p.it.name)+'<div class="tiny dim">'+p.it.l+'×'+p.it.w+'×'+p.it.h+' cm</div></td><td>'+p.space+'박스</td><td>'+(p.wcap===Infinity?'제한 없음':p.wcap+'박스')+'</td><td class="gd b">'+p.fin+'박스<div class="tiny dim">('+p.limit+' 한계)</div></td><td>'+m3(p.cbm)+' CBM</td><td>'+(p.fin?'+'+fmt(p.fin*p.it.kg)+' kg':'-')+'</td></tr>').join('');
+  const rows=fit.per.map(p=>'<tr><td><span class="sw" style="background:'+COLORS[p.k%COLORS.length]+'"></span>'+esc(p.it.name)+'<div class="tiny dim">'+dimTxt(p.it)+'</div></td><td>'+p.space+'박스</td><td>'+(p.wcap===Infinity?'제한 없음':p.wcap+'박스')+'</td><td class="gd b">'+p.fin+'박스<div class="tiny dim">('+p.limit+' 한계)</div></td><td>'+m3(p.cbm)+' CBM</td><td>'+(p.fin?'+'+fmt(p.fin*p.it.kg)+' kg':'-')+'</td></tr>').join('');
   const over=r.cbm+(bestExtra?bestExtra.cbm:0)>c.cbm+1e-6;
   const sp='<div class="card-title mt20" style="margin-bottom:12px"><span class="ix"><svg class="ic"><use href="#i-ruler"/></svg></span>정밀 잔여 공간 <small>실제 배치 위에 직사각형 박스를 5cm 격자로 채워 본 결과</small></div>'+
    '<div class="g4 s mb12"><div class="kpi"><div class="k">내부 용적 (도면 치수)</div><div class="v" style="font-size:18px">'+m3(fit.inner)+' <span class="sm mut">m³</span></div><div class="s">표기 용량 '+c.cbm+' CBM</div></div>'+
@@ -1809,7 +1857,7 @@ function genContract(){
   zh.push('项目：'+(S.name||'________')+(S.client?'\n终端客户：'+S.client:'')+'\n买方：'+(S.buyer||'________')+'\n供应商：'+(S.supplier||'________')+(S.supplierContact?'（'+S.supplierContact+'）':'')+'\n日期：'+zhDate(S.pdate)+(S.sdate?'\n要求装柜/出货日期：'+zhDate(S.sdate):'')+'\n贸易术语：'+S.incoterm+'\n目的国/港口：'+C.zh+' / '+C.port);
   ko.push('프로젝트: '+(S.name||'________')+(S.client?'\n최종 고객사: '+S.client:'')+'\n구매자: '+(S.buyer||'________')+'\n공급업체: '+(S.supplier||'________')+(S.supplierContact?' ('+S.supplierContact+')':'')+'\n일자: '+koDate(S.pdate)+(S.sdate?'\n요청 선적/출하일: '+koDate(S.sdate):'')+'\n인코텀즈: '+S.incoterm+'\n도착국/항구: '+co.name+' / '+co.port);
   zh.push('\n一、采购明细');ko.push('\n1. 구매 명세');
-  lines.forEach((i,n)=>{zh.push((n+1)+'. '+i.name+' × '+i.qty+' 箱｜箱规 '+i.l+'×'+i.w+'×'+i.h+' cm｜单箱重 '+i.kg+' kg｜出厂价 ¥'+i.price+'/箱');ko.push((n+1)+'. '+i.name+' × '+i.qty+'박스｜박스규격 '+i.l+'×'+i.w+'×'+i.h+' cm｜박스당 '+i.kg+' kg｜공장도가 ¥'+i.price+'/박스')});
+  lines.forEach((i,n)=>{zh.push((n+1)+'. '+i.name+' × '+i.qty+' 箱｜'+dimZh(i)+'｜单箱重 '+i.kg+' kg｜出厂价 ¥'+i.price+'/箱');ko.push((n+1)+'. '+i.name+' × '+i.qty+'박스｜'+dimKo(i)+'｜박스당 '+i.kg+' kg｜공장도가 ¥'+i.price+'/박스')});
   zh.push('\n二、品类强制性要求');ko.push('\n2. 품목별 필수 요건');
   let n=1;
   cats.forEach(k=>CLAUSES[k].forEach(cl=>{const p=typeof cl==='function'?cl(cc):cl;zh.push('（'+CATS[k].short+'）'+n+'）'+p[0]);ko.push('('+CATS[k].short+') '+n+') '+p[1]);n++}));
@@ -1975,6 +2023,8 @@ document.addEventListener('click',async e=>{
   else if(a==='projects')openProjects();
   else if(a==='country'){S.country=v;S.freight=getFreight(v,S.cont);S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
   else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';renderT1Inputs();renderT1Results();persist()}
+  else if(a==='imgdel'){const yes=await ask({icon:'trash',title:'사진을 삭제하시겠습니까?',msg:'업로드한 상품 사진이 이 프로젝트에서 제거됩니다. 상품명·카테고리 등 다른 입력값은 유지됩니다.',item:'상품 사진 1장',yes:'YES · 삭제',no:'NO · 취소'});if(yes){S.img=null;$('#imgFile').value='';renderImg();renderT1Results();persist();toast('사진을 삭제했습니다')}}
+  else if(a==='costinfo'){T1UI.cost=!T1UI.cost;renderT1Results()}
   else if(a==='grp'){T1UI.open[v]=!(T1UI.open[v]!==undefined?T1UI.open[v]:(CATS[S.cat].group===v));renderT1Inputs()}
   else if(a==='flag'){const cur=[...flagsNow()],i=cur.indexOf(v);if(i>=0)cur.splice(i,1);else cur.push(v);S.flags=cur;S.flagsFor=S.cat;S.diag=null;renderFlags();renderT1Results();persist()}
   else if(a==='run'){
@@ -2037,10 +2087,12 @@ document.addEventListener('click',async e=>{
 });
 function addItem(){
   const v=id=>parseFloat($('#'+id).value);
-  const it={id:S.nextId++,name:$('#a_name').value.trim()||'품목 '+(S.items.length+1),cat:$('#a_cat').value,l:v('a_l'),w:v('a_w'),h:v('a_h'),kg:v('a_kg')||0,qty:Math.floor(v('a_qty')),price:v('a_price')||0,pcs:Math.max(1,Math.floor(v('a_pcs')||1))};
-  if(!(it.l>0&&it.w>0&&it.h>0&&it.qty>0)){toast('가로·세로·높이·수량을 입력하세요');return}
+  let L=v('a_l'),W=v('a_w'),H=v('a_h'),est=false;const cb=v('a_cbm');
+  if(!(L>0&&W>0&&H>0)){if(cb>0){L=W=H=Math.cbrt(cb)*100;est=true}}
+  const it={est,id:S.nextId++,name:$('#a_name').value.trim()||'품목 '+(S.items.length+1),cat:$('#a_cat').value,l:L,w:W,h:H,kg:v('a_kg')||0,qty:Math.floor(v('a_qty')),price:v('a_price')||0,pcs:Math.max(1,Math.floor(v('a_pcs')||1))};
+  if(!(it.l>0&&it.w>0&&it.h>0&&it.qty>0)){toast('가로·세로·높이(또는 박스당 CBM)와 수량을 입력하세요');return}
   if(it.qty>3000){toast('수량은 3,000박스 이하로 입력하세요');return}
-  S.items.push(it);['a_name','a_l','a_w','a_h','a_kg','a_qty','a_price'].forEach(i=>$('#'+i).value='');$('#a_pcs').value=1;
+  S.items.push(it);['a_name','a_l','a_w','a_h','a_cbm','a_kg','a_qty','a_price'].forEach(i=>$('#'+i).value='');$('#a_pcs').value=1;
   cargoRefresh('new');
 }
 document.addEventListener('input',e=>{
@@ -2057,7 +2109,7 @@ $('#doc_ko').addEventListener('input',e=>{S.koEdited=true;S.koText=e.target.valu
 $('#pname').addEventListener('input',e=>{S.pname=e.target.value;S.diag=null;renderSugg();renderT1Results();persist()});
 $('#catSearch').addEventListener('input',e=>{T1UI.q=e.target.value;renderT1Inputs()});
 $('#brand').addEventListener('input',e=>{S.brand=e.target.value;S.diag=null;renderSugg();renderT1Results();persist()});
-$('#imgFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;shrinkImage(f,d=>{S.img=d;$('#imgPrev').innerHTML='<img src="'+d+'" alt="">';renderT1Results();persist()})});
+$('#imgFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;shrinkImage(f,d=>{S.img=d;renderImg();renderT1Results();persist()})});
 $('#s_rate').addEventListener('input',e=>{S.rate=parseFloat(e.target.value)||0;renderT2();persist()});
 $('#s_freight').addEventListener('input',e=>{S.freight=parseFloat(e.target.value)||0;renderT2();persist()});
 $('#s_etc').addEventListener('input',e=>{S.etc=parseFloat(e.target.value)||0;renderT2();persist()});
