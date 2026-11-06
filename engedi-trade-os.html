@@ -439,6 +439,9 @@ html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;paddi
 .tb.plan .cellinp{width:64px;text-align:center}.tb.plan tr.ft td{font-size:12px;color:var(--tx2)}
 .x2{border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:15px;padding:0 2px}.x2:hover{color:#c9857a}
 
+.ctab .tx{margin-left:4px;color:var(--mut);font-size:16px;line-height:1;padding:0 3px}.ctab .tx:hover{color:#c9857a}
+.cset{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -2321,8 +2324,9 @@ function renderCTabs(r){
   if(isLcl()||!S.items.length){el.classList.add('hidden');return}
   el.classList.remove('hidden');const p=r.plan,vi=VCI();
   el.innerHTML='<div class="ctabs">'+p.cs.map((k,i)=>{const u=p.used[i],a=pct0(u.cbm,p.cap[i].cbm),w=pct0(u.kg,p.cap[i].kg),m=Math.max(a,w);
-    return '<button class="ctab'+(i===vi?' on':'')+(m>100?' bad':'')+'" data-act="cview" data-v="'+i+'"><span class="cn">'+CNUM[i]+'</span><span class="ct">'+CONT[k].name+'</span><span class="cp">'+m.toFixed(0)+'%</span><i style="width:'+Math.min(100,m)+'%"></i></button>'}).join('')+
-   '<span class="cadd"><button class="btn btn-ghost" data-act="cadd" data-v="20">+ 20FT</button><button class="btn btn-ghost" data-act="cadd" data-v="40">+ 40HQ</button></span></div>';
+    return '<button class="ctab'+(i===vi?' on':'')+(m>100?' bad':'')+'" data-act="cview" data-v="'+i+'"><span class="cn">'+CNUM[i]+'</span><span class="ct">'+CONT[k].name+'</span><span class="cp">'+m.toFixed(0)+'%</span>'+(p.cs.length>1?'<span class="tx" data-act="cdel" data-v="'+i+'" title="이 컨테이너 삭제">×</span>':'')+'<i style="width:'+Math.min(100,m)+'%"></i></button>'}).join('')+
+   '<span class="cadd"><button class="btn btn-ghost" data-act="cadd" data-v="20">+ 20FT</button><button class="btn btn-ghost" data-act="cadd" data-v="40">+ 40HQ</button></span></div>'+
+   '<div class="cset"><span class="mut">'+CNUM[vi]+' 컨테이너 설정</span><span class="seg"><button class="'+(p.cs[vi]==='20'?'on':'')+'" data-act="ctype" data-v="20">20FT</button><button class="'+(p.cs[vi]==='40'?'on':'')+'" data-act="ctype" data-v="40">40HQ</button></span>'+(p.cs.length>1?'<button class="btn btn-ghost" data-act="cdel" data-v="'+vi+'">이 컨테이너 삭제</button>':'<span class="tiny dim">종류를 바꾸면 이 컨테이너만 변경됩니다</span>')+'</div>';
 }
 function renderPlan(r){
   const el=$('#plan');if(!el)return;
@@ -2347,6 +2351,7 @@ function renderPlan(r){
 document.addEventListener('click',async e=>{
   const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,v=b.dataset.v;
   if(a==='cview'){S.vci=+v;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
+  else if(a==='ctype'){const t=document.querySelector('[data-act="cont"][data-v="'+v+'"]');if(t)t.click()}
   else if(a==='cadd'){S.cs=csList().slice();if(S.cs.length>=8){toast('컨테이너는 최대 8대까지');return}S.cs.push(v);S.vci=S.cs.length-1;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant');toast(CONT[v].name+'를 추가했습니다 ('+S.cs.length+'대)')}
   else if(a==='cdel'){
     const i=+v,cs=csList().slice();if(cs.length<2)return;
