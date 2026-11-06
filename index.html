@@ -393,6 +393,14 @@ tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;fo
 .lrow{display:flex;justify-content:space-between;gap:16px;padding:12px 14px;border-bottom:1px solid rgba(232,217,197,.1);font-size:13px}
 .lrow:last-child{border-bottom:0}.lrow>span:last-child{text-align:right}
 
+/* 가독성 보정: 드롭다운 목록(흰 배경에 흰 글씨 문제) + 빽빽한 본문 */
+select,select.inp{color-scheme:dark}
+select option,select optgroup{background:#1b1917!important;color:#f3ecdf!important}
+select option:checked{background:#3a3226!important;color:#fff!important}
+textarea.doc{color:#f6f0e4!important;font-size:15px!important;line-height:2.15!important;letter-spacing:.01em;word-break:keep-all;overflow-wrap:break-word;padding:24px 26px!important;font-weight:400}
+textarea.inp{line-height:1.9!important}
+html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;padding:18px!important}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
