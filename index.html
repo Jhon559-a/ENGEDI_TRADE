@@ -421,6 +421,12 @@ html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;paddi
 .ctgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px}
 @media(max-width:1100px){.ctgrid{grid-template-columns:minmax(0,1fr)}}
 
+.cellinp.bad,.inp.bad{border-color:#c9857a!important;background:rgba(201,133,122,.12)!important}
+.li .liedit{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:8px}
+.li .liedit label{font-size:10.5px;color:var(--mut);display:flex;flex-direction:column;gap:3px}
+.li .liedit .cellinp{width:88px}
+.li.editing{outline:1px solid var(--gold);background:rgba(211,184,143,.06)}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -554,7 +560,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
     <button class="tab" data-act="tab" data-v="2" data-s="3D CBM"><span class="n">2</span>3D CBM · 랜디드 코스트</button>
     <button class="tab" data-act="tab" data-v="6" data-s="견적"><span class="n">₩</span>견적 계산</button>
     <button class="tab" data-act="tab" data-v="3" data-s="위챗 계약"><span class="n">3</span>위챗 중문 요구서 · 특약</button>
-    <button class="tab" data-act="tab" data-v="4" data-s="역경매"><span class="n">4</span>포워더·관세사 역경매</button>
+    <button class="tab" data-act="tab" data-v="4" data-s="견적요청"><span class="n">4</span>포워더·관세사 견적</button>
     <button class="tab" data-act="tab" data-v="5" data-s="설정"><span class="n"><svg class="ic"><use href="#i-sliders"/></svg></span>프로젝트 · 요율 설정</button>
   </nav>
 </div></header>
@@ -608,7 +614,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
             <div class="g2 s"><input id="l_fn1" class="inp" data-lclfee="1:n" placeholder="항목명"><input id="l_fv1" class="inp" type="number" min="0" data-lclfee="1:v" placeholder="금액"></div>
             <div class="g2 s"><input id="l_fn2" class="inp" data-lclfee="2:n" placeholder="항목명"><input id="l_fv2" class="inp" type="number" min="0" data-lclfee="2:v" placeholder="금액"></div></div>
           <div class="tiny dim mt12">청구 CBM은 부피(CBM)와 중량(톤) 중 큰 쪽으로 계산합니다(일반적 관행, 포워더 확인 필요).</div></div></div>
-      <div class="card"><div class="card-title"><span class="ix">2</span>품목 추가</div>
+      <div class="card"><div class="card-title"><span class="ix">2</span><span id="a_title">품목 추가</span></div>
         <div class="g2 s">
           <div style="grid-column:1/-1"><label class="lb">품목명</label><input id="a_name" class="inp" placeholder="예: 애쉬우드 체어"></div>
           <div style="grid-column:1/-1"><label class="lb">카테고리 (관세율 적용)</label><input id="a_catq" class="inp" type="search" placeholder="검색: 의자, 타일, 식기, LED, 제빙기…" autocomplete="off" style="margin-bottom:8px"><select id="a_cat" class="inp"></select><div id="a_catn" class="tiny dim mt4"></div></div>
@@ -621,7 +627,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
           <div><label class="lb">발주 박스 수량</label><input id="a_qty" type="number" min="1" class="inp"></div>
           <div><label class="lb">박스당 EXW (¥)</label><input id="a_price" type="number" min="0" class="inp"></div>
           <div style="grid-column:1/-1"><label class="lb">박스당 입수 (개) — 개당 원가 계산용</label><input id="a_pcs" type="number" min="1" value="1" class="inp"></div></div>
-        <div class="row gap8 mt16"><button class="btn btn-pri f1" data-act="add"><svg class="ic"><use href="#i-box"/></svg> 컨테이너에 적재 추가</button>
+        <div class="row gap8 mt16"><button class="btn btn-pri f1" id="a_add" data-act="add"><svg class="ic"><use href="#i-box"/></svg> <span id="a_addt">컨테이너에 적재 추가</span></button><button class="btn btn-ghost hidden" id="a_cancel" data-act="editcancel">취소</button>
           <button class="btn btn-ghost" data-act="sample">SAMPLE</button><button class="btn btn-ghost" data-act="reset">RESET</button></div></div>
       <div class="card"><div class="card-title"><span class="ix">3</span>적재 목록 <small>항목별 개별 삭제</small></div><div id="loadlist" class="stack" style="gap:10px"></div></div>
       <div class="card"><div class="card-title"><span class="ix">4</span>비용 가정</div>
@@ -702,13 +708,13 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
 </section>
 
 <section id="t4" class="tabpane hidden">
-  <div class="page-head"><div class="eyebrow">Module 04 · Reverse Auction Marketplace</div><h2>포워더 · 관세사 · 인증기관 원클릭 역경매</h2>
-  <p>적재 · 품목 · HS코드 데이터를 RFQ로 묶어 제휴 파트너에게 일괄 송부하고, 견적을 비교합니다. 실제 받은 견적은 표에 직접 입력할 수 있습니다.</p></div>
+  <div class="page-head"><div class="eyebrow">Module 04 · Quotation Request</div><h2>포워더 · 관세사 · 인증기관 견적 요청 (RFQ)</h2>
+  <p>적재 · 품목 · HS코드를 RFQ 문구로 묶어 복사한 뒤 포워더·관세사에게 직접 보내고, 받은 견적을 표에 입력해 비교합니다. <b>표의 파트너·금액은 시연용 가상 값이며 실제 응답이 아닙니다.</b></p></div>
   <div class="lay lay4">
     <div class="stack"><div class="card" id="rfq"></div></div>
     <div class="stack">
-      <div class="card hl"><div class="row between wrapf gap16"><div class="f1" style="min-width:240px"><div class="b lg">B2B 역경매 입찰</div><div class="sm mut mt4">RFQ를 제휴 포워더 · 관세법인 · 인증기관에 일괄 송부하고 견적을 비교합니다.</div></div>
-        <button class="btn btn-gold" data-act="bid"><svg class="ic"><use href="#i-bell"/></svg> 제휴 포워더 및 사설 인증기관 일괄 입찰 붙이기</button></div></div>
+      <div class="card hl"><div class="row between wrapf gap16"><div class="f1" style="min-width:240px"><div class="b lg">견적 비교표 (시연용)</div><div class="sm mut mt4">아래 표는 시연용 가상 데이터입니다. 실제 견적은 받은 뒤 금액·일수 칸에 직접 입력하세요.</div></div>
+        <button class="btn btn-gold" data-act="bid"><svg class="ic"><use href="#i-bell"/></svg> 시연용 가상 견적 비교표 보기</button></div></div>
       <div id="bidres"></div>
     </div>
   </div>
@@ -1675,7 +1681,8 @@ function calc(){
   const c=CONT[S.cont],vat=getVat(S.country);
   let cbm=0,kg=0,goods=0;
   S.items.forEach(i=>{i.cbm=i.l*i.w*i.h/1e6*i.qty;cbm+=i.cbm;kg+=i.kg*i.qty;goods+=i.price*i.qty*S.rate});
-  const freight=freightNow(),ins=(goods+freight)*R.ins;
+  const nCont=isLcl()?1:Math.max(1,Math.ceil(cbm/c.cbm-1e-9),Math.ceil(kg/(c.ton*1000)-1e-9));
+  const freight=freightNow()*nCont,ins=(goods+freight)*R.ins;
   const cats=[...new Set(S.items.map(i=>i.cat))];
   const certTotal=cats.reduce((s,k)=>{const x=getCost(k,S.country);return s+(x[0]+x[1])/2*10000},0);
   const rows=S.items.map(i=>{
@@ -1684,7 +1691,7 @@ function calc(){
     return {i,g,f,n,cif,dr,duty,vat:vt,ce,total,perBox:total/i.qty,perPc:total/i.qty/i.pcs};
   });
   const total=rows.reduce((s,r)=>s+r.total,0);
-  return {c,co:COUNTRIES[S.country],cbm,kg,goods,freight,ins,certTotal,rows,total,rem:c.cbm-cbm};
+  return {c,co:COUNTRIES[S.country],nCont,cbm,kg,goods,freight,ins,certTotal,rows,total,rem:c.cbm-cbm};
 }
 /* 파렛트 적재: 품목별 파렛트 구성 → 컨테이너 바닥 배치(안쪽→도어) → 필요 시 2단 */
 const PAL_H=0.14;
@@ -1738,7 +1745,9 @@ function ring(pct,color,big,small){
   return '<svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="46" class="ring-bg"/><circle cx="60" cy="60" r="46" class="ring-fg" style="stroke:'+color+';stroke-dasharray:'+p+' '+c+'" transform="rotate(-90 60 60)"/><text x="60" y="60" font-size="21" font-weight="800">'+big+'</text><text x="60" y="78" font-size="10" fill="#9a8f7e" style="fill:#9a8f7e">'+small+'</text></svg>';
 }
 function renderLoadList(){
-  $('#loadlist').innerHTML=S.items.length?S.items.map((i,k)=>'<div class="li"><span class="dot" style="background:'+COLORS[k%COLORS.length]+'"></span><div class="f1"><div class="nm">'+esc(i.name)+'</div><div class="meta">'+CATS[i.cat].short+(i.est?' · <span class="estb">CBM 입력</span>':'')+' · '+i.qty+'박스 · '+(i.l*i.w*i.h/1e6*i.qty).toFixed(2)+' CBM · '+fmt(i.kg*i.qty)+'kg</div></div><button class="x" data-act="del" data-v="'+i.id+'" title="이 항목 삭제">✕</button></div>').join(''):'<div class="dim sm">적재된 품목이 없습니다. 위에서 품목을 추가하세요.</div>';
+  $('#loadlist').innerHTML=S.items.length?S.items.map((i,k)=>'<div class="li'+(S.edit===i.id?' editing':'')+'"><span class="dot" style="background:'+COLORS[k%COLORS.length]+'"></span><div class="f1"><div class="nm">'+esc(i.name)+'</div><div class="meta">'+CATS[i.cat].short+(i.est?' · <span class="estb">CBM 입력</span>':'')+' · '+i.qty+'박스 · '+(i.l*i.w*i.h/1e6*i.qty).toFixed(2)+' CBM · '+fmt(i.kg*i.qty)+'kg · ¥'+fmt(i.price)+'/박스</div>'+
+    '<div class="liedit"><label>수량<input class="cellinp" type="number" min="1" max="3000" data-li="'+i.id+':qty" value="'+i.qty+'"></label><label>단가 ¥<input class="cellinp" type="number" min="0" data-li="'+i.id+':price" value="'+i.price+'"></label><button class="btn btn-ghost sm2" data-act="edit" data-v="'+i.id+'">전체 수정</button></div></div>'+
+    '<button class="x" data-act="del" data-v="'+i.id+'" title="이 항목 삭제">✕</button></div>').join(''):'<div class="dim sm">적재된 품목이 없습니다. 위에서 품목을 추가하세요.</div>';
   $('#legend').innerHTML=S.items.map((i,k)=>'<span class="row gap6"><span class="sw" style="background:'+COLORS[k%COLORS.length]+';margin:0"></span>'+esc(i.name)+' <span class="dim">×'+i.qty+'</span></span>').join('')||'<span class="dim">품목을 추가하면 3D로 적재됩니다.</span>';
 }
 function renderT2core(){
@@ -1755,6 +1764,7 @@ function renderT2core(){
   else if(r.rem>=0){const tot=S.items.reduce((s,i)=>s+i.qty,0),avg=r.cbm/tot;msg='현재 '+c.name+' 컨테이너에 <b class="em">'+r.rem.toFixed(1)+' CBM</b> 더 실을 수 있습니다. (표기 용량 기준 · 평균 박스 약 '+Math.floor(r.rem/avg)+'박스 · 잔여 중량 '+fmt(Math.max(0,c.ton*1000-r.kg))+'kg)<br><svg class="ic"><use href="#i-ruler"/></svg> <b>정밀 배치 계산</b>으로는 '+(()=>{const f=fitAnalysis(),b=f.per.filter(p=>p.fin>0).sort((x,y)=>y.cbm-x.cbm)[0];return b?"<b class='em'>"+esc(b.it.name)+' '+b.fin+'박스(+'+b.cbm.toFixed(1)+' CBM)</b>까지 실제로 더 실을 수 있습니다 (빈 틈 포함).':'더 실을 수 있는 공간이 없습니다.'})()}
   else msg='<svg class="ic"><use href="#i-alert"/></svg> '+c.name+' 용량을 <b class="rd">'+(-r.rem).toFixed(1)+' CBM 초과</b>했습니다. '+(S.cont==='20'?'40HQ로 변경하거나 ':'')+'수량을 조정하세요.';
   if(r.kg>c.ton*1000)msg+='<br><span class="rd"><svg class="ic"><use href="#i-alert"/></svg> 총중량이 컨테이너 허용중량('+c.ton+'톤)을 초과했습니다.</span>';
+  if(r.nCont>1)msg+='<br><b class="gd"><svg class="ic"><use href="#i-truck"/></svg> '+c.name+' '+r.nCont+'대분이 필요합니다. 운임·원가는 '+r.nCont+'대 기준으로 계산했습니다. (40HQ 전환·수량 조정도 검토)</b>';
   let extra='';
   if(real&&lay.unplaced>0&&r.rem>=0)extra='<div class="note rd mt12"><svg class="ic"><use href="#i-truck"/></svg> CBM상으로는 여유가 있어도, 파렛트 적재 기준으로는 <b>'+lay.unplaced+'박스</b>가 바닥·높이 한계로 실리지 않습니다. 파렛트 규격 변경·2단 적재·40HQ를 검토하세요.</div>';
   const thirdPct=real&&lay.floorUse!=null?lay.floorUse*100:Math.max(0,100-pct);
@@ -2042,7 +2052,7 @@ function renderLclPanel(r){
     let lc='';const L=lnum((S.lcl||{}).perCbm);
     if(L>0){const lt=lclCost(Math.max(r.cbm,r.kg/1000)),ft=e.best.total;lc='<div class="s" style="margin-top:6px;color:'+(lt<ft?'#9fb59a':'#d3b88f')+'">'+(lt<ft?'LCL 견적이 더 저렴: ':'컨테이너가 더 저렴: ')+won(Math.abs(ft-lt))+' 차이</div>'}
     v.innerHTML='<div class="sumg" style="margin:0">'+
-      tile('적재 판정','<span style="color:'+e.col+';font:700 17px var(--font)">'+e.grade+'</span>',c.name+' · 최적도 '+(e.eff*100).toFixed(0)+'%',e.eff>1?'must':'')+
+      tile('적재 판정','<span style="color:'+e.col+';font:700 17px var(--font)">'+e.grade+'</span>',(r.nCont>1?'<b class="rd">'+c.name+' '+r.nCont+'대분 필요</b>':c.name+' · 최적도 '+(e.eff*100).toFixed(0)+'%'),e.eff>1?'must':'')+
       tile('용적 사용',vp.toFixed(0)+'<small>%</small>','여유 '+Math.max(0,r.rem).toFixed(1)+' CBM',vp>100?'must':'',g(vp,vp>100?'#c9857a':vp>85?'#d3b88f':'#9fb59a'))+
       tile('중량 사용',wp.toFixed(0)+'<small>%</small>','한도 '+c.ton+'톤',wp>100?'must':'',g(wp,wp>100?'#c9857a':'#8fa3ad'))+
       tile('운임 기준 추천','<span style="font:700 15px var(--font)">'+esc(e.best.nm)+'</span>','해운비 '+won(e.best.total)+lc)+'</div>';
@@ -2131,8 +2141,9 @@ function landedSummary(r){
    '<div class="g3 s"><div class="kpi gold"><div class="k">'+(v||c.ag?'청구 총액':'예상 총 부담액')+'</div><div class="v" style="font-size:20px">'+won(v||c.ag?c.bill:c.cost)+'</div></div>'+
    '<div class="kpi"><div class="k">개당</div><div class="v" style="font-size:20px">'+won(c.perPc)+'</div></div>'+
    '<div class="kpi"><div class="k">CBM당</div><div class="v" style="font-size:20px">'+won(c.perCbm)+'</div></div></div>'+
-   '<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
+   (r.nCont>1&&!v?'<div class="tiny rd mt12">컨테이너 '+r.nCont+'대분 운임을 반영했습니다.</div>':'')+'<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
 }
+const contLabel=r=>r.c.name+(r.nCont>1?' × '+r.nCont+'대':'');
 function cmRow(l,v,cls){return '<div class="cmrow'+(cls?' '+cls:'')+'"><span>'+l+'</span><span>'+v+'</span></div>'}
 function renderT6(full){
   if(!$('#t6'))return;
@@ -2159,7 +2170,7 @@ function renderT6(full){
     h+='<div class="tiny dim mt12">※ 환율 1위안 = '+S.rate+'원 기준 / 관세·부가세·운임은 추정 계산이며 확정 견적이 아닙니다.</div>';
   }else{
     h+='<div class="cmlist">'+cmRow('① 상품대금 <span class="dim">(¥'+fmt(c.yuan)+' × 환율 '+S.rate+')</span>',won(c.goods))+
-      cmRow('② 운임·보험'+(isLcl()?' <span class="dim">(LCL)</span>':''),won(c.fr))+cmRow('③ 관세',won(c.duty))+cmRow('③ '+co.vatLabel.split(' ')[0],won(c.vat))+cmRow('③ 인증·통관·기타',won(c.ce))+
+      cmRow('② 운임·보험'+(isLcl()?' <span class="dim">(LCL)</span>':(r.nCont>1?' <span class="rd">('+contLabel(r)+' 기준)</span>':'')),won(c.fr))+cmRow('③ 관세',won(c.duty))+cmRow('③ '+co.vatLabel.split(' ')[0],won(c.vat))+cmRow('③ 인증·통관·기타',won(c.ce))+
       cmRow('<b>총 원가</b>','<b>'+won(c.cost)+'</b>','tot');
     if(c.ag)h+=cmRow('대행 수수료 <span class="dim">('+(cm.feePct||0)+'% · '+(c.base==='goods'?'상품대금':'총 원가')+' 기준)</span>','<span class="pf">+ '+won(c.fee)+'</span>');
     h+='</div>';
@@ -2226,6 +2237,8 @@ document.addEventListener('click',e=>{
 document.addEventListener('input',e=>{
   const el=e.target;
   if(el.dataset.cmi){const k=el.dataset.cmi,n=parseFloat(el.value)||0;
+    const bad=(k==='rate'&&!(n>0&&n<=10000))?'환율은 0보다 크고 10,000 이하로 입력하세요':(k==='etc'&&(n<0||n>1e10))?'기타 비용은 0 이상으로 입력하세요':(k==='feePct'&&(n<0||n>100))?'수수료율은 0~100% 범위로 입력하세요':'';
+    if(bad){el.classList.add('bad');toast(bad);return}el.classList.remove('bad');
     if(k==='rate'){S.rate=n;$('#s_rate').value=n}else if(k==='etc'){S.etc=n;$('#s_etc').value=n}else if(k==='feePct'){S.cm.feePct=n;$$('.cmchip').forEach(x=>x.classList.toggle('on',+x.dataset.v===n))}
     persist();renderT2()}
   else if(el.dataset.ct){const [k,f]=el.dataset.ct.split('.');S.ct[k][f]=el.value;persist()}
@@ -2668,7 +2681,7 @@ function renderT4(){
   const r=calc(),co=COUNTRIES[S.country],hsList=activeCats().map(k=>CATS[k].short+' — HS '+CATS[k].hs);
   const lines=S.items.length?S.items.map(i=>esc(i.name)+' ×'+i.qty+'박스').join('<br>'):'<span class="dim">(Tab 2에서 품목을 추가하세요)</span>';
   $('#rfq').innerHTML='<div class="card-title"><span class="ix">RFQ</span>입찰 요청서 <small>'+esc(S.name)+'</small></div>'+
-   '<div class="inner mb12 sm"><div class="row between"><span class="mut">업체명</span><b>'+esc(S.client||'-')+'</b></div><div class="row between mt8"><span class="mut">프로젝트 날짜 / 선적 목표</span><b>'+esc(S.pdate||'-')+' / '+esc(S.sdate||'-')+'</b></div><div class="row between mt8"><span class="mut">인코텀즈 · 담당</span><b>'+esc(S.incoterm)+' · '+esc(S.manager||'-')+'</b></div><div class="row between mt8"><span class="mut">선적 방식</span><b>'+(isLcl()?'LCL (청구 '+lclCalc(itemsTotals().cbm,itemsTotals().kg).billed.toFixed(2)+' CBM)':CONT[S.cont].name+' 컨테이너')+'</b></div></div>'+
+   '<div class="inner mb12 sm"><div class="row between"><span class="mut">업체명</span><b>'+esc(S.client||'-')+'</b></div><div class="row between mt8"><span class="mut">프로젝트 날짜 / 선적 목표</span><b>'+esc(S.pdate||'-')+' / '+esc(S.sdate||'-')+'</b></div><div class="row between mt8"><span class="mut">인코텀즈 · 담당</span><b>'+esc(S.incoterm)+' · '+esc(S.manager||'-')+'</b></div><div class="row between mt8"><span class="mut">선적 방식</span><b>'+(isLcl()?'LCL (청구 '+lclCalc(itemsTotals().cbm,itemsTotals().kg).billed.toFixed(2)+' CBM)':contLabel(r)+' 컨테이너')+'</b></div></div>'+
    '<div class="field"><label class="lb">출발지</label><select id="o_origin" class="inp"><option>광저우</option><option>이우 (닝보 경유)</option><option>선전</option><option>포산 (광저우 인근)</option></select></div>'+
    '<div class="kpi mb12"><div class="k">경로</div><div class="v" style="font-size:20px"><span id="o_o">'+esc(S.origin)+'</span> → '+co.flag+' '+co.port+'</div></div>'+
    '<div class="inner mb12 sm"><div class="tiny mut mb8">품목 명세</div>'+lines+'</div><div class="inner mb12 sm"><div class="tiny mut mb8">HS코드</div>'+hsList.map(x=>'<div>'+x+'</div>').join('')+'</div>'+
@@ -2676,7 +2689,7 @@ function renderT4(){
    '<div class="tiny mut mb8">요청 서비스</div><div class="chips mb16"><span class="chip em">해상운송</span><span class="chip em">통관 대행</span><span class="chip em">인증·시험</span><span class="chip">내륙 픽업</span><span class="chip">전수검수 입회</span></div><button class="btn btn-ghost block" data-act="copyrfq">RFQ 텍스트 복사</button>';
   $('#o_origin').value=S.origin.indexOf('이우')>=0?'이우 (닝보 경유)':(['광저우','선전','포산 (광저우 인근)'].includes(S.origin)?S.origin:'광저우');
   $('#o_origin').onchange=e=>{S.origin=e.target.value;$('#o_o').textContent=S.origin;persist();if(S.bid)renderBids()};
-  if(S.bid)renderBids();else $('#bidres').innerHTML='<div class="card static empty fade">상단의 <b class="gd">일괄 입찰 붙이기</b> 버튼을 누르면 파트너사 견적이 도착합니다.</div>';
+  if(S.bid)renderBids();else $('#bidres').innerHTML='<div class="card static empty fade">상단 버튼을 누르면 <b class="gd">시연용 가상 견적 비교표</b>가 표시됩니다. 실제 견적은 RFQ 문구를 복사해 직접 받은 뒤 입력하세요.</div>';
 }
 function quotes(){
   const r=calc(),bd=BASEDAYS[S.country],extra=S.origin.indexOf('이우')>=0?600000:0;
@@ -2690,16 +2703,16 @@ function quotes(){
 function renderBids(){
   const q=quotes();if(!S.pickFreight)S.pickFreight=q.A.price<=q.B.price?'A':'B';
   const fr=q[S.pickFreight],total=fr.price+q.C.price;
-  const row=x=>'<tr class="'+((x.id===S.pickFreight||x.id==='C')?'sel':'')+'"><td><div class="b" style="color:#ece4d6">'+x.name+'</div><div class="tiny mut">'+x.type+'</div></td><td><span class="chip '+(x.custom?'em':'gd')+'">'+(x.custom?'✔ 직접 입력':'가상 견적')+'</span> <span class="gd b">★ '+x.score+'</span></td>'+
+  const row=x=>'<tr class="'+((x.id===S.pickFreight||x.id==='C')?'sel':'')+'"><td><div class="b" style="color:#ece4d6">'+x.name+'</div><div class="tiny mut">'+x.type+'</div></td><td><span class="chip '+(x.custom?'em':'gd')+'">'+(x.custom?'✔ 직접 입력':'가상 견적 · 실제 아님')+'</span> </td>'+
    '<td><input class="cellinp" style="width:120px" type="number" data-q="'+x.id+':price" value="'+Math.round(x.price)+'"> 원</td><td><input class="cellinp" style="width:84px" data-q="'+x.id+':days" value="'+esc(x.days)+'"></td><td class="wrapc">'+x.inc+'</td><td>'+(x.id==='C'?'<span class="chip gd">필수 병행</span>':'<button class="btn btn-ghost" data-act="pick" data-v="'+x.id+'">'+(S.pickFreight===x.id?'✔ 선택됨':'선택')+'</button>')+'</td></tr>';
-  $('#bidres').innerHTML='<div class="card static fade"><div class="card-title"><span class="ix">✓</span>입찰 결과 — 3개 파트너 응답 <small>실제 받은 견적은 금액·일수 칸에 직접 입력</small></div>'+
+  $('#bidres').innerHTML='<div class="card static fade"><div class="card-title"><span class="ix">!</span>견적 비교표 — 시연용 가상 데이터 <small>실제 받은 견적은 금액·일수 칸에 직접 입력</small></div><div class="note rd mb12"><svg class="ic"><use href="#i-alert"/></svg> 아래 파트너명·금액·소요일은 <b>실제 응답이 아니라 앱이 계산한 가상 값</b>입니다. 고객에게 실제 견적처럼 보여주지 마세요.</div>'+
    '<div class="tbw"><table class="tb"><thead><tr><th>파트너</th><th>구분 / 평점</th><th>예상 견적</th><th>소요 일수</th><th style="text-align:left">포함 내용</th><th></th></tr></thead><tbody>'+row(q.A)+row(q.B)+row(q.C)+'</tbody></table></div>'+
    '<div class="g3 s mt20"><div class="kpi"><div class="k">선택 운송</div><div class="v" style="font-size:16px">'+fr.name.split(' · ')[0]+' · '+fmt(fr.price)+'원</div></div><div class="kpi"><div class="k">인증 · 통관</div><div class="v" style="font-size:16px">C사 · '+fmt(q.C.price)+'원</div></div><div class="kpi gold"><div class="k">추천 조합 합계</div><div class="v" style="font-size:19px">'+fmt(total)+'원</div></div></div>'+
-   '<div class="tiny dim mt16">※ 파트너사·금액은 마켓플레이스 프리뷰용 가상 데이터이며 확정 견적이 아닙니다. 실제 견적을 입력하면 \'직접 입력\'으로 표시됩니다.</div></div>';
+   '<div class="tiny dim mt16">※ 파트너사·금액은 시연용 가상 데이터이며 확정 견적이 아닙니다. 실제 견적을 입력하면 \'직접 입력\'으로 표시됩니다.</div></div>';
 }
 function rfqText(){
   const r=calc(),co=COUNTRIES[S.country];
-  return '[RFQ] ENGEDI INTERNATIONAL\n프로젝트: '+S.name+(S.client?' / 업체: '+S.client:'')+'\n일자: '+(S.pdate||'-')+(S.sdate?' / 선적 목표: '+S.sdate:'')+'\n경로: '+S.origin+' → '+co.port+' ('+S.incoterm+')\n컨테이너: '+r.c.name+' / '+r.cbm.toFixed(1)+' CBM / '+fmt(r.kg)+'kg\n품목:\n'+(S.items.length?S.items.map(i=>'- '+i.name+' ×'+i.qty+'박스 (HS '+CATS[i.cat].hs+')').join('\n'):'- (미입력)')+'\n요청 서비스: 해상운송, 통관 대행, 인증·시험';
+  return '[RFQ] ENGEDI INTERNATIONAL\n프로젝트: '+S.name+(S.client?' / 업체: '+S.client:'')+'\n일자: '+(S.pdate||'-')+(S.sdate?' / 선적 목표: '+S.sdate:'')+'\n경로: '+S.origin+' → '+co.port+' ('+S.incoterm+')\n컨테이너: '+contLabel(r)+' / '+r.cbm.toFixed(1)+' CBM / '+fmt(r.kg)+'kg\n품목:\n'+(S.items.length?S.items.map(i=>'- '+i.name+' ×'+i.qty+'박스 (HS '+CATS[i.cat].hs+')').join('\n'):'- (미입력)')+'\n요청 서비스: 해상운송, 통관 대행, 인증·시험';
 }
 
 /* ============================ TAB 5 : 요율 설정 ============================ */
@@ -2725,6 +2738,9 @@ function renderT5(){
 function onRateInput(el){
   const parts=el.dataset.rate.split('|'),kind=parts[0],today=todayISO();
   const num=v=>v===''?null:parseFloat(v);
+  {const x=num(el.value),LIM={duty:[0,60,'세율은 0~60% 범위로 입력하세요'],cost:[0,100000,'금액·일수는 0 이상으로 입력하세요'],fr:[0,1e9,'해운비는 0 이상으로 입력하세요'],vat:[0,50,'부가세는 0~50% 범위로 입력하세요'],ins:[0,5,'보험료율은 0~5% 범위로 입력하세요']}[kind];
+   if(LIM&&el.type==='number'&&x!=null&&(isNaN(x)||x<LIM[0]||x>LIM[1])){el.classList.add('bad');toast(LIM[2]);return}
+   el.classList.remove('bad')}
   if(kind==='duty'||kind==='cost'){
     const [,cat,co,i]=parts,key=dKey(cat,co),cur=(kind==='duty'?getDuty(cat,co):getCost(cat,co)).slice();
     cur[+i]=num(el.value);if(kind==='duty'&&cur[0]==null)cur[0]=0;
@@ -2796,6 +2812,14 @@ function showTab(n){
   if(n==3)renderT3();if(n==4)renderT4();if(n==5)renderT5();
   window.scrollTo({top:0,behavior:'smooth'});
 }
+async function adoptFreight(co,ct){
+  const def=getFreight(S.country,S.cont),nw=getFreight(co,ct);
+  if(S.freight&&Math.round(S.freight)!==Math.round(def)&&Math.round(nw)!==Math.round(S.freight)){
+    const ok=await ask({title:'직접 입력한 해운비가 있습니다',msg:'현재 해운비 '+won(S.freight)+'(직접 입력)을 새 기본값 '+won(nw)+'(으)로 바꿀까요? ‘NO’를 누르면 입력한 금액을 유지합니다.',yes:'YES · 기본값으로',no:'NO · 유지'});
+    return ok?nw:S.freight;
+  }
+  return nw;
+}
 function cargoRefresh(mode){renderT2();syncCargo(mode);persist()}
 
 /* ============================ 이벤트 ============================ */
@@ -2806,7 +2830,7 @@ document.addEventListener('click',async e=>{
   else if(a==='closemodal')closeModal();
   else if(a==='savenow'){doSave();toast('저장되었습니다')}
   else if(a==='projects')openProjects();
-  else if(a==='country'){S.country=v;S.freight=getFreight(v,S.cont);S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
+  else if(a==='country'){const nf=await adoptFreight(v,S.cont);S.country=v;S.freight=nf;S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
   else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';pushRecent(v);renderT1Inputs();renderT1Results();persist();if(document.documentElement.classList.contains('mob')){const r=$('#t1res .sumg')||$('#t1res');if(r)setTimeout(()=>r.scrollIntoView({behavior:'smooth',block:'start'}),60)}}
   else if(a==='sec'){T1UI.sec[v]=!T1UI.sec[v];renderT1Results()}
   else if(a==='jump'){if(v!=='certs')T1UI.sec[v]=true;renderT1Results();const el=document.getElementById('sec-'+v);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
@@ -2822,10 +2846,10 @@ document.addEventListener('click',async e=>{
     const iv=setInterval(()=>{k++;if(k<st.length){const t=$('#ovtxt');if(t)t.textContent=st[k]}},420);
     setTimeout(()=>{clearInterval(iv);S.diag=new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});renderT1Results()},1750);
   }
-  else if(a==='mode'){S.mode=v;if(v==='lcl'&&S.cont!=='20'){S.cont='20';S.freight=getFreight(S.country,'20');$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells()}renderLclInputs();cargoRefresh('instant')}
+  else if(a==='mode'){S.mode=v;if(v==='lcl'&&S.cont!=='20'){const nf=await adoptFreight(S.country,'20');S.cont='20';S.freight=nf;$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells()}renderLclInputs();cargoRefresh('instant')}
   else if(a==='shot')saveShot();
   else if(a==='cl'){T2UI[v]=!T2UI[v];applyCl()}
-  else if(a==='cont'){S.cont=v;S.freight=getFreight(S.country,v);$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
+  else if(a==='cont'){const nf=await adoptFreight(S.country,v);S.cont=v;S.freight=nf;$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
   else if(a==='view'){S.view=v;if(T.ready&&!T.failed)setViewMode();cargoRefresh('instant')}
   else if(a==='vpre'){if(T.ready)viewPreset(v)}
   else if(a==='wall'){S.wall=v;applyWall();renderT2();persist()}
@@ -2834,10 +2858,12 @@ document.addEventListener('click',async e=>{
   else if(a==='skip'){if(T.ready)skipAll()}
   else if(a==='speed'){T.speed=+v;$$('#segSpd button').forEach(x=>x.classList.toggle('on',x.dataset.v===v))}
   else if(a==='add')addItem();
+  else if(a==='edit')editStart(+v);
+  else if(a==='editcancel')editReset();
   else if(a==='del'){
     const it=S.items.find(i=>i.id===+v);if(!it)return;
     const ok=await ask({title:'이 항목을 지우시겠습니까?',msg:'선택한 품목이 적재 목록과 3D 컨테이너에서 제거되고, 원가 계산도 다시 계산됩니다. 이 작업은 되돌릴 수 없습니다.',item:it.name+' · '+it.qty+'박스',yes:'YES · 삭제',no:'NO · 아니오'});
-    if(!ok)return;S.items=S.items.filter(i=>i.id!==+v);cargoRefresh('instant');toast('"'+it.name+'" 항목을 삭제했습니다');
+    if(!ok)return;S.items=S.items.filter(i=>i.id!==+v);if(S.edit===+v)editReset();cargoRefresh('instant');toast('"'+it.name+'" 항목을 삭제했습니다');
   }
   else if(a==='reset'){
     if(!S.items.length){toast('이미 비어 있습니다');return}
@@ -2865,10 +2891,7 @@ document.addEventListener('click',async e=>{
   else if(a==='copyrfq')copyText(rfqText());
   else if(a==='pick'){S.pickFreight=v;renderBids()}
   else if(a==='bid'){
-    S.bid=false;$('#bidres').innerHTML='<div class="card static empty"><div class="spin" style="margin:0 auto 16px"></div><div id="bidtxt" class="b gd">RFQ를 제휴 파트너에게 송부 중…</div></div>';
-    const st=['포워더 풀 매칭 중 (한중 특화 12곳)…','관세법인 · 인증기관 응답 대기…','견적 취합 · 비교표 생성 중…'];let k=0;
-    const iv=setInterval(()=>{const t=$('#bidtxt');if(t&&k<st.length)t.textContent=st[k];k++},520);
-    setTimeout(()=>{clearInterval(iv);S.bid=true;S.pickFreight=null;renderBids()},1700);
+    S.bid=true;S.pickFreight=null;renderBids();
   }
   else if(a==='edco'){ED.co=v;renderT5()}
   else if(a==='resetrates'){const ok=await ask({icon:'undo',warn:true,title:'기본값으로 되돌리시겠습니까?',msg:'직접 입력한 관세·인증비·해운비와 ‘확인됨’ 표시가 모두 시연용 기본값으로 돌아갑니다.',yes:'YES · 되돌리기',no:'NO · 취소'});if(!ok)return;resetRates();S.freight=getFreight(S.country,S.cont);$('#s_freight').value=S.freight;renderAll();renderT5();persist();toast('기본값으로 되돌렸습니다')}
@@ -2885,6 +2908,15 @@ document.addEventListener('click',async e=>{
     writeDB();openProjects();toast('프로젝트를 삭제했습니다');
   }
 });
+function editReset(){S.edit=null;['a_name','a_l','a_w','a_h','a_cbm','a_kg','a_qty','a_price'].forEach(i=>$('#'+i).value='');$('#a_pcs').value=1;$('#a_title').textContent='품목 추가';$('#a_addt').textContent='컨테이너에 적재 추가';$('#a_cancel').classList.add('hidden');$('#a_catq').value='';fillACat('');renderLoadList()}
+function editStart(id){
+  const it=S.items.find(x=>x.id===id);if(!it)return;S.edit=id;
+  $('#a_name').value=it.name;$('#a_kg').value=it.kg||'';$('#a_qty').value=it.qty;$('#a_price').value=it.price||'';$('#a_pcs').value=it.pcs||1;
+  if(it.est){$('#a_l').value=$('#a_w').value=$('#a_h').value='';$('#a_cbm').value=+(it.l*it.w*it.h/1e6).toFixed(4)}else{$('#a_l').value=it.l;$('#a_w').value=it.w;$('#a_h').value=it.h;$('#a_cbm').value=''}
+  $('#a_catq').value='';fillACat('');$('#a_cat').value=it.cat;
+  $('#a_title').textContent='품목 수정 — '+it.name;$('#a_addt').textContent='수정 내용 저장';$('#a_cancel').classList.remove('hidden');renderLoadList();
+  $('#a_name').scrollIntoView({behavior:'smooth',block:'center'});
+}
 function addItem(){
   const v=id=>parseFloat($('#'+id).value);
   let L=v('a_l'),W=v('a_w'),H=v('a_h'),est=false;const cb=v('a_cbm');
@@ -2893,6 +2925,7 @@ function addItem(){
   const it={est,id:S.nextId++,name:$('#a_name').value.trim()||'품목 '+(S.items.length+1),cat:$('#a_cat').value,l:L,w:W,h:H,kg:v('a_kg')||0,qty:Math.floor(v('a_qty')),price:v('a_price')||0,pcs:Math.max(1,Math.floor(v('a_pcs')||1))};
   if(!(it.l>0&&it.w>0&&it.h>0&&it.qty>0)){toast('가로·세로·높이(또는 박스당 CBM)와 수량을 입력하세요');return}
   if(it.qty>3000){toast('수량은 3,000박스 이하로 입력하세요');return}
+  if(S.edit&&S.items.some(x=>x.id===S.edit)){const k=S.items.findIndex(x=>x.id===S.edit);it.id=S.edit;S.nextId--;S.items[k]=it;editReset();cargoRefresh('instant');toast('"'+it.name+'" 수정했습니다');return}
   S.items.push(it);['a_name','a_l','a_w','a_h','a_cbm','a_kg','a_qty','a_price'].forEach(i=>$('#'+i).value='');$('#a_pcs').value=1;
   cargoRefresh('new');
 }
@@ -2906,6 +2939,11 @@ document.addEventListener('input',e=>{
 });
 document.addEventListener('change',e=>{
   const el=e.target;
+  if(el.dataset&&el.dataset.li){
+    const [id,f]=el.dataset.li.split(':'),it=S.items.find(x=>x.id===+id);if(!it)return;const n=parseFloat(el.value);
+    if(f==='qty'){if(!(n>=1&&n<=3000)){toast('수량은 1~3,000박스로 입력하세요');renderLoadList();return}it.qty=Math.floor(n)}
+    else{if(!(n>=0)){toast('단가는 0 이상으로 입력하세요');renderLoadList();return}it.price=n}
+    cargoRefresh('instant');return}
   if(el.dataset&&el.dataset.q){const [id,f]=el.dataset.q.split(':');S.q=S.q||{};S.q[id]=Object.assign(S.q[id]||{},{[f]:el.value});persist();renderBids()}
   else if(el.dataset&&el.dataset.rate&&(el.type==='checkbox'))onRateInput(el);
 });
@@ -2915,9 +2953,9 @@ $('#spSearch').addEventListener('input',()=>renderSP());
 $('#catSearch').addEventListener('input',e=>{T1UI.q=e.target.value;renderT1Inputs()});
 $('#brand').addEventListener('input',e=>{S.brand=e.target.value;S.diag=null;renderSugg();renderT1Results();persist()});
 $('#imgFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;shrinkImage(f,d=>{S.img=d;renderImg();renderT1Results();persist()})});
-$('#s_rate').addEventListener('input',e=>{S.rate=parseFloat(e.target.value)||0;renderT2();persist()});
-$('#s_freight').addEventListener('input',e=>{S.freight=parseFloat(e.target.value)||0;renderT2();persist()});
-$('#s_etc').addEventListener('input',e=>{S.etc=parseFloat(e.target.value)||0;renderT2();persist()});
+$('#s_rate').addEventListener('input',e=>{const n=parseFloat(e.target.value);if(!(n>0&&n<=10000)){e.target.classList.add('bad');toast('환율은 0보다 크고 10,000 이하로 입력하세요');return}e.target.classList.remove('bad');S.rate=n;renderT2();persist()});
+$('#s_freight').addEventListener('input',e=>{const n=parseFloat(e.target.value)||0;if(n<0||n>1e9){e.target.classList.add('bad');toast('해운비는 0 이상으로 입력하세요');return}e.target.classList.remove('bad');S.freight=n;renderT2();persist()});
+$('#s_etc').addEventListener('input',e=>{const n=parseFloat(e.target.value)||0;if(n<0||n>1e10){e.target.classList.add('bad');toast('기타 비용은 0 이상으로 입력하세요');return}e.target.classList.remove('bad');S.etc=n;renderT2();persist()});
 $('#s_fta').addEventListener('change',e=>{S.useFTA=e.target.checked;renderT2();persist()});
 $('#palSel').addEventListener('change',e=>{S.pallet=e.target.value;cargoRefresh('instant')});
 $('#stk2').addEventListener('change',e=>{S.stack2=e.target.checked;cargoRefresh('instant')});
