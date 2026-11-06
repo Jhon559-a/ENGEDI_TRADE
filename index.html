@@ -580,8 +580,8 @@ html.mob .projbar .inp{min-height:42px}
       <div class="card" id="spCard"><div class="card-title"><span class="ix">2</span>특약 구성 <small>변호사 검토 전 초안</small></div>
         <div class="tiny mut mb8">거래 유형 (중복 선택 가능)</div><div id="spDeal" class="chips"></div><div id="spWarn"></div>
         <div class="tiny mut mb8 mt16">품목 추가 검색 <span class="dim">(위 품목 외에 더 넣을 때)</span></div>
-        <input id="spSearch" class="inp" placeholder="예: 식기류, 타일, 가구, 릴" autocomplete="off"><div id="spSugg" class="chips mt8"></div><div id="spAdded" class="chips mt8"></div>
-        <div class="tiny mut mb8 mt16">자동 구성된 특약 <span id="spCnt" class="gd b"></span> <span class="dim">· 눌러서 켜기/끄기</span></div><div id="spList"></div>
+        <div id="spUsed" class="tiny mb8"></div><input id="spSearch" class="inp" placeholder="예: 식기류, 타일, 가구, 릴" autocomplete="off"><div id="spSugg" class="chips mt8"></div><div id="spAdded" class="chips mt8"></div>
+        <div class="tiny mut mb8 mt16">자동 구성된 특약 <span id="spCnt" class="gd b"></span> <span class="dim">· 눌러서 켜기/끄기</span></div><div class="row gap8 wrapf mb8" style="gap:8px"><button class="fchip" data-act="spall" data-v="off">전체 끄기</button><button class="fchip" data-act="spall" data-v="on">전체 켜기</button><button class="fchip" data-act="spall" data-v="reset">추천 구성으로</button></div><div id="spList"></div>
         <div id="spParWrap" class="hidden"><div class="tiny mut mb8 mt16">수치 조정 <span class="dim">(빈칸은 기본값)</span></div><div id="spPar" class="g2 s"></div></div>
         <button class="btn btn-ghost block mt16" data-act="splaw"><svg class="ic"><use href="#i-file"/></svg> 변호사에게 물어볼 쟁점 복사</button>
         <div class="tiny mut mt12">※ 문구는 일반적인 무역 실무 기준 초안이며 중국 법령상 효력은 검증되지 않았습니다. 큰 거래는 중국법 변호사 검토 후 사용하세요.</div></div>
@@ -2280,6 +2280,7 @@ function renderSP(){
   if(!$('#spCard'))return;
   const ctx=spCtx(),act=spActive(ctx);
   $('#spDeal').innerHTML=Object.entries(DEALS).map(([k,d])=>'<button class="fchip'+(ctx.deals.has(k)?' on':'')+'" data-act="spdeal" data-v="'+k+'" title="'+esc(d.d)+'">'+d.n+'</button>').join('');
+  $('#spUsed').innerHTML='<span class="mut">특약에 반영 중인 품목:</span> <b class="gd">'+ctCats().map(k=>esc(CATS[k].short)).join(', ')+'</b><div class="dim mt4">탭 1 선택 품목 + 탭 2 적재 목록 품목 + 아래에서 추가한 품목이 모두 포함됩니다.</div>';
   const w=[];
   if(ctx.deals.has('once')&&ctx.deals.has('annual'))w.push('1회성과 연간 계속을 함께 선택했습니다. 조항이 겹칠 수 있으니 하나만 고르는 것을 권합니다.');
   if(ctx.deals.has('oem')&&ctx.deals.has('odm'))w.push('OEM과 ODM을 함께 선택했습니다. 지식재산 귀속 조항이 서로 충돌할 수 있습니다.');
@@ -2305,6 +2306,12 @@ function renderSP(){
       return '<div class="field"><label class="lb">'+d.n+(d.u?' ('+d.u+')':'')+'</label>'+inp+'</div>'}).join('');
     $('#spParWrap').classList.toggle('hidden',!used.length);
   }
+}
+async function spGuard(){
+  if(!S.koEdited)return true;
+  const ok=await ask({icon:'file',warn:true,title:'수정한 한국어가 사라집니다',msg:'한국어 원문을 직접 수정한 상태라 특약 변경이 문서에 반영되지 않습니다. 계속하면 기본 양식으로 다시 생성되어 직접 수정한 내용이 사라집니다.',yes:'YES · 다시 생성',no:'NO · 취소'});
+  if(ok){S.koEdited=false;S.koText=''}
+  return ok;
 }
 function spLawText(){
   const ctx=spCtx(),act=spActive(ctx).filter(x=>x.on&&x.c.q);
@@ -2492,10 +2499,13 @@ document.addEventListener('click',async e=>{
     S.items=SAMPLE.map(x=>({...x,id:S.nextId++}));cargoRefresh('all');toast('광저우 레스토랑 샘플을 불러왔습니다');
   }
   else if(a==='copyzh')copyZhChecked(false);
-  else if(a==='spdeal'){const cur=spCtx().deals.has(v);S.deal=Object.assign({},S.deal||{});S.deal[v]=!cur;renderT3();persist()}
-  else if(a==='spt'){const x=spActive().find(y=>y.c.id===v);if(x){S.spSet=Object.assign({},S.spSet||{});S.spSet[v]=!x.on;renderT3();persist()}}
-  else if(a==='spadd'){S.spCats=[...(S.spCats||[]),v];$('#spSearch').value='';renderT3();persist();toast(CATS[v].short+' 품목 특약을 추가했습니다')}
-  else if(a==='spdel'){S.spCats=(S.spCats||[]).filter(k=>k!==v);renderT3();persist()}
+  else if(a==='spdeal'){if(!await spGuard())return;const cur=spCtx().deals.has(v);S.deal=Object.assign({},S.deal||{});S.deal[v]=!cur;renderT3();persist()}
+  else if(a==='spt'){const x=spActive().find(y=>y.c.id===v);if(x){if(!await spGuard())return;S.spSet=Object.assign({},S.spSet||{});S.spSet[v]=!x.on;renderT3();persist()}}
+  else if(a==='spall'){if(!await spGuard())return;const act=spActive();S.spSet=Object.assign({},S.spSet||{});
+    if(v==='reset')S.spSet={};else act.forEach(x=>{S.spSet[x.c.id]=(v==='on')});
+    renderT3();persist();toast(v==='off'?'특약을 모두 껐습니다. 필요한 것만 눌러서 켜세요':v==='on'?'특약을 모두 켰습니다':'추천 기본 구성으로 되돌렸습니다')}
+  else if(a==='spadd'){if(!await spGuard())return;S.spCats=[...(S.spCats||[]),v];$('#spSearch').value='';renderT3();persist();toast(CATS[v].short+' 품목 특약을 추가했습니다')}
+  else if(a==='spdel'){if(!await spGuard())return;S.spCats=(S.spCats||[]).filter(k=>k!==v);renderT3();persist()}
   else if(a==='splaw')copyText(spLawText());
   else if(a==='zhretry')scheduleZh(0);
   else if(a==='koregen'){if(S.koEdited){const ok=await ask({icon:'file',warn:true,title:'양식으로 다시 생성할까요?',msg:'직접 수정한 한국어 내용이 사라지고, 프로젝트 정보 기반의 기본 양식으로 되돌아갑니다.',yes:'YES · 다시 생성',no:'NO · 취소'});if(!ok)return}S.koEdited=false;S.koText='';renderT3();persist()}
