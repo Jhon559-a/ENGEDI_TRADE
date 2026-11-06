@@ -1717,10 +1717,13 @@ function calc(){
   const plan=packPlan(),nCont=isLcl()?1:plan.n;
   const freight=isLcl()?freightNow():plan.freight,ins=(goods+freight)*R.ins;
   const cats=[...new Set(S.items.map(i=>i.cat))];
-  const certTotal=cats.reduce((s,k)=>{const x=getCost(k,S.country);return s+(x[0]+x[1])/2*10000},0);
+  const catCost={};cats.forEach(k=>{const x=getCost(k,S.country);catCost[k]=(x[0]+x[1])/2*10000});
+  const certTotal=cats.reduce((s,k)=>s+catCost[k],0);
+  /* 인증비는 해당 카테고리 품목에만 배분 (카테고리 내 상품금액 비율), 공통 통관·기타는 CBM 비율 */
+  const catG={},catN={};S.items.forEach(i=>{catG[i.cat]=(catG[i.cat]||0)+i.price*i.qty*S.rate;catN[i.cat]=(catN[i.cat]||0)+1});
   const rows=S.items.map(i=>{
     const share=cbm?i.cbm/cbm:0,g=i.price*i.qty*S.rate,f=freight*share,n=ins*share,cif=g+f+n;
-    const dr=dutyRate(i.cat),duty=cif*dr,vt=(cif+duty)*vat,ce=(certTotal+S.etc)*share,total=cif+duty+vt+ce;
+    const dr=dutyRate(i.cat),duty=cif*dr,vt=(cif+duty)*vat,cs=catG[i.cat]?catCost[i.cat]*g/catG[i.cat]:catCost[i.cat]/catN[i.cat],ce=cs+S.etc*share,total=cif+duty+vt+ce;
     return {i,g,f,n,cif,dr,duty,vat:vt,ce,total,perBox:total/i.qty,perPc:total/i.qty/i.pcs};
   });
   const total=rows.reduce((s,r)=>s+r.total,0);
