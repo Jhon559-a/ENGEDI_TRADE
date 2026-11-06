@@ -378,6 +378,21 @@ tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;fo
 .cursel{padding:10px 12px;border:1px solid rgba(211,184,143,.45);background:rgba(211,184,143,.08);border-radius:2px;font-size:13px;margin-bottom:6px}
 @media(max-width:900px){.sumg{grid-template-columns:repeat(2,1fr)}}
 
+/* ===== 탭 2 판정 · LCL · 접이식 ===== */
+.gauge{height:7px;background:rgba(255,255,255,.1);margin-top:8px;border-radius:1px}.gauge i{display:block;height:100%}
+.sm1.st{cursor:default}.sm1.st:hover{border-color:rgba(232,217,197,.18);background:rgba(255,255,255,.025)}
+.sm1.st.must:hover{border-color:rgba(201,133,122,.55);background:rgba(201,133,122,.07)}
+#verdict,#lcl{padding:18px 20px!important}
+.card.cl>.card-title{cursor:pointer}
+.card.cl>.card-title::after{content:'›';margin-left:auto;font-size:22px;color:#d3b88f;transition:.2s;flex:none}
+.card.cl.open>.card-title::after{transform:rotate(90deg)}
+.card.cl:not(.open)>.card-title{margin-bottom:0;padding-bottom:0;border-bottom:0}
+.card.cl:not(.open)>*:not(.card-title){display:none}
+#segMode button.on{background:#d3b88f;color:#1a1712}
+.lbox{border:1px solid rgba(232,217,197,.14);border-radius:2px}
+.lrow{display:flex;justify-content:space-between;gap:16px;padding:12px 14px;border-bottom:1px solid rgba(232,217,197,.1);font-size:13px}
+.lrow:last-child{border-bottom:0}.lrow>span:last-child{text-align:right}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -548,10 +563,22 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
   <p>품목을 추가하면 박스가 파렛트 위에 하나씩 적재됩니다. 도면 보기와 실물 컨테이너 보기를 전환하며 적재율과 최종 원가를 확인하세요.</p></div>
   <div class="lay lay2">
     <div class="stack">
-      <div class="card"><div class="card-title"><span class="ix">1</span>컨테이너 규격</div>
-        <div class="g2 s">
+      <div class="card"><div class="card-title"><span class="ix">1</span>운송 방식 · 컨테이너</div>
+        <div class="seg mb12" id="segMode" style="display:flex"><button class="f1" data-act="mode" data-v="fcl">FCL 컨테이너</button><button class="f1" data-act="mode" data-v="lcl">LCL 소량 (CBM)</button></div>
+        <div id="fclBox" class="g2 s">
           <button class="opt" data-act="cont" data-v="20"><div>20FT Dry<small>28 CBM / 18톤</small></div></button>
-          <button class="opt" data-act="cont" data-v="40"><div>40HQ<small>68 CBM / 26톤</small></div></button></div></div>
+          <button class="opt" data-act="cont" data-v="40"><div>40HQ<small>68 CBM / 26톤</small></div></button></div>
+        <div id="lclBox" class="hidden">
+          <div class="g2 s">
+            <div style="grid-column:1/-1"><label class="lb">출발지</label><select id="l_orig" class="inp" data-lcl="origin"></select></div>
+            <div><label class="lb">CBM당 운임 (원) <span class="dim">포워더 견적</span></label><input id="l_per" class="inp" type="number" min="0" step="1000" data-lcl="perCbm" placeholder="예: 80000"></div>
+            <div><label class="lb">최소 청구 CBM</label><input id="l_min" class="inp" type="number" min="0" step="0.5" data-lcl="minCbm" placeholder="예: 1"></div></div>
+          <div class="tiny mut mt16 mb8">부대비 (원) <span class="dim">— 견적서 항목명·금액을 그대로 입력</span></div>
+          <div class="stack" style="gap:8px">
+            <div class="g2 s"><input id="l_fn0" class="inp" data-lclfee="0:n" placeholder="항목명"><input id="l_fv0" class="inp" type="number" min="0" data-lclfee="0:v" placeholder="금액"></div>
+            <div class="g2 s"><input id="l_fn1" class="inp" data-lclfee="1:n" placeholder="항목명"><input id="l_fv1" class="inp" type="number" min="0" data-lclfee="1:v" placeholder="금액"></div>
+            <div class="g2 s"><input id="l_fn2" class="inp" data-lclfee="2:n" placeholder="항목명"><input id="l_fv2" class="inp" type="number" min="0" data-lclfee="2:v" placeholder="금액"></div></div>
+          <div class="tiny dim mt12">청구 CBM은 부피(CBM)와 중량(톤) 중 큰 쪽으로 계산합니다(일반적 관행, 포워더 확인 필요).</div></div></div>
       <div class="card"><div class="card-title"><span class="ix">2</span>품목 추가</div>
         <div class="g2 s">
           <div style="grid-column:1/-1"><label class="lb">품목명</label><input id="a_name" class="inp" placeholder="예: 애쉬우드 체어"></div>
@@ -571,12 +598,14 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
       <div class="card"><div class="card-title"><span class="ix">4</span>비용 가정</div>
         <div class="g2 s">
           <div><label class="lb">환율 (1위안 = 원)</label><input id="s_rate" type="number" step="0.5" class="inp"></div>
-          <div><label class="lb">해운비 (원 / 컨테이너 1대)</label><input id="s_freight" type="number" step="10000" class="inp"></div>
+          <div class="fclonly"><label class="lb">해운비 (원 / 컨테이너 1대)</label><input id="s_freight" type="number" step="10000" class="inp"></div>
           <div style="grid-column:1/-1"><label class="lb">내륙운송·통관수수료 등 기타 (원)</label><input id="s_etc" type="number" step="10000" class="inp"></div></div>
         <label class="chk mt16"><input id="s_fta" type="checkbox" checked> FTA 협정세율 적용</label>
         <div class="tiny dim mt12">※ 해운비·세율 기본값은 시연용입니다. <svg class="ic"><use href="#i-sliders"/></svg> 설정 탭에서 실제 확인값으로 교체하세요.</div></div>
     </div>
     <div class="stack">
+      <div class="card static" id="verdict"></div>
+      <div class="card static" id="lcl"></div>
       <div class="card static"><div class="card-title"><span class="ix">3D</span>적재 시뮬레이션
         <span style="margin-left:auto" class="seg" id="segView"><button data-act="view" data-v="wire"><svg class="ic"><use href="#i-ruler"/></svg> CBM 도면</button><button data-act="view" data-v="real"><svg class="ic"><use href="#i-truck"/></svg> 실물 컨테이너</button></span></div>
         <div id="cv"><div class="cv-prog"><div class="pill"><span id="seqStat">대기</span><div class="bar"><div id="seqBar" style="width:0;background:linear-gradient(90deg,var(--em),var(--em2))"></div></div></div></div><div class="cv-hint"><svg class="ic"><use href="#i-mouse"/></svg> 드래그 회전 · 휠 줌 · 더블클릭 시점 초기화</div></div>
@@ -585,6 +614,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
           <span class="seg" id="segPre"><button data-act="vpre" data-v="iso">3/4</button><button data-act="vpre" data-v="door">도어측</button><button data-act="vpre" data-v="side">측면</button><button data-act="vpre" data-v="top">상단</button></span>
           <span class="seg realonly" id="segWall"><button data-act="wall" data-v="inside">내부 보기</button><button data-act="wall" data-v="ext">외관(닫힘)</button><button data-act="wall" data-v="frame">골조</button></span>
           <span class="seg"><button data-act="replay"><svg class="ic"><use href="#i-rew"/></svg> REPLAY</button><button data-act="pause" id="btnPause"><svg class="ic"><use href="#i-pause"/></svg> 일시정지</button><button data-act="skip"><svg class="ic"><use href="#i-fwd"/></svg> SKIP</button></span>
+          <span class="seg"><button data-act="shot"><svg class="ic"><use href="#i-dl"/></svg> 이미지 저장</button></span>
           <span class="seg" id="segSpd"><button data-act="speed" data-v="1">1×</button><button data-act="speed" data-v="2">2×</button><button data-act="speed" data-v="4">4×</button></span></div>
         <div class="vbar realonly" id="palBar"><div class="row gap12 wrapf"><div><label class="lb">파렛트 규격</label><select id="palSel" class="inp" style="min-width:260px"></select></div>
           <label class="chk" style="margin-top:20px"><input id="stk2" type="checkbox"> 파렛트 2단 적재 허용</label></div><div class="chips" id="vstat"></div></div>
@@ -888,8 +918,8 @@ function dataChip(cat,co){
 function resetRates(){R.duty={};R.cost={};R.freight={};R.vat={};R.meta={};R.ins=0.003}
 
 /* ============================ 프로젝트 상태 ============================ */
-const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats'];
-function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:195,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[]}}
+const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl'];
+function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:195,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
 function sampleProject(){const p=blankProject();p.name='광저우 레스토랑 프로젝트';p.client='광저우 OO 레스토랑 (샘플)';p.pname='Ashwood Dining Chair (애쉬우드 다이닝 체어)';p.items=SAMPLE.map((x,i)=>({...x,id:i+1}));p.nextId=SAMPLE.length+1;return p}
 const S=Object.assign({id:null,diag:null,bid:false,pickFreight:null},blankProject());
 let curTab=1;
@@ -1500,6 +1530,7 @@ function shrinkImage(file,cb){
   rd.readAsDataURL(file);
 }
 function syncInputs(){
+  if(typeof renderLclInputs==='function')renderLclInputs();
   $$('[data-pf]').forEach(el=>{el.value=S[el.dataset.pf]==null?'':S[el.dataset.pf]});
   $('#pname').value=S.pname||'';$('#brand').value=S.brand||'';
   $('#s_rate').value=S.rate;$('#s_freight').value=S.freight;$('#s_etc').value=S.etc;$('#s_fta').checked=!!S.useFTA;
@@ -1605,7 +1636,7 @@ function calc(){
   const c=CONT[S.cont],vat=getVat(S.country);
   let cbm=0,kg=0,goods=0;
   S.items.forEach(i=>{i.cbm=i.l*i.w*i.h/1e6*i.qty;cbm+=i.cbm;kg+=i.kg*i.qty;goods+=i.price*i.qty*S.rate});
-  const freight=S.freight,ins=(goods+freight)*R.ins;
+  const freight=freightNow(),ins=(goods+freight)*R.ins;
   const cats=[...new Set(S.items.map(i=>i.cat))];
   const certTotal=cats.reduce((s,k)=>{const x=getCost(k,S.country);return s+(x[0]+x[1])/2*10000},0);
   const rows=S.items.map(i=>{
@@ -1698,18 +1729,18 @@ function renderT2(){
    '<div class="bar mt16"><div style="width:'+Math.min(pct,100)+'%;background:'+col+'"></div></div><div class="note gd md mt16"><svg class="ic"><use href="#i-compass"/></svg> '+msg+'</div>'+extra;
   /* 랜디드 코스트 */
   const co=r.co;
-  if(!S.items.length){$('#landed').innerHTML='<div class="card-title"><span class="ix">₩</span>랜디드 코스트 (창고 도착 최종 원가)</div><div class="mut sm">품목을 추가하면 자동 계산됩니다.</div>';updateDataChip();return}
+  if(!S.items.length){$('#landed').innerHTML='<div class="card-title"><span class="ix">₩</span>랜디드 코스트 (창고 도착 최종 원가)</div><div class="mut sm">품목을 추가하면 자동 계산됩니다.</div>';updateDataChip();renderLclPanel(r);applyCl();return}
   const sum=f=>r.rows.reduce((s,x)=>s+f(x),0),parts=[['상품원가',sum(x=>x.g),'#9fb59a'],['운임·보험',sum(x=>x.f+x.n),'#8fa3ad'],['관세',sum(x=>x.duty),'#d3b88f'],['부가세',sum(x=>x.vat),'#a99bb5'],['인증·기타',sum(x=>x.ce),'#c99aa8']];
   const tot=r.total||1;
   $('#landed').innerHTML='<div class="card-title"><span class="ix">₩</span>랜디드 코스트 — '+co.flag+' '+co.name+' 창고 도착 최종 원가 '+dataChip(S.items[0].cat,S.country)+'</div>'+
-   '<div class="g4 s mb16"><div class="kpi"><div class="k">공장도가 합계</div><div class="v" style="font-size:18px">'+won(r.goods)+'</div></div><div class="kpi"><div class="k">해운비 + 보험</div><div class="v" style="font-size:18px">'+won(r.freight+r.ins)+'</div></div><div class="kpi"><div class="k">인증비 + 기타</div><div class="v" style="font-size:18px">'+won(r.certTotal+S.etc)+'</div></div><div class="kpi gold"><div class="k">최종 Landed Cost</div><div class="v" style="font-size:18px">'+won(r.total)+'</div></div></div>'+
+   '<div class="g4 s mb16"><div class="kpi"><div class="k">공장도가 합계</div><div class="v" style="font-size:18px">'+won(r.goods)+'</div></div><div class="kpi"><div class="k">'+(isLcl()?'LCL 운임·부대비 + 보험':'해운비 + 보험')+'</div><div class="v" style="font-size:18px">'+won(r.freight+r.ins)+'</div></div><div class="kpi"><div class="k">인증비 + 기타</div><div class="v" style="font-size:18px">'+won(r.certTotal+S.etc)+'</div></div><div class="kpi gold"><div class="k">최종 Landed Cost</div><div class="v" style="font-size:18px">'+won(r.total)+'</div></div></div>'+
    '<div class="sbar">'+parts.map(p=>'<div style="width:'+(p[1]/tot*100)+'%;background:'+p[2]+'"></div>').join('')+'</div>'+
    '<div class="sleg">'+parts.map(p=>'<span class="row gap6"><span class="sw" style="background:'+p[2]+';margin:0"></span>'+p[0]+' <b>'+fmt(p[1])+'원</b> <span class="dim">('+(p[1]/tot*100).toFixed(0)+'%)</span></span>').join('')+'</div>'+
    '<div class="g3 mt20 mb16">'+r.rows.map((x,k)=>'<div class="icard" style="--c:'+COLORS[k%COLORS.length]+'"><div class="nm">'+esc(x.i.name)+'</div><div class="pr"><div>박스당 원가<b>'+fmt(x.perBox)+'원</b></div><div>개당 원가<b>'+fmt(x.perPc)+'원</b></div></div></div>').join('')+'</div>'+
    '<div class="tbw"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>공장도가</th><th>운임·보험</th><th>관세(율)</th><th>'+co.vatLabel.split(' ')[0]+'</th><th>인증·기타</th><th>총 원가</th><th>박스당</th><th>개당</th></tr></thead><tbody>'+
    r.rows.map((x,k)=>'<tr><td><span class="sw" style="background:'+COLORS[k%COLORS.length]+'"></span>'+esc(x.i.name)+'</td><td>'+x.i.qty+'박스</td><td>'+fmt(x.g)+'</td><td>'+fmt(x.f+x.n)+'</td><td>'+fmt(x.duty)+' <span class="dim">('+(x.dr*100).toFixed(1)+'%)</span></td><td>'+fmt(x.vat)+'</td><td>'+fmt(x.ce)+'</td><td class="gd b">'+fmt(x.total)+'</td><td class="b" style="color:#ece4d6">'+fmt(x.perBox)+'</td><td class="em b">'+fmt(x.perPc)+'</td></tr>').join('')+'</tbody></table></div>'+
    '<div class="tiny dim mt12">※ 해운비·인증비는 CBM 비율로 배분 / 관세 = CIF × 세율, '+co.vatLabel+' = (CIF + 관세) × 세율 / 환율 1위안 = '+S.rate+'원. 확정 견적이 아니라 추정 계산입니다.</div>';
-  updateDataChip();
+  updateDataChip();renderLclPanel(r);applyCl();
 }
 
 function certBlock(certs,co){
@@ -1932,7 +1963,122 @@ function renderEff(){
    '<div class="tbw"><table class="tb"><thead><tr><th>구성</th><th>필요 대수</th><th>해운비 합계</th><th>운임 / CBM</th><th>컨테이너 활용률</th><th></th></tr></thead><tbody>'+
    e.opts.map(o=>'<tr class="'+(o===e.best?'sel':'')+'"><td class="b" style="color:#ece4d6">'+o.nm+'</td><td>'+o.n+'대</td><td>'+fmt(o.total)+'원</td><td>'+fmt(o.perCbm)+'원</td><td>'+(o.fill*100).toFixed(0)+'%</td><td>'+(o===e.best?'<span class="chip em">운임 최저</span>':'')+'</td></tr>').join('')+'</tbody></table></div>'+
    '<div class="tiny dim mt12">※ 부피·중량 기준의 단순 비교입니다(실제 적재 가능 여부는 위 정밀 계산 참고). 해운비는 설정값 기준이며 샘플일 수 있으니 <svg class="ic"><use href="#i-sliders"/></svg> 설정 탭에서 실제 견적으로 교체하세요.</div>';
-  el.innerHTML='<div class="card-title"><span class="ix"><svg class="ic"><use href="#i-bolt"/></svg></span>작업 효율 · 컨테이너 최적도</div>'+eff1+sp+cmp;
+  el.innerHTML='<div class="card-title"><span class="ix"><svg class="ic"><use href="#i-bolt"/></svg></span>작업 효율 · 컨테이너 최적도</div>'+eff1+sp+cmp;applyCl();
+}
+
+/* ============================ LCL 모드 · 판정 요약 · 이미지 저장 ============================ */
+const T2UI={brief:false,eff:false};
+const ORIGINS=['광저우','이우 (닝보 경유)','선전','포산 (광저우 인근)'];
+/* 참고 범위: 대표님이 제공한 수치(이우→인천 CBM당 약 7~9만원). 앱이 확인한 값이 아니다. */
+const LCL_REF={KR:{'이우':[70000,90000]}};
+const isLcl=()=>S.mode==='lcl';
+const lnum=v=>parseFloat(v)||0;
+function lclRef(){const r=LCL_REF[S.country];if(!r)return null;const k=Object.keys(r).find(o=>(S.origin||'').indexOf(o)>=0);return k?r[k]:null}
+function lclCalc(cbm,kg){
+  const L=S.lcl||{},bill=Math.max(cbm,kg/1000),minC=lnum(L.minCbm);
+  const billed=bill>0?Math.max(bill,minC):0,per=lnum(L.perCbm),fees=(L.fees||[]).reduce((s,f)=>s+lnum(f.v),0);
+  return {bill,billed,per,fees,ocean:billed*per,total:billed*per+fees,heavy:kg/1000>cbm,minHit:bill>0&&bill<minC};
+}
+function lclCost(cbm){const L=S.lcl||{};return Math.max(cbm,lnum(L.minCbm))*lnum(L.perCbm)+(L.fees||[]).reduce((s,f)=>s+lnum(f.v),0)}
+function itemsTotals(){let cbm=0,kg=0;S.items.forEach(i=>{cbm+=i.l*i.w*i.h/1e6*i.qty;kg+=i.kg*i.qty});return {cbm,kg}}
+function freightNow(){if(!isLcl())return S.freight;const t=itemsTotals();return lclCalc(t.cbm,t.kg).total}
+
+function renderLclInputs(){
+  const L=S.lcl=S.lcl||{perCbm:'',minCbm:'1',fees:[]};
+  while((L.fees=L.fees||[]).length<3)L.fees.push({n:'',v:''});
+  const set=(id,v)=>{const e=$(id);if(e&&document.activeElement!==e)e.value=v};
+  set('#l_per',L.perCbm);set('#l_min',L.minCbm);
+  const o=$('#l_orig');if(o){o.innerHTML=ORIGINS.map(x=>'<option'+(S.origin===x?' selected':'')+'>'+x+'</option>').join('')}
+  L.fees.forEach((f,i)=>{set('#l_fn'+i,f.n);set('#l_fv'+i,f.v)});
+}
+function applyCl(){
+  ['brief','eff'].forEach(id=>{const e=$('#'+id);if(!e)return;e.classList.add('cl');e.classList.toggle('open',!!T2UI[id]);
+    const t=e.querySelector(':scope>.card-title');if(t){t.dataset.act='cl';t.dataset.v=id}});
+}
+function renderLclPanel(r){
+  const lcl=isLcl();
+  $$('#segMode button').forEach(b=>b.classList.toggle('on',b.dataset.v===(lcl?'lcl':'fcl')));
+  $('#fclBox').classList.toggle('hidden',lcl);$('#lclBox').classList.toggle('hidden',!lcl);
+  $$('.fclonly').forEach(e=>e.classList.toggle('hidden',lcl));
+  const ef=$('#eff');if(ef)ef.classList.toggle('hidden',lcl);
+  $('#lcl').classList.toggle('hidden',!lcl);
+  const v=$('#verdict'),c=r.c,tile=(k,val,s,cls,extra)=>'<div class="sm1 st '+(cls||'')+'"><div class="k">'+k+'</div><div class="v">'+val+'</div><div class="s">'+s+'</div>'+(extra||'')+'</div>';
+  const g=(p,col)=>'<div class="gauge"><i style="width:'+Math.min(100,Math.max(0,p))+'%;background:'+col+'"></i></div>';
+  if(!S.items.length){v.innerHTML='<div class="sumg" style="margin:0">'+tile('적재 판정','—','품목을 추가하면 표시됩니다')+'</div>';}
+  else if(!lcl){
+    const e=effAnalysis(r,null),vp=r.cbm/c.cbm*100,wp=r.kg/(c.ton*1000)*100;
+    let lc='';const L=lnum((S.lcl||{}).perCbm);
+    if(L>0){const lt=lclCost(Math.max(r.cbm,r.kg/1000)),ft=e.best.total;lc='<div class="s" style="margin-top:6px;color:'+(lt<ft?'#9fb59a':'#d3b88f')+'">'+(lt<ft?'LCL 견적이 더 저렴: ':'컨테이너가 더 저렴: ')+won(Math.abs(ft-lt))+' 차이</div>'}
+    v.innerHTML='<div class="sumg" style="margin:0">'+
+      tile('적재 판정','<span style="color:'+e.col+';font:700 17px var(--font)">'+e.grade+'</span>',c.name+' · 최적도 '+(e.eff*100).toFixed(0)+'%',e.eff>1?'must':'')+
+      tile('용적 사용',vp.toFixed(0)+'<small>%</small>','여유 '+Math.max(0,r.rem).toFixed(1)+' CBM',vp>100?'must':'',g(vp,vp>100?'#c9857a':vp>85?'#d3b88f':'#9fb59a'))+
+      tile('중량 사용',wp.toFixed(0)+'<small>%</small>','한도 '+c.ton+'톤',wp>100?'must':'',g(wp,wp>100?'#c9857a':'#8fa3ad'))+
+      tile('운임 기준 추천','<span style="font:700 15px var(--font)">'+esc(e.best.nm)+'</span>','해운비 '+won(e.best.total)+lc)+'</div>';
+  }else{
+    const t=itemsTotals(),q=lclCalc(t.cbm,t.kg),ref20=getFreight(S.country,'20'),pct=t.cbm/CONT['20'].cbm*100;
+    const win=q.per>0?(q.total<ref20?'LCL 유리':'FCL 유리'):'운임 입력 필요';
+    v.innerHTML='<div class="sumg" style="margin:0">'+
+      tile('청구 CBM',q.billed.toFixed(2),(q.heavy?'중량 기준(1톤=1CBM) 적용':'부피 기준')+(q.minHit?' · 최소 청구 적용':''))+
+      tile('20FT 대비',pct.toFixed(0)+'<small>%</small>','20FT '+CONT['20'].cbm+' CBM 중',pct>55?'':'',g(pct,'#d3b88f'))+
+      tile('LCL 운임 합계',q.per>0?won(q.total):'<span style="font:600 14px var(--font);color:#d3b88f">견적 입력 전</span>',q.per>0?'부대비 '+won(q.fees)+' 포함':'CBM당 운임을 입력하세요',q.per>0?'':'must')+
+      tile('FCL(20FT) 비교','<span style="font:700 15px var(--font)">'+win+'</span>','20FT 해운비 '+won(ref20))+'</div>';
+    renderLclCard(t,q,ref20);
+  }
+}
+function renderLclCard(t,q,ref20){
+  const L=S.lcl||{},ref=lclRef(),bill=Math.max(t.cbm,t.kg/1000);
+  let h='<div class="card-title"><span class="ix">LCL</span>LCL 운임 상세 <small>포워더 견적 기준 · 확정 아님</small></div>';
+  if(!S.items.length){$('#lcl').innerHTML=h+'<div class="mut sm">품목을 추가하면 계산합니다.</div>';return}
+  const fl=(L.fees||[]).filter(f=>lnum(f.v)>0);
+  const R=(a,b,cls)=>'<div class="lrow"><span class="mut">'+a+'</span><span class="'+(cls||'')+'">'+b+'</span></div>';
+  h+='<div class="lbox">'+
+   R('화물 부피 / 중량',t.cbm.toFixed(2)+' CBM / '+fmt(t.kg)+' kg ('+(t.kg/1000).toFixed(2)+' 톤)')+
+   R('청구 CBM','<b>'+q.billed.toFixed(2)+'</b> '+(q.heavy?'· 톤 기준':'· 부피 기준')+(q.minHit?' · 최소 '+lnum(L.minCbm)+' CBM 적용':''))+
+   R('해상 운임 ('+won(q.per)+' × '+q.billed.toFixed(2)+')',q.per>0?'<b>'+won(q.ocean)+'</b>':'<span class="dim">견적 입력 전</span>')+
+   fl.map(f=>R(esc(f.n||'부대비'),won(lnum(f.v)))).join('')+
+   R('<b>LCL 합계</b>',(q.per>0||q.fees>0?won(q.total):'—'),'gd b')+'</div>';
+  if(q.heavy)h+='<div class="note gd sm mt12"><svg class="ic"><use href="#i-alert"/></svg> 이 화물은 부피보다 무거워 <b>중량(톤) 기준으로 청구</b>될 수 있습니다. 포워더에 청구 기준(CBM/톤)을 확인하세요.</div>';
+  /* 손익분기 */
+  if(q.per>0){
+    const pts=[2,5,8,10,15,20,25];const near=pts.findIndex(x=>Math.abs(x-bill)<0.3);if(near>=0)pts.splice(near,1);pts.push(bill);pts.sort((a,b)=>a-b);
+    const be=(ref20-q.fees)/q.per;
+    h+='<div class="tiny mut mt16 mb8">FCL(20FT)과 LCL 비교 <span class="dim">(입력한 CBM당 운임·부대비 기준, 부피로만 계산한 단순 비교)</span></div>'+
+     '<div class="tbw"><table class="tb"><thead><tr><th>화물량</th><th>LCL</th><th>20FT 컨테이너</th><th>유리한 쪽</th></tr></thead><tbody>'+
+     pts.map(c=>{const l=lclCost(c),win=l<ref20;return '<tr class="'+(c===bill?'sel':'')+'"><td>'+(Number.isInteger(c)?c:c.toFixed(2))+' CBM'+(c===bill?' <span class="chip em">현재</span>':'')+'</td><td>'+won(l)+'</td><td>'+won(ref20)+'</td><td>'+(win?'<span class="chip em">LCL</span>':'<span class="chip gd">FCL</span>')+'</td></tr>'}).join('')+'</tbody></table></div>'+
+     '<div class="note em md mt12"><svg class="ic"><use href="#i-scale"/></svg> 약 <b>'+(be>0?be.toFixed(1):'0')+' CBM</b>부터는 20FT 컨테이너 한 대가 더 저렴합니다. (20FT 해운비 '+won(ref20)+' · 설정 탭 값 기준)</div>';
+  }
+  /* 참고 계산 (작게) */
+  h+='<div class="tiny dim mt16">'+(ref&&bill>0?'참고 계산 · 이우→인천 CBM당 약 '+fmt(ref[0]/10000)+'~'+fmt(ref[1]/10000)+'만원(대표님 제공 수치, 확인값 아님)을 적용하면 해상 운임 약 '+won(ref[0]*Math.max(bill,lnum(L.minCbm)))+' ~ '+won(ref[1]*Math.max(bill,lnum(L.minCbm)))+' (부대비 별도). 실제 견적으로 교체하세요.':'이 노선은 앱에 참고 범위가 없습니다. 포워더 견적을 입력하세요.')+
+    '<br>※ 부대비 항목(창고 반입·서류·항만비 등)과 청구 방식은 포워더마다 다릅니다. LCL은 다른 화주 화물과 섞이므로 집화·혼적으로 소요 기간이 길어지고 파손·분실 위험이 더 클 수 있습니다(일반적 관행, 확인 필요).</div>';
+  $('#lcl').innerHTML=h;
+}
+
+/* 이미지 저장 (3D 화면 + 요약 → PNG, 가능하면 공유 시트로 위챗 전송) */
+async function saveShot(){
+  if(!T.ready||T.failed||!T.ren){toast('3D 화면을 사용할 수 없습니다');return}
+  if(!S.items.length){toast('품목을 먼저 추가하세요');return}
+  T.ren.render(T.scene,T.cam);
+  const src=T.ren.domElement,w=src.width,h=src.height,s=w/1000;
+  const hd=Math.round(150*s),ft=Math.round((60+Math.ceil(S.items.length/3)*34)*s);
+  const cv=document.createElement('canvas');cv.width=w;cv.height=h+hd+ft;const x=cv.getContext('2d');
+  x.fillStyle='#0d0c0f';x.fillRect(0,0,cv.width,cv.height);
+  const r=calc(),c=r.c,lcl=isLcl();
+  x.fillStyle='#d3b88f';x.font='700 '+(30*s)+'px sans-serif';x.fillText('ENGEDI INTERNATIONAL',30*s,50*s);
+  x.fillStyle='#efe6d6';x.font='600 '+(22*s)+'px sans-serif';x.fillText((S.name||'')+(S.client?' · '+S.client:''),30*s,88*s);
+  x.fillStyle='#a89c85';x.font='500 '+(19*s)+'px sans-serif';
+  const e=effAnalysis(r,null);
+  x.fillText((lcl?'LCL · 20FT 대비 '+(r.cbm/CONT['20'].cbm*100).toFixed(0)+'%':c.name+' · 용적 '+(r.cbm/c.cbm*100).toFixed(0)+'% · 중량 '+(r.kg/(c.ton*1000)*100).toFixed(0)+'% · '+e.grade)+'  |  총 '+r.cbm.toFixed(1)+' CBM · '+fmt(r.kg)+' kg · '+S.items.reduce((a,i)=>a+i.qty,0)+'박스',30*s,126*s);
+  x.drawImage(src,0,hd);
+  S.items.forEach((i,k)=>{const col=k%3,row=Math.floor(k/3),px=30*s+col*(w-40*s)/3,py=h+hd+(34+row*34)*s;
+    x.fillStyle=COLORS[k%COLORS.length];x.fillRect(px,py-14*s,14*s,14*s);x.fillStyle='#d8d0c0';x.font='500 '+(17*s)+'px sans-serif';
+    let t=i.name+' ×'+i.qty;while(x.measureText(t).width>(w-60*s)/3-24*s&&t.length>4)t=t.slice(0,-2);x.fillText(t,px+22*s,py)});
+  x.fillStyle='#6f685c';x.font='500 '+(15*s)+'px sans-serif';x.fillText('※ 적재 시뮬레이션 추정이며 확정 견적이 아닙니다 · '+new Date().toISOString().slice(0,10),30*s,cv.height-16*s);
+  cv.toBlob(async b=>{
+    if(!b){toast('이미지를 만들 수 없습니다');return}
+    const fn='ENGEDI_load_'+new Date().toISOString().slice(0,10)+'.png',file=new File([b],fn,{type:'image/png'});
+    try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'ENGEDI 적재 시뮬레이션'});return}}catch(err){if(err&&err.name==='AbortError')return}
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);toast('이미지를 저장했습니다');
+  },'image/png');
 }
 
 /* ============================ 3D 엔진 (Three.js 내장) ============================ */
@@ -2371,7 +2517,7 @@ function renderT4(){
   const r=calc(),co=COUNTRIES[S.country],hsList=activeCats().map(k=>CATS[k].short+' — HS '+CATS[k].hs);
   const lines=S.items.length?S.items.map(i=>esc(i.name)+' ×'+i.qty+'박스').join('<br>'):'<span class="dim">(Tab 2에서 품목을 추가하세요)</span>';
   $('#rfq').innerHTML='<div class="card-title"><span class="ix">RFQ</span>입찰 요청서 <small>'+esc(S.name)+'</small></div>'+
-   '<div class="inner mb12 sm"><div class="row between"><span class="mut">업체명</span><b>'+esc(S.client||'-')+'</b></div><div class="row between mt8"><span class="mut">프로젝트 날짜 / 선적 목표</span><b>'+esc(S.pdate||'-')+' / '+esc(S.sdate||'-')+'</b></div><div class="row between mt8"><span class="mut">인코텀즈 · 담당</span><b>'+esc(S.incoterm)+' · '+esc(S.manager||'-')+'</b></div></div>'+
+   '<div class="inner mb12 sm"><div class="row between"><span class="mut">업체명</span><b>'+esc(S.client||'-')+'</b></div><div class="row between mt8"><span class="mut">프로젝트 날짜 / 선적 목표</span><b>'+esc(S.pdate||'-')+' / '+esc(S.sdate||'-')+'</b></div><div class="row between mt8"><span class="mut">인코텀즈 · 담당</span><b>'+esc(S.incoterm)+' · '+esc(S.manager||'-')+'</b></div><div class="row between mt8"><span class="mut">선적 방식</span><b>'+(isLcl()?'LCL (청구 '+lclCalc(itemsTotals().cbm,itemsTotals().kg).billed.toFixed(2)+' CBM)':CONT[S.cont].name+' 컨테이너')+'</b></div></div>'+
    '<div class="field"><label class="lb">출발지</label><select id="o_origin" class="inp"><option>광저우</option><option>이우 (닝보 경유)</option><option>선전</option><option>포산 (광저우 인근)</option></select></div>'+
    '<div class="kpi mb12"><div class="k">경로</div><div class="v" style="font-size:20px"><span id="o_o">'+esc(S.origin)+'</span> → '+co.flag+' '+co.port+'</div></div>'+
    '<div class="inner mb12 sm"><div class="tiny mut mb8">품목 명세</div>'+lines+'</div><div class="inner mb12 sm"><div class="tiny mut mb8">HS코드</div>'+hsList.map(x=>'<div>'+x+'</div>').join('')+'</div>'+
@@ -2524,6 +2670,9 @@ document.addEventListener('click',async e=>{
     const iv=setInterval(()=>{k++;if(k<st.length){const t=$('#ovtxt');if(t)t.textContent=st[k]}},420);
     setTimeout(()=>{clearInterval(iv);S.diag=new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});renderT1Results()},1750);
   }
+  else if(a==='mode'){S.mode=v;if(v==='lcl'&&S.cont!=='20'){S.cont='20';S.freight=getFreight(S.country,'20');$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells()}renderLclInputs();cargoRefresh('instant')}
+  else if(a==='shot')saveShot();
+  else if(a==='cl'){T2UI[v]=!T2UI[v];applyCl()}
   else if(a==='cont'){S.cont=v;S.freight=getFreight(S.country,v);$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
   else if(a==='view'){S.view=v;if(T.ready&&!T.failed)setViewMode();cargoRefresh('instant')}
   else if(a==='vpre'){if(T.ready)viewPreset(v)}
@@ -2597,6 +2746,8 @@ function addItem(){
 document.addEventListener('input',e=>{
   const el=e.target;
   if(el.dataset&&el.dataset.pf){const k=el.dataset.pf;S[k]=el.value;$$('[data-pf="'+k+'"]').forEach(x=>{if(x!==el)x.value=el.value});if(curTab===3)renderT3();if(curTab===4&&k==='client')renderT4();persist()}
+  else if(el.dataset&&el.dataset.lcl){const k=el.dataset.lcl;if(k==='origin')S.origin=el.value;else{S.lcl=S.lcl||{};S.lcl[k]=el.value}renderT2();persist()}
+  else if(el.dataset&&el.dataset.lclfee){const [i,f]=el.dataset.lclfee.split(':');S.lcl=S.lcl||{fees:[]};S.lcl.fees=S.lcl.fees||[];S.lcl.fees[+i]=S.lcl.fees[+i]||{n:'',v:''};S.lcl.fees[+i][f]=el.value;renderT2();persist()}
   else if(el.dataset&&el.dataset.sp){S.spP=Object.assign({},S.spP||{});S.spP[el.dataset.sp]=el.value;if(curTab===3)renderT3();persist()}
   else if(el.dataset&&el.dataset.rate)onRateInput(el);
 });
