@@ -357,6 +357,27 @@ tr.grow td{background:rgba(211,184,143,.07)!important;color:#d3b88f!important;fo
 .sprow .ds{font-size:11.5px;color:#9d968a;margin-top:3px;line-height:1.55}
 .sprow .lv{margin-top:0}
 
+/* ===== 탭 1 요약 스트립 · 접이식 ===== */
+.sumg{scroll-margin-top:96px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.sm1{text-align:left;background:rgba(255,255,255,.025);border:1px solid rgba(232,217,197,.18);border-radius:2px;padding:12px 14px;cursor:pointer;color:inherit;font:inherit;transition:.15s}
+.sm1:hover{border-color:#d3b88f;background:rgba(211,184,143,.07)}
+.sm1.must{border-color:rgba(201,133,122,.55);background:rgba(201,133,122,.07)}
+.sm1 .k{font:600 11px var(--font);color:#a89c85;letter-spacing:.5px}
+.sm1 .v{font:500 26px var(--num);color:#efe6d6;margin-top:4px;line-height:1.15}
+.sm1 .v small{font:600 12px var(--font);color:#a89c85;margin-left:2px}
+.sm1 .v.sg3{font:700 17px var(--font);display:flex;align-items:center;gap:7px;margin-top:9px}
+.sm1 .s{font-size:11px;color:#9d968a;margin-top:4px}
+.secard{padding:0!important;scroll-margin-top:96px}
+#sec-certs{scroll-margin-top:96px}
+.sech{width:100%;display:flex;align-items:center;gap:12px;background:none;border:0;color:inherit;font:inherit;padding:16px 20px;cursor:pointer;text-align:left}
+.sech .st{font:600 14px var(--font);color:#efe6d6}
+.sech .pv{margin-left:auto;font-size:12px;color:#a89c85;text-align:right}
+.sech .chev{font-size:20px;color:#d3b88f;transition:.2s;flex:none}
+.secard.open .chev{transform:rotate(90deg)}
+.secb{padding:0 20px 20px}
+.cursel{padding:10px 12px;border:1px solid rgba(211,184,143,.45);background:rgba(211,184,143,.08);border-radius:2px;font-size:13px;margin-bottom:6px}
+@media(max-width:900px){.sumg{grid-template-columns:repeat(2,1fr)}}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -461,6 +482,15 @@ html.mob .projbar>div:nth-child(3),html.mob .projbar>div:nth-child(4){display:no
 html.mob .projbar{padding:12px!important;gap:8px!important}
 html.mob .projbar .lb{margin-bottom:4px!important}
 html.mob .projbar .inp{min-height:42px}
+
+/* 탭 1 결과 (모바일) */
+html.mob #t1res .card>.row{flex-wrap:wrap;gap:10px}
+html.mob #t1res .card .big{font-size:18px!important;line-height:1.3;word-break:keep-all}
+html.mob .sumg{gap:8px}
+html.mob .sm1{padding:10px 12px}
+html.mob .sm1 .v{font-size:22px}
+html.mob .sumg{scroll-margin-top:84px}
+html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
 
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
@@ -1485,7 +1515,12 @@ function updateDataChip(){
 }
 
 /* ============================ TAB 1 ============================ */
-const T1UI={q:'',open:{},cost:false};
+const T1UI={q:'',open:{},cost:false,sec:{hs:true,cost:true,ip:false}};
+const RC_KEY='engedi_recent_cats_v1',RC_DEF=['wood','tile','ceramic','toy','reel','charger'];
+function recentCats(){let a=[];try{a=JSON.parse(localStorage.getItem(RC_KEY)||'[]')}catch(e){}
+  a=a.filter(k=>CATS[k]);RC_DEF.forEach(k=>{if(a.length<6&&!a.includes(k))a.push(k)});return a.slice(0,6)}
+function pushRecent(k){let a=[];try{a=JSON.parse(localStorage.getItem(RC_KEY)||'[]')}catch(e){}
+  a=[k,...a.filter(x=>x!==k)].slice(0,6);try{localStorage.setItem(RC_KEY,JSON.stringify(a))}catch(e){}}
 function renderT1Inputs(){
   $('#countryBtns').innerHTML=Object.entries(COUNTRIES).map(([k,c])=>'<button class="opt '+(S.country===k?'on':'')+'" data-act="country" data-v="'+k+'"><span class="fl">'+c.flag+'</span>'+c.name+'</button>').join('');
   $('#catCount').textContent='총 '+Object.keys(CATS).length+'개';
@@ -1496,8 +1531,9 @@ function renderT1Inputs(){
   }else{
     const groups={};Object.entries(CATS).forEach(([k,c])=>{(groups[c.group]=groups[c.group]||[]).push([k,c])});
     const order=[...GROUP_ORDER,...Object.keys(groups).filter(g=>!GROUP_ORDER.includes(g))].filter(g=>groups[g]);
-    $('#catTree').innerHTML=order.map(g=>{
-      const arr=groups[g],has=arr.some(([k])=>k===S.cat),open=T1UI.open[g]!==undefined?T1UI.open[g]:has;
+    const quick=recentCats().map(k=>optB(k,CATS[k])).join('');
+    $('#catTree').innerHTML='<div class="cursel">선택됨 · <b>'+esc(CATS[S.cat].name)+'</b> <span class="mut">HS '+esc(CATS[S.cat].hs.split('/')[0].trim())+'</span></div><div class="grp">자주 쓰는 · 최근 품목</div><div class="optlist">'+quick+'</div><div class="grp">전체 분류</div>'+order.map(g=>{
+      const arr=groups[g],has=arr.some(([k])=>k===S.cat),open=T1UI.open[g]!==undefined?T1UI.open[g]:false;
       return '<div class="acc'+(open?' open':'')+'"><button class="acc-h" data-act="grp" data-v="'+g+'"><span>'+g+' <i class="n">'+arr.length+'</i></span><span class="chev">›</span></button>'+(open?'<div class="optlist">'+arr.map(([k,c])=>optB(k,c)).join('')+'</div>':'')+'</div>';
     }).join('');
   }
@@ -1531,25 +1567,36 @@ function renderT1Results(){
   const thumb=S.img?'<img src="'+S.img+'" class="thumb" alt="">':'';
   const usNote=S.country==='US'?'<div class="tiny gd mt12">※ 중국산 품목은 기본관세 외 추가관세(Section 301 등)가 별도 부과될 수 있어 최신 확인이 필요합니다.</div>':'';
   const dc=dataChip(S.cat,S.country);
-  $('#t1res').innerHTML=mismatchBanner()+
-  '<div class="card fade"><div class="row gap16">'+thumb+'<div class="f1"><div class="tiny mut">진단 대상</div><div class="big" style="font-size:22px">'+esc(S.pname||c.name)+(S.brand?' <span class="md mut" style="font-weight:500">/ '+esc(S.brand)+'</span>':'')+'</div>'+
-    '<div class="chips mt8"><span class="chip gd">'+c.group+' › '+c.short+'</span><span class="chip em">'+co.flag+' '+co.name+'</span>'+dc+'</div></div>'+diagChip+'</div></div>'+
-  '<div class="g2">'+
-   '<div class="card fade"><div class="card-title"><span class="ix">1</span>추천 HS코드 · 관세 비교</div><div class="big">'+c.hs+'</div><div class="tiny mut mb16 mt4">'+c.hsDesc+' (HS 6단위 기준 · 세부 10단위는 관세사 확인)</div>'+
+  const nMust=certs.filter(x=>x.lv==='필수').length,nAsk=certs.filter(x=>x.lv==='대상확인').length,nRec=certs.filter(x=>x.lv==='권장').length;
+  const dutyTxt=hasFta?d[0]+'%<small> → '+d[1]+'%</small>':d[0]+'%';
+  const sec=(k,n,title,pv,inner)=>{const o=!!T1UI.sec[k];return '<div class="card fade secard'+(o?' open':'')+'" id="sec-'+k+'"><button class="sech" data-act="sec" data-v="'+k+'" type="button" aria-expanded="'+o+'"><span class="ix">'+n+'</span><span class="st">'+title+'</span><span class="pv">'+pv+'</span><span class="chev">›</span></button>'+(o?'<div class="secb">'+inner+'</div>':'')+'</div>'};
+  const hsInner='<div class="big">'+c.hs+'</div><div class="tiny mut mb16 mt4">'+c.hsDesc+' (HS 6단위 기준 · 세부 10단위는 관세사 확인)</div>'+
      '<div class="row between sm mb8"><span class="mut">기본(MFN) 관세율</span><b>'+d[0]+'%</b></div><div class="bar mb16"><div style="width:'+(d[0]/maxR*100)+'%;background:#7d7568"></div></div>'+
      '<div class="row between sm mb8"><span class="mut">'+(hasFta?co.fta+' 협정세율':'FTA 협정세율')+'</span><b class="'+(hasFta?'em':'dim')+'">'+(hasFta?d[1]+'%':'해당 없음')+'</b></div><div class="bar mb16"><div style="width:'+(hasFta?d[1]/maxR*100:0)+'%;background:linear-gradient(90deg,var(--em),var(--em2))"></div></div>'+
      (hasFta?'<div class="note em"><svg class="ic"><use href="#i-coins"/></svg> 원산지증명서 제출 시 <b>'+sav.toFixed(1).replace(/\.0$/,'')+'%p 절감</b> — CIF 1,000만원 기준 약 <b>'+fmt(sav*100000)+'원</b> 절세</div>':'<div class="note gray">이 도착국은 중국산에 적용할 FTA 협정세율이 없어 기본세율이 적용됩니다.</div>')+usNote+
-     '<div class="tiny dim mt12">※ 세율 출처는 위 데이터 상태 칩을 확인하세요. 시연용 샘플은 <svg class="ic"><use href="#i-sliders"/></svg> 설정에서 실제 값으로 교체할 수 있습니다.</div></div>'+
-   '<div class="card fade"><div class="card-title"><span class="ix">2</span>지재권 · 상표권 세관 리스크</div><div class="sig '+sigMap[ip.lvl][1]+'"><span class="dot"></span><span>'+sigMap[ip.lvl][0]+'</span></div>'+
+     '<div class="tiny dim mt12">※ 세율 출처는 위 데이터 상태 칩을 확인하세요. 시연용 샘플은 <svg class="ic"><use href="#i-sliders"/></svg> 설정에서 실제 값으로 교체할 수 있습니다.</div>';
+  const ipInner='<div class="sig '+sigMap[ip.lvl][1]+'"><span class="dot"></span><span>'+sigMap[ip.lvl][0]+'</span></div>'+
      '<div class="sm mt16" style="color:var(--tx2);line-height:1.7">'+c.ip.text+'</div>'+ip.notes.map(n=>'<div class="sm rd mt12" style="line-height:1.7"><svg class="ic"><use href="#i-alert"/></svg> '+n+'</div>').join('')+
-     '<div class="tiny mut mt20 mb8">상표권 체크 가이드</div><ul class="ul"><li>'+IP_GUIDE[S.country]+'</li><li>중국 상표망(CNIPA) 및 공장 보유 라이선스 서류 요청</li><li>샘플 사진의 로고 · 각인 · 라벨을 확대 촬영해 대조</li></ul></div></div>'+
-  '<div class="card fade"><div class="card-title"><span class="ix">3</span>'+co.flag+' '+co.name+' 필수 인증 · 법적 요건 <small>총 '+certs.length+'개 · 상품 특성 체크에 따라 달라집니다</small></div>'+certBlock(certs,co)+'</div>'+
-  '<div class="card fade"><div class="card-title"><span class="ix">4</span>예상 인증 비용 · 소요 기간 시뮬레이션</div><div class="g3 s">'+
+     '<div class="tiny mut mt20 mb8">상표권 체크 가이드</div><ul class="ul"><li>'+IP_GUIDE[S.country]+'</li><li>중국 상표망(CNIPA) 및 공장 보유 라이선스 서류 요청</li><li>샘플 사진의 로고 · 각인 · 라벨을 확대 촬영해 대조</li></ul>';
+  const costInner='<div class="g3 s">'+
       '<div class="kpi gold"><div class="k">예상 인증·검사 비용 <button class="info'+(T1UI.cost?' on':'')+'" data-act="costinfo" type="button" title="어떤 인증·검사가 포함되고 금액이 어떻게 산정되는지 보기" aria-label="산정 기준 보기">!</button></div><div class="v">'+cost[0]+'~'+cost[1]+'만원</div><div class="s">중간값 약 '+fmt((cost[0]+cost[1])/2)+'만원</div></div>'+
       '<div class="kpi"><div class="k">예상 소요 기간 <button class="info'+(T1UI.cost?' on':'')+'" data-act="costinfo" type="button" aria-label="산정 기준 보기">!</button></div><div class="v">'+cost[2]+'~'+cost[3]+'일</div><div class="s">서류 준비 포함 (영업일 추정)</div></div>'+
       '<div class="kpi"><div class="k">비용 구성 (추정)</div><div class="sm b mt8" style="line-height:1.7">시험·검사 60%<br>서류·대행 25% · 기타 15%</div></div></div>'+
      (T1UI.cost?costInfoPanel(certs,cost):'')+'<div class="tiny mut mt20 mb8">타임라인</div><div class="tl"><div>서류 수집</div><div>시험 / 검사</div><div>심사 / 발급</div><div>통관 가능</div></div>'+
-     '<div class="tiny dim mt12">※ 발주 전 인증기관·관세사 견적으로 확정하세요. 이 값은 '+(isOk(dKey(S.cat,S.country))?'사용자가 확인한 값':'시연용 추정값')+'입니다.</div></div>';
+     '<div class="tiny dim mt12">※ 발주 전 인증기관·관세사 견적으로 확정하세요. 이 값은 '+(isOk(dKey(S.cat,S.country))?'사용자가 확인한 값':'시연용 추정값')+'입니다.</div>';
+  $('#t1res').innerHTML=mismatchBanner()+
+  '<div class="card fade"><div class="row gap16">'+thumb+'<div class="f1"><div class="tiny mut">진단 대상</div><div class="big" style="font-size:22px">'+esc(S.pname||c.name)+(S.brand?' <span class="md mut" style="font-weight:500">/ '+esc(S.brand)+'</span>':'')+'</div>'+
+    '<div class="chips mt8"><span class="chip gd">'+c.group+' › '+c.short+'</span><span class="chip em">'+co.flag+' '+co.name+'</span>'+dc+'</div></div>'+diagChip+'</div></div>'+
+  '<div class="sumg fade">'+
+    '<button class="sm1 must" data-act="jump" data-v="certs" type="button"><div class="k">필수 인증</div><div class="v">'+nMust+'<small>개</small></div><div class="s">대상확인 '+nAsk+' · 권장 '+nRec+'</div></button>'+
+    '<button class="sm1" data-act="jump" data-v="hs" type="button"><div class="k">관세율</div><div class="v">'+dutyTxt+'</div><div class="s">HS '+c.hs.split('/')[0].trim()+'</div></button>'+
+    '<button class="sm1" data-act="jump" data-v="cost" type="button"><div class="k">인증 비용 · 기간</div><div class="v">'+cost[0]+'~'+cost[1]+'<small>만</small></div><div class="s">'+cost[2]+'~'+cost[3]+'일</div></button>'+
+    '<button class="sm1" data-act="jump" data-v="ip" type="button"><div class="k">지재권</div><div class="v sg3 '+sigMap[ip.lvl][1]+'"><span class="dot"></span>'+({g:'안전',y:'확인',r:'주의'})[ip.lvl]+'</div><div class="s">상표·디자인 세관 리스크</div></button>'+
+  '</div>'+
+  '<div class="card fade" id="sec-certs"><div class="card-title"><span class="ix">1</span>'+co.flag+' '+co.name+' 필수 인증 · 법적 요건 <small>총 '+certs.length+'개 · 상품 특성 체크에 따라 달라집니다</small></div>'+certBlock(certs,co)+'</div>'+
+  sec('hs',2,'추천 HS코드 · 관세 비교',c.hs.split('/')[0].trim()+' · '+(hasFta?d[0]+'% → '+d[1]+'%':d[0]+'%'),hsInner)+
+  sec('cost',3,'예상 인증 비용 · 소요 기간',cost[0]+'~'+cost[1]+'만원 · '+cost[2]+'~'+cost[3]+'일',costInner)+
+  sec('ip',4,'지재권 · 상표권 세관 리스크',sigMap[ip.lvl][0],ipInner);
   updateDataChip();
 }
 
@@ -2462,7 +2509,9 @@ document.addEventListener('click',async e=>{
   else if(a==='savenow'){doSave();toast('저장되었습니다')}
   else if(a==='projects')openProjects();
   else if(a==='country'){S.country=v;S.freight=getFreight(v,S.cont);S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
-  else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';renderT1Inputs();renderT1Results();persist()}
+  else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';pushRecent(v);renderT1Inputs();renderT1Results();persist();if(document.documentElement.classList.contains('mob')){const r=$('#t1res .sumg')||$('#t1res');if(r)setTimeout(()=>r.scrollIntoView({behavior:'smooth',block:'start'}),60)}}
+  else if(a==='sec'){T1UI.sec[v]=!T1UI.sec[v];renderT1Results()}
+  else if(a==='jump'){if(v!=='certs')T1UI.sec[v]=true;renderT1Results();const el=document.getElementById('sec-'+v);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
   else if(a==='viewtoggle'){try{doSave()}catch(err){}VIEW.set(VIEW.eff==='m'?'pc':'m')}
   else if(a==='vpick'){try{doSave()}catch(err){}VIEW.set(v)}
   else if(a==='imgdel'){const yes=await ask({icon:'trash',title:'사진을 삭제하시겠습니까?',msg:'업로드한 상품 사진이 이 프로젝트에서 제거됩니다. 상품명·카테고리 등 다른 입력값은 유지됩니다.',item:'상품 사진 1장',yes:'YES · 삭제',no:'NO · 취소'});if(yes){S.img=null;$('#imgFile').value='';renderImg();renderT1Results();persist();toast('사진을 삭제했습니다')}}
