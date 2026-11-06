@@ -442,6 +442,9 @@ html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;paddi
 .ctab .tx{margin-left:4px;color:var(--mut);font-size:16px;line-height:1;padding:0 3px}.ctab .tx:hover{color:#c9857a}
 .cset{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px}
 
+.warnbox{padding:10px 12px;border:1px solid #c9857a;background:rgba(201,133,122,.12);color:#e9b8ae;border-radius:6px;font-size:13px;line-height:1.5}
+.opt.sm{padding:8px 12px;font-size:13px}.opt.sm small{opacity:.7;margin-left:2px}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -610,7 +613,7 @@ html.mob .tb.plan tr.ft td{font-size:10px}
   <p>도착국과 품목만 고르면 HS코드, 관세 절감, 지재권 리스크, 필수 인증, 예상 비용까지 현장에서 즉시 확인합니다.</p></div>
   <div class="lay lay1">
     <div class="stack">
-      <div class="card"><div class="card-title"><span class="ix">1</span>도착 국가</div><div class="g2 s" id="countryBtns"></div></div>
+      <div class="card"><div class="card-title"><span class="ix">1</span>도착 국가</div><div id="euSel" class="mb12"></div><div class="g2 s" id="countryBtns"></div></div>
       <div class="card"><div class="card-title"><span class="ix">2</span>품목 카테고리 <small id="catCount"></small></div><div class="srch"><svg class="ic"><use href="#i-search"/></svg><input id="catSearch" class="inp" placeholder="검색: 낚시릴, 게임기, 화장품, 티셔츠, 보조배터리…" autocomplete="off"></div><div id="catTree"></div></div>
       <div class="card"><div class="card-title"><span class="ix">3</span>상품 정보</div>
         <div class="field"><label class="lb">상품 이미지</label><label class="drop"><input id="imgFile" type="file" accept="image/*" class="hidden"><div id="imgPrev"><svg class="ic"><use href="#i-camera"/></svg> 클릭하여 사진 업로드 (아이패드 카메라 지원)</div></label><button id="imgDel" class="btn btn-ghost sm hidden mt8" data-act="imgdel" type="button"><svg class="ic"><use href="#i-trash"/></svg> 사진 삭제</button><div class="tiny dim mt8">사진은 기록·썸네일용입니다. 사진만으로 HS코드를 자동 판별하지는 않으니 <b>상품명을 함께 입력</b>하세요.</div></div>
@@ -850,6 +853,8 @@ const COUNTRIES={
   US:{flag:'<span class=\"cc\">US</span>',name:'미국',port:'LA(로스앤젤레스)',vat:0,vatLabel:'수입 시 VAT 없음(주 판매세 별도)',fta:'해당 없음',hasFta:false},
   EU:{flag:'<span class=\"cc\">EU</span>',name:'유럽(프랑스 등)',port:'마르세유/르아브르',vat:0.20,vatLabel:'VAT 약 20%(프랑스)',fta:'해당 없음',hasFta:false}
 };
+const EUC={FR:{n:'프랑스',vat:0.20,port:'마르세유/르아브르'},DE:{n:'독일',vat:0.19,port:'함부르크'},NL:{n:'네덜란드',vat:0.21,port:'로테르담'},IT:{n:'이탈리아',vat:0.22,port:'제노바'},ES:{n:'스페인',vat:0.21,port:'발렌시아'},BE:{n:'벨기에',vat:0.21,port:'안트베르펜'},PL:{n:'폴란드',vat:0.23,port:'그단스크'},SE:{n:'스웨덴',vat:0.25,port:'예테보리'},IE:{n:'아일랜드',vat:0.23,port:'더블린'},PT:{n:'포르투갈',vat:0.23,port:'리스본'},AT:{n:'오스트리아',vat:0.20,port:'함부르크 경유(내륙)'},CZ:{n:'체코',vat:0.21,port:'함부르크 경유(내륙)'}};
+function syncEU(){const k=(typeof S!=='undefined'&&S.euc&&EUC[S.euc])?S.euc:'FR',e=EUC[k],c=COUNTRIES.EU;c.name='유럽('+e.n+')';c.port=e.port;c.vat=e.vat;c.vatLabel='VAT 약 '+Math.round(e.vat*1000)/10+'%('+e.n+')'}
 const FREIGHT={KR:{20:1300000,40:2000000},PH:{20:1800000,40:2700000},US:{20:4500000,40:6000000},EU:{20:5000000,40:6800000}};
 const BASEDAYS={KR:[5,8],PH:[5,9],US:[20,28],EU:[30,38]};
 const CONT={'20':{name:'20FT Dry',cbm:28,ton:18,L:5.90,W:2.35,H:2.39},'40':{name:'40HQ',cbm:68,ton:26,L:12.03,W:2.35,H:2.69}};
@@ -996,8 +1001,8 @@ function dataChip(cat,co){
 function resetRates(){R.duty={};R.cost={};R.freight={};R.vat={};R.meta={};R.ins=0.003}
 
 /* ============================ 프로젝트 상태 ============================ */
-const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl','cm','ct','cs','alloc'];
-function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:200,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',cs:null,alloc:{},cm:{mode:'agency',feePct:8,base:'goods',view:false},ct:{fac:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]},cus:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]}},lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
+const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl','cm','ct','cs','alloc','euc'];
+function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:200,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',euc:'FR',cs:null,alloc:{},cm:{mode:'agency',feePct:8,base:'goods',view:false},ct:{fac:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]},cus:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]}},lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
 function sampleProject(){const p=blankProject();p.name='광저우 레스토랑 프로젝트';p.client='광저우 OO 레스토랑 (샘플)';p.pname='Ashwood Dining Chair (애쉬우드 다이닝 체어)';p.items=SAMPLE.map((x,i)=>({...x,id:i+1}));p.nextId=SAMPLE.length+1;return p}
 const S=Object.assign({id:null,diag:null,bid:false,pickFreight:null},blankProject());
 let curTab=1;
@@ -1037,6 +1042,7 @@ function applyProject(p){
   const b=blankProject();
   const copy=JSON.parse(JSON.stringify(p));
   PKEYS.forEach(k=>{S[k]=copy[k]!==undefined&&copy[k]!==null?copy[k]:b[k]});
+  if(!EUC[S.euc])S.euc='FR';syncEU();
   if(copy.img===null)S.img=null;
   S.id=p.id;S.vci=0;S.diag=null;S.bid=false;S.pickFreight=null;
   S.items.forEach(i=>{if(!i.id)i.id=S.nextId++});
@@ -1631,6 +1637,8 @@ function recentCats(){let a=[];try{a=JSON.parse(localStorage.getItem(RC_KEY)||'[
 function pushRecent(k){let a=[];try{a=JSON.parse(localStorage.getItem(RC_KEY)||'[]')}catch(e){}
   a=[k,...a.filter(x=>x!==k)].slice(0,6);try{localStorage.setItem(RC_KEY,JSON.stringify(a))}catch(e){}}
 function renderT1Inputs(){
+  syncEU();
+  $('#euSel').innerHTML=S.country==='EU'?'<div class="tiny mut mb8">도착 국가 (VAT·항구가 달라집니다)</div><div class="row gap8 wrapf">'+Object.entries(EUC).map(([k,e])=>'<button class="opt sm '+(S.euc===k?'on':'')+'" data-act="euc" data-v="'+k+'" type="button">'+e.n+' <small>'+Math.round(e.vat*1000)/10+'%</small></button>').join('')+'</div><div class="tiny dim mt8">※ 표준 VAT 참고값(확인 필요). 해운비는 EU 공통 기본값이니 실제 견적으로 수정하세요.</div>':'';
   $('#countryBtns').innerHTML=Object.entries(COUNTRIES).map(([k,c])=>'<button class="opt '+(S.country===k?'on':'')+'" data-act="country" data-v="'+k+'"><span class="fl">'+c.flag+'</span>'+c.name+'</button>').join('');
   $('#catCount').textContent='총 '+Object.keys(CATS).length+'개';
   const optB=(k,c)=>'<button class="opt '+(S.cat===k?'on':'')+'" data-act="cat" data-v="'+k+'">'+c.name+'<span class="hsm">HS '+c.hs.split('/')[0].trim()+'</span></button>';
@@ -2164,6 +2172,9 @@ async function saveShot(){
 /* ===== 견적 계산(원가·마진) 탭 + 계약 정보 ===== */
 function renderT2(){renderT2core();renderT6()}
 const cmView=()=>!!(S.cm&&S.cm.view);
+const frMissing=()=>isLcl()&&!(freightNow()>0);
+const frWarn=()=>frMissing()?'<div class="warnbox mt12">⚠ LCL 운임이 입력되지 않았습니다. 아래 금액은 <b>운임을 뺀 금액</b>이며 최종 총액이 아닙니다. (탭 2 LCL 운임 입력)</div>':'';
+const pcLbl=()=>S.items.length>1?'전체 평균 개당':'개당';
 function cmCalc(r){
   const cm=S.cm||{},ag=cm.mode!=='guide',pct=(parseFloat(cm.feePct)||0)/100,base=cm.base==='total'?'total':'goods';
   let fee=0;
@@ -2176,10 +2187,10 @@ function cmCalc(r){
 function landedSummary(r){
   const c=cmCalc(r),v=cmView();
   return '<div class="card-title"><span class="ix">₩</span>'+(v?'견적 요약':'랜디드 코스트 요약')+'</div>'+
-   '<div class="g3 s"><div class="kpi gold"><div class="k">'+(v||c.ag?'청구 총액':'예상 총 부담액')+'</div><div class="v" style="font-size:20px">'+won(v||c.ag?c.bill:c.cost)+'</div></div>'+
-   '<div class="kpi"><div class="k">개당</div><div class="v" style="font-size:20px">'+won(c.perPc)+'</div></div>'+
+   '<div class="g3 s"><div class="kpi gold"><div class="k">'+(v||c.ag?'청구 총액':'예상 총 부담액')+(frMissing()?' <span class="rd">(운임 제외)</span>':'')+'</div><div class="v" style="font-size:20px">'+won(v||c.ag?c.bill:c.cost)+'</div></div>'+
+   '<div class="kpi"><div class="k">'+pcLbl()+'</div><div class="v" style="font-size:20px">'+won(c.perPc)+'</div></div>'+
    '<div class="kpi"><div class="k">CBM당</div><div class="v" style="font-size:20px">'+won(c.perCbm)+'</div></div></div>'+
-   (r.nCont>1&&!v?'<div class="tiny rd mt12">컨테이너 '+r.nCont+'대분 운임을 반영했습니다.</div>':'')+'<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
+   frWarn()+(r.nCont>1&&!v?'<div class="tiny rd mt12">컨테이너 '+r.nCont+'대분 운임을 반영했습니다.</div>':'')+'<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
 }
 function cmRow(l,v,cls){return '<div class="cmrow'+(cls?' '+cls:'')+'"><span>'+l+'</span><span>'+v+'</span></div>'}
 function renderT6(full){
@@ -2194,14 +2205,14 @@ function renderT6(full){
   const out=$('#cmOut');
   if(!S.items.length){out.innerHTML='<div class="mut sm">탭 2에서 품목(단가·수량·박스 규격)을 추가하면 자동 계산됩니다.</div>';return}
   const r=calc(),c=cmCalc(r),co=r.co;
-  let h='';
+  let h=frWarn();
   const K=(k,vv,g)=>'<div class="kpi'+(g?' gold':'')+'"><div class="k">'+k+'</div><div class="v" style="font-size:19px">'+vv+'</div></div>';
   if(v){
     h+='<div class="cmlist">';
     if(c.ag)h+=cmRow('상품대금 및 구매대행비',won(c.goods+c.fee));else h+=cmRow('상품대금',won(c.goods));
     h+=cmRow('운임·보험',won(c.fr))+cmRow('관세',won(c.duty))+cmRow(co.vatLabel.split(' ')[0],won(c.vat))+cmRow('인증·통관·기타',won(c.ce))+'</div>';
     h+='<div class="cmbig"><div class="k">'+(c.ag?'청구 총액':'예상 총 부담액')+'</div><div class="v">'+won(c.ag?c.bill:c.cost)+'</div></div>';
-    h+='<div class="g3 s mt16">'+K('개당',won(c.perPc))+K('박스당',won(c.bill/(S.items.reduce((s,i)=>s+i.qty,0)||1)))+K('CBM당',won(c.perCbm))+'</div>';
+    h+='<div class="g3 s mt16">'+K(pcLbl(),won(c.perPc))+K('박스당',won(c.bill/(S.items.reduce((s,i)=>s+i.qty,0)||1)))+K('CBM당',won(c.perCbm))+'</div>';
     h+='<div class="tbw mt16"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>'+(c.ag?'청구액':'예상 부담액')+'</th><th>박스당</th><th>개당</th></tr></thead><tbody>'+
       c.rows.map(q=>'<tr><td>'+esc(q.x.i.name)+'</td><td>'+q.x.i.qty+'박스</td><td class="gd b">'+fmt(c.ag?q.bill:q.x.total)+'</td><td>'+fmt(c.ag?q.perBox:q.x.perBox)+'</td><td class="em b">'+fmt(c.ag?q.perPc:q.x.perPc)+'</td></tr>').join('')+'</tbody></table></div>';
     h+='<div class="tiny dim mt12">※ 환율 1위안 = '+S.rate+'원 기준 / 관세·부가세·운임은 추정 계산이며 확정 견적이 아닙니다.</div>';
@@ -2212,10 +2223,10 @@ function renderT6(full){
     if(c.ag)h+=cmRow('대행 수수료 <span class="dim">('+(cm.feePct||0)+'% · '+(c.base==='goods'?'상품대금':'총 원가')+' 기준)</span>','<span class="pf">+ '+won(c.fee)+'</span>');
     h+='</div>';
     h+='<div class="cmbig"><div class="k">'+(c.ag?'고객 청구액':'고객 실제 부담 총액 (가이드 동행)')+'</div><div class="v">'+won(c.ag?c.bill:c.cost)+'</div>'+
-       '<div class="s">개당 '+won(c.perPc)+' · CBM당 '+won(c.perCbm)+' · 총 '+fmt(c.pcs)+'개'+(c.ag?' · <span class="pf">내 이익 '+won(c.fee)+'</span>':'')+'</div></div>';
+       '<div class="s">'+pcLbl()+' '+won(c.perPc)+' · CBM당 '+won(c.perCbm)+' · 총 '+fmt(c.pcs)+'개'+(c.ag?' · <span class="pf">수수료 수입 '+won(c.fee)+'</span>':'')+'</div></div>';
     if(!c.ag)h+='<div class="tiny dim mt12">※ 가이드비는 별도로 받는 정액이라 이 계산에 포함하지 않았습니다.</div>';
     if(c.ag){
-      h+='<div class="card-title mt20" style="font-size:13px">수수료율별 비교</div><div class="tbw"><table class="tb"><thead><tr><th>수수료율</th><th>고객 청구액</th><th>내 이익</th><th>개당 청구</th></tr></thead><tbody>'+
+      h+='<div class="card-title mt20" style="font-size:13px">수수료율별 비교</div><div class="tbw"><table class="tb"><thead><tr><th>수수료율</th><th>고객 청구액</th><th>수수료 수입</th><th>개당 청구</th></tr></thead><tbody>'+
         [7,8,9,10].map(p=>{const f=r.rows.reduce((s,x)=>s+(c.base==='total'?x.total:x.g)*p/100,0);return '<tr'+(+cm.feePct===p?' class="cmsel"':'')+'><td>'+p+'%</td><td>'+fmt(r.total+f)+'</td><td class="pf">'+fmt(f)+'</td><td>'+fmt((r.total+f)/(c.pcs||1))+'</td></tr>'}).join('')+'</tbody></table></div>';
     }
     h+='<div class="tbw mt16"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>공장도가</th><th>총 원가</th>'+(c.ag?'<th>수수료</th><th>청구액</th>':'')+'<th>개당'+(c.ag?' 청구':'')+'</th></tr></thead><tbody>'+
@@ -2960,6 +2971,7 @@ document.addEventListener('click',async e=>{
   else if(a==='closemodal')closeModal();
   else if(a==='savenow'){doSave();toast('저장되었습니다')}
   else if(a==='projects')openProjects();
+  else if(a==='euc'){S.euc=v;syncEU();S.diag=null;renderT1Inputs();renderT1Results();renderT2();persist()}
   else if(a==='country'){const nf=await adoptFreight(v,S.cont);S.country=v;S.freight=nf;S.diag=null;S.pickFreight=null;$('#s_freight').value=S.freight;renderT1Inputs();renderT1Results();renderT2();persist()}
   else if(a==='cat'){S.cat=v;S.flags=null;S.flagsFor=null;S.diag=null;T1UI.q='';const cs=$('#catSearch');if(cs)cs.value='';pushRecent(v);renderT1Inputs();renderT1Results();persist();if(document.documentElement.classList.contains('mob')){const r=$('#t1res .sumg')||$('#t1res');if(r)setTimeout(()=>r.scrollIntoView({behavior:'smooth',block:'start'}),60)}}
   else if(a==='sec'){T1UI.sec[v]=!T1UI.sec[v];renderT1Results()}
