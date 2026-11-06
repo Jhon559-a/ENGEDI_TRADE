@@ -401,6 +401,26 @@ textarea.doc{color:#f6f0e4!important;font-size:15px!important;line-height:2.15!i
 textarea.inp{line-height:1.9!important}
 html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;padding:18px!important}
 
+/* 견적 계산 탭 */
+.cmeye{position:absolute;top:14px;right:8px;width:38px;height:38px;border:1px solid rgba(232,217,197,.16);background:transparent;color:#9a9285;opacity:.3;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.cmeye:hover{opacity:.8}
+#cmLay.one{grid-template-columns:minmax(0,1fr)!important}
+.cmlist{border:1px solid var(--line);padding:4px 16px;background:rgba(255,248,235,.02)}
+.cmrow{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(232,217,197,.09);font-size:14px;color:var(--tx2)}
+.cmrow:last-child{border-bottom:0}.cmrow.tot{color:var(--tx)}
+.cmbig{margin-top:14px;padding:20px 22px;border:1px solid var(--gold);background:rgba(211,184,143,.07)}
+.cmbig .k{font-size:12px;color:var(--mut)}.cmbig .v{font-size:32px;font-weight:700;color:#f6f0e4;margin-top:4px;font-variant-numeric:tabular-nums}.cmbig .s{font-size:13px;color:var(--tx2);margin-top:6px}
+.pf{color:#9fbda9}.cmsel td{background:rgba(211,184,143,.1)}
+.cmchip.on{background:#3a3226!important;color:#fff!important;border-color:#d3b88f!important}
+.ctph{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ctth{position:relative;width:92px;height:92px;border:1px solid var(--line2)}.ctth img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.ctth button{position:absolute;top:2px;right:2px;width:22px;height:22px;border:0;background:rgba(0,0,0,.7);color:#fff;cursor:pointer}
+.ctadd{width:92px;height:92px;border:1px dashed var(--line2);display:grid;place-items:center;font-size:28px;color:var(--mut);cursor:pointer}
+.ctlb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:grid;place-items:center;cursor:zoom-out}.ctlb img{max-width:96vw;max-height:94vh}
+
+.ctgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px}
+@media(max-width:1100px){.ctgrid{grid-template-columns:minmax(0,1fr)}}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -532,6 +552,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
   <nav class="nav">
     <button class="tab on" data-act="tab" data-v="1" data-s="AI 소싱"><span class="n">1</span>AI 소싱 · 통관/인증 진단</button>
     <button class="tab" data-act="tab" data-v="2" data-s="3D CBM"><span class="n">2</span>3D CBM · 랜디드 코스트</button>
+    <button class="tab" data-act="tab" data-v="6" data-s="견적"><span class="n">₩</span>견적 계산</button>
     <button class="tab" data-act="tab" data-v="3" data-s="위챗 계약"><span class="n">3</span>위챗 중문 요구서 · 특약</button>
     <button class="tab" data-act="tab" data-v="4" data-s="역경매"><span class="n">4</span>포워더·관세사 역경매</button>
     <button class="tab" data-act="tab" data-v="5" data-s="설정"><span class="n"><svg class="ic"><use href="#i-sliders"/></svg></span>프로젝트 · 요율 설정</button>
@@ -632,6 +653,16 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
       <div class="card static" id="landed"></div>
     </div>
   </div>
+</section>
+
+<section id="t6" class="tabpane hidden">
+  <div class="page-head" style="position:relative;padding-right:56px"><div class="eyebrow" id="cmEye"></div><h2 id="cmTitle"></h2><p id="cmSub"></p>
+    <button class="cmeye" data-cm="view" type="button" aria-label="화면 전환"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+  <div class="lay lay5" id="cmLay">
+    <div class="stack" id="cmLeft"><div class="card" id="cmIn"></div></div>
+    <div class="stack"><div class="card static" id="cmOut"></div></div>
+  </div>
+  <div id="ctCard" class="ctgrid"></div>
 </section>
 
 <section id="t3" class="tabpane hidden">
@@ -926,8 +957,8 @@ function dataChip(cat,co){
 function resetRates(){R.duty={};R.cost={};R.freight={};R.vat={};R.meta={};R.ins=0.003}
 
 /* ============================ 프로젝트 상태 ============================ */
-const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl'];
-function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:195,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
+const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl','cm','ct'];
+function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:200,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',cm:{mode:'agency',feePct:8,base:'goods',view:false},ct:{fac:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]},cus:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]}},lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
 function sampleProject(){const p=blankProject();p.name='광저우 레스토랑 프로젝트';p.client='광저우 OO 레스토랑 (샘플)';p.pname='Ashwood Dining Chair (애쉬우드 다이닝 체어)';p.items=SAMPLE.map((x,i)=>({...x,id:i+1}));p.nextId=SAMPLE.length+1;return p}
 const S=Object.assign({id:null,diag:null,bid:false,pickFreight:null},blankProject());
 let curTab=1;
@@ -1710,7 +1741,7 @@ function renderLoadList(){
   $('#loadlist').innerHTML=S.items.length?S.items.map((i,k)=>'<div class="li"><span class="dot" style="background:'+COLORS[k%COLORS.length]+'"></span><div class="f1"><div class="nm">'+esc(i.name)+'</div><div class="meta">'+CATS[i.cat].short+(i.est?' · <span class="estb">CBM 입력</span>':'')+' · '+i.qty+'박스 · '+(i.l*i.w*i.h/1e6*i.qty).toFixed(2)+' CBM · '+fmt(i.kg*i.qty)+'kg</div></div><button class="x" data-act="del" data-v="'+i.id+'" title="이 항목 삭제">✕</button></div>').join(''):'<div class="dim sm">적재된 품목이 없습니다. 위에서 품목을 추가하세요.</div>';
   $('#legend').innerHTML=S.items.map((i,k)=>'<span class="row gap6"><span class="sw" style="background:'+COLORS[k%COLORS.length]+';margin:0"></span>'+esc(i.name)+' <span class="dim">×'+i.qty+'</span></span>').join('')||'<span class="dim">품목을 추가하면 3D로 적재됩니다.</span>';
 }
-function renderT2(){
+function renderT2core(){
   $$('[data-act=cont]').forEach(b=>b.classList.toggle('on',b.dataset.v===S.cont));
   $$('#segView button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
   $$('#segWall button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.wall));
@@ -1740,14 +1771,7 @@ function renderT2(){
   if(!S.items.length){$('#landed').innerHTML='<div class="card-title"><span class="ix">₩</span>랜디드 코스트 (창고 도착 최종 원가)</div><div class="mut sm">품목을 추가하면 자동 계산됩니다.</div>';updateDataChip();renderLclPanel(r);applyCl();return}
   const sum=f=>r.rows.reduce((s,x)=>s+f(x),0),parts=[['상품원가',sum(x=>x.g),'#9fb59a'],['운임·보험',sum(x=>x.f+x.n),'#8fa3ad'],['관세',sum(x=>x.duty),'#d3b88f'],['부가세',sum(x=>x.vat),'#a99bb5'],['인증·기타',sum(x=>x.ce),'#c99aa8']];
   const tot=r.total||1;
-  $('#landed').innerHTML='<div class="card-title"><span class="ix">₩</span>랜디드 코스트 — '+co.flag+' '+co.name+' 창고 도착 최종 원가 '+dataChip(S.items[0].cat,S.country)+'</div>'+
-   '<div class="g4 s mb16"><div class="kpi"><div class="k">공장도가 합계</div><div class="v" style="font-size:18px">'+won(r.goods)+'</div></div><div class="kpi"><div class="k">'+(isLcl()?'LCL 운임·부대비 + 보험':'해운비 + 보험')+'</div><div class="v" style="font-size:18px">'+won(r.freight+r.ins)+'</div></div><div class="kpi"><div class="k">인증비 + 기타</div><div class="v" style="font-size:18px">'+won(r.certTotal+S.etc)+'</div></div><div class="kpi gold"><div class="k">최종 Landed Cost</div><div class="v" style="font-size:18px">'+won(r.total)+'</div></div></div>'+
-   '<div class="sbar">'+parts.map(p=>'<div style="width:'+(p[1]/tot*100)+'%;background:'+p[2]+'"></div>').join('')+'</div>'+
-   '<div class="sleg">'+parts.map(p=>'<span class="row gap6"><span class="sw" style="background:'+p[2]+';margin:0"></span>'+p[0]+' <b>'+fmt(p[1])+'원</b> <span class="dim">('+(p[1]/tot*100).toFixed(0)+'%)</span></span>').join('')+'</div>'+
-   '<div class="g3 mt20 mb16">'+r.rows.map((x,k)=>'<div class="icard" style="--c:'+COLORS[k%COLORS.length]+'"><div class="nm">'+esc(x.i.name)+'</div><div class="pr"><div>박스당 원가<b>'+fmt(x.perBox)+'원</b></div><div>개당 원가<b>'+fmt(x.perPc)+'원</b></div></div></div>').join('')+'</div>'+
-   '<div class="tbw"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>공장도가</th><th>운임·보험</th><th>관세(율)</th><th>'+co.vatLabel.split(' ')[0]+'</th><th>인증·기타</th><th>총 원가</th><th>박스당</th><th>개당</th></tr></thead><tbody>'+
-   r.rows.map((x,k)=>'<tr><td><span class="sw" style="background:'+COLORS[k%COLORS.length]+'"></span>'+esc(x.i.name)+'</td><td>'+x.i.qty+'박스</td><td>'+fmt(x.g)+'</td><td>'+fmt(x.f+x.n)+'</td><td>'+fmt(x.duty)+' <span class="dim">('+(x.dr*100).toFixed(1)+'%)</span></td><td>'+fmt(x.vat)+'</td><td>'+fmt(x.ce)+'</td><td class="gd b">'+fmt(x.total)+'</td><td class="b" style="color:#ece4d6">'+fmt(x.perBox)+'</td><td class="em b">'+fmt(x.perPc)+'</td></tr>').join('')+'</tbody></table></div>'+
-   '<div class="tiny dim mt12">※ 해운비·인증비는 CBM 비율로 배분 / 관세 = CIF × 세율, '+co.vatLabel+' = (CIF + 관세) × 세율 / 환율 1위안 = '+S.rate+'원. 확정 견적이 아니라 추정 계산입니다.</div>';
+  $('#landed').innerHTML=landedSummary(r);
   updateDataChip();renderLclPanel(r);applyCl();
 }
 
@@ -2088,6 +2112,125 @@ async function saveShot(){
     const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);toast('이미지를 저장했습니다');
   },'image/png');
 }
+
+/* ===== 견적 계산(원가·마진) 탭 + 계약 정보 ===== */
+function renderT2(){renderT2core();renderT6()}
+const cmView=()=>!!(S.cm&&S.cm.view);
+function cmCalc(r){
+  const cm=S.cm||{},ag=cm.mode!=='guide',pct=(parseFloat(cm.feePct)||0)/100,base=cm.base==='total'?'total':'goods';
+  let fee=0;
+  const rows=r.rows.map(x=>{const f=ag?(base==='total'?x.total:x.g)*pct:0;fee+=f;const bill=x.total+f;return {x,fee:f,bill,perBox:bill/(x.i.qty||1),perPc:bill/(x.i.qty||1)/(x.i.pcs||1)}});
+  const sum=f=>r.rows.reduce((s,x)=>s+f(x),0);
+  const bill=r.total+fee,pcs=S.items.reduce((s,i)=>s+i.qty*(i.pcs||1),0);
+  return {ag,pct,base,rows,fee,bill,pcs,perPc:pcs?bill/pcs:0,perCbm:r.cbm?bill/r.cbm:0,
+    goods:r.goods,fr:sum(x=>x.f+x.n),duty:sum(x=>x.duty),vat:sum(x=>x.vat),ce:sum(x=>x.ce),cost:r.total,yuan:S.items.reduce((s,i)=>s+i.price*i.qty,0)};
+}
+function landedSummary(r){
+  const c=cmCalc(r),v=cmView();
+  return '<div class="card-title"><span class="ix">₩</span>'+(v?'견적 요약':'랜디드 코스트 요약')+'</div>'+
+   '<div class="g3 s"><div class="kpi gold"><div class="k">'+(v||c.ag?'청구 총액':'예상 총 부담액')+'</div><div class="v" style="font-size:20px">'+won(v||c.ag?c.bill:c.cost)+'</div></div>'+
+   '<div class="kpi"><div class="k">개당</div><div class="v" style="font-size:20px">'+won(c.perPc)+'</div></div>'+
+   '<div class="kpi"><div class="k">CBM당</div><div class="v" style="font-size:20px">'+won(c.perCbm)+'</div></div></div>'+
+   '<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
+}
+function cmRow(l,v,cls){return '<div class="cmrow'+(cls?' '+cls:'')+'"><span>'+l+'</span><span>'+v+'</span></div>'}
+function renderT6(full){
+  if(!$('#t6'))return;
+  if(typeof curTab!=='undefined'&&curTab!==6&&!full)return;
+  const v=cmView(),cm=S.cm;
+  $('#cmLay').classList.toggle('one',v);$('#cmLeft').classList.toggle('hidden',v);
+  $('#cmEye').textContent=v?'Quotation':'Module · Cost Calculation';
+  $('#cmTitle').textContent=v?'견적 요약':'견적 · 원가 계산';
+  $('#cmSub').textContent=v?(S.client?S.client+' 귀하 · ':'')+(S.name||''):'수입 원가를 한 장으로 계산하고, 사입대행 청구액 또는 가이드 동행 시 고객 실제 부담액을 확인합니다.';
+  if(full||!$('#cmIn').innerHTML){renderCmIn();renderContracts()}
+  const out=$('#cmOut');
+  if(!S.items.length){out.innerHTML='<div class="mut sm">탭 2에서 품목(단가·수량·박스 규격)을 추가하면 자동 계산됩니다.</div>';return}
+  const r=calc(),c=cmCalc(r),co=r.co;
+  let h='';
+  const K=(k,vv,g)=>'<div class="kpi'+(g?' gold':'')+'"><div class="k">'+k+'</div><div class="v" style="font-size:19px">'+vv+'</div></div>';
+  if(v){
+    h+='<div class="cmlist">';
+    if(c.ag)h+=cmRow('상품대금 및 구매대행비',won(c.goods+c.fee));else h+=cmRow('상품대금',won(c.goods));
+    h+=cmRow('운임·보험',won(c.fr))+cmRow('관세',won(c.duty))+cmRow(co.vatLabel.split(' ')[0],won(c.vat))+cmRow('인증·통관·기타',won(c.ce))+'</div>';
+    h+='<div class="cmbig"><div class="k">'+(c.ag?'청구 총액':'예상 총 부담액')+'</div><div class="v">'+won(c.ag?c.bill:c.cost)+'</div></div>';
+    h+='<div class="g3 s mt16">'+K('개당',won(c.perPc))+K('박스당',won(c.bill/(S.items.reduce((s,i)=>s+i.qty,0)||1)))+K('CBM당',won(c.perCbm))+'</div>';
+    h+='<div class="tbw mt16"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>'+(c.ag?'청구액':'예상 부담액')+'</th><th>박스당</th><th>개당</th></tr></thead><tbody>'+
+      c.rows.map(q=>'<tr><td>'+esc(q.x.i.name)+'</td><td>'+q.x.i.qty+'박스</td><td class="gd b">'+fmt(c.ag?q.bill:q.x.total)+'</td><td>'+fmt(c.ag?q.perBox:q.x.perBox)+'</td><td class="em b">'+fmt(c.ag?q.perPc:q.x.perPc)+'</td></tr>').join('')+'</tbody></table></div>';
+    h+='<div class="tiny dim mt12">※ 환율 1위안 = '+S.rate+'원 기준 / 관세·부가세·운임은 추정 계산이며 확정 견적이 아닙니다.</div>';
+  }else{
+    h+='<div class="cmlist">'+cmRow('① 상품대금 <span class="dim">(¥'+fmt(c.yuan)+' × 환율 '+S.rate+')</span>',won(c.goods))+
+      cmRow('② 운임·보험'+(isLcl()?' <span class="dim">(LCL)</span>':''),won(c.fr))+cmRow('③ 관세',won(c.duty))+cmRow('③ '+co.vatLabel.split(' ')[0],won(c.vat))+cmRow('③ 인증·통관·기타',won(c.ce))+
+      cmRow('<b>총 원가</b>','<b>'+won(c.cost)+'</b>','tot');
+    if(c.ag)h+=cmRow('대행 수수료 <span class="dim">('+(cm.feePct||0)+'% · '+(c.base==='goods'?'상품대금':'총 원가')+' 기준)</span>','<span class="pf">+ '+won(c.fee)+'</span>');
+    h+='</div>';
+    h+='<div class="cmbig"><div class="k">'+(c.ag?'고객 청구액':'고객 실제 부담 총액 (가이드 동행)')+'</div><div class="v">'+won(c.ag?c.bill:c.cost)+'</div>'+
+       '<div class="s">개당 '+won(c.perPc)+' · CBM당 '+won(c.perCbm)+' · 총 '+fmt(c.pcs)+'개'+(c.ag?' · <span class="pf">내 이익 '+won(c.fee)+'</span>':'')+'</div></div>';
+    if(!c.ag)h+='<div class="tiny dim mt12">※ 가이드비는 별도로 받는 정액이라 이 계산에 포함하지 않았습니다.</div>';
+    if(c.ag){
+      h+='<div class="card-title mt20" style="font-size:13px">수수료율별 비교</div><div class="tbw"><table class="tb"><thead><tr><th>수수료율</th><th>고객 청구액</th><th>내 이익</th><th>개당 청구</th></tr></thead><tbody>'+
+        [7,8,9,10].map(p=>{const f=r.rows.reduce((s,x)=>s+(c.base==='total'?x.total:x.g)*p/100,0);return '<tr'+(+cm.feePct===p?' class="cmsel"':'')+'><td>'+p+'%</td><td>'+fmt(r.total+f)+'</td><td class="pf">'+fmt(f)+'</td><td>'+fmt((r.total+f)/(c.pcs||1))+'</td></tr>'}).join('')+'</tbody></table></div>';
+    }
+    h+='<div class="tbw mt16"><table class="tb"><thead><tr><th>품목</th><th>수량</th><th>공장도가</th><th>총 원가</th>'+(c.ag?'<th>수수료</th><th>청구액</th>':'')+'<th>개당'+(c.ag?' 청구':'')+'</th></tr></thead><tbody>'+
+      c.rows.map(q=>'<tr><td>'+esc(q.x.i.name)+'</td><td>'+q.x.i.qty+'박스</td><td>'+fmt(q.x.g)+'</td><td>'+fmt(q.x.total)+'</td>'+(c.ag?'<td class="pf">'+fmt(q.fee)+'</td><td class="gd b">'+fmt(q.bill)+'</td>':'')+'<td class="em b">'+fmt(c.ag?q.perPc:q.x.perPc)+'</td></tr>').join('')+'</tbody></table></div>';
+    h+='<div class="tiny dim mt12">※ 해운비·인증비는 CBM 비율로 배분 / 관세 = CIF × 세율, '+co.vatLabel+' = (CIF + 관세) × 세율. 추정 계산입니다.</div>';
+  }
+  out.innerHTML=h;
+}
+function renderCmIn(){
+  const cm=S.cm,ag=cm.mode!=='guide';
+  $('#cmIn').innerHTML='<div class="card-title"><span class="ix">1</span>거래 방식 · 가정</div>'+
+   '<div class="seg" style="display:flex"><button class="f1'+(ag?' on':'')+'" data-cm="mode" data-v="agency">사입대행</button><button class="f1'+(!ag?' on':'')+'" data-cm="mode" data-v="guide">가이드 동행</button></div>'+
+   '<div class="tiny dim mt8">'+(ag?'고객 돈을 받고 대신 주문 · 수수료가 내 수익':'고객이 직접 거래 · 고객이 실제로 쓸 총비용을 측정')+'</div>'+
+   '<div class="g2 s mt16"><div><label class="lb">환율 (1위안 = 원)</label><input class="inp" type="number" step="0.5" data-cmi="rate" value="'+S.rate+'"></div>'+
+   '<div><label class="lb">내륙·통관 등 기타 (원)</label><input class="inp" type="number" step="10000" data-cmi="etc" value="'+S.etc+'"></div></div>'+
+   (ag?'<div class="mt16"><label class="lb">대행 수수료율 (%)</label><div class="row gap8 wrapf">'+[7,8,9,10].map(p=>'<button class="btn btn-ghost cmchip'+(+cm.feePct===p?' on':'')+'" data-cm="fee" data-v="'+p+'">'+p+'%</button>').join('')+
+     '<input class="inp" style="width:90px" type="number" step="0.5" min="0" data-cmi="feePct" value="'+cm.feePct+'"></div>'+
+     '<label class="lb mt12">수수료 기준</label><div class="seg" style="display:flex"><button class="f1'+(cm.base==='goods'?' on':'')+'" data-cm="base" data-v="goods">상품대금 대비</button><button class="f1'+(cm.base==='total'?' on':'')+'" data-cm="base" data-v="total">총 원가 대비</button></div></div>':'')+
+   '<div class="tiny dim mt12">운임·세율·품목 단가는 탭 2·설정 탭 값이 그대로 연동됩니다.</div>';
+}
+/* ---- 계약 정보 ---- */
+const CT_SLOTS=[['fac','공장 계약','공급업체(공장)','supplier','예: 광저우 OO가구 유한공사'],['cus','고객 계약','고객사','client','예: OO 레스토랑']];
+function renderContracts(){
+  const wrap=$('#ctCard');if(!wrap)return;
+  if(cmView()){wrap.innerHTML='';return}
+  wrap.innerHTML=CT_SLOTS.map(([k,t,pl,pf,ph])=>{
+    const o=S.ct[k]||(S.ct[k]={photos:[]});o.photos=o.photos||[];
+    const f=(key,lb,type,pl2)=>'<div><label class="lb">'+lb+'</label><input class="inp" type="'+type+'" data-ct="'+k+'.'+key+'" value="'+esc(o[key]||'')+'" placeholder="'+(pl2||'')+'"></div>';
+    return '<div class="card"><div class="card-title"><span class="ix">'+(k==='fac'?'2':'3')+'</span>'+t+' 정보</div>'+
+     '<div class="field"><label class="lb">'+pl+'</label><input class="inp" data-pf="'+pf+'" value="'+esc(S[pf]||'')+'" placeholder="'+ph+'"></div>'+
+     '<div class="g2 s">'+f('date','계약일','date')+f('due','납기','date')+'</div>'+
+     '<div class="g2 s mt8">'+f('amount','계약금액','text','예: ¥120,000')+f('pay','선금·잔금','text','예: 30% / 70%')+'</div>'+
+     '<div class="field mt8"><label class="lb">원본 위치 (드라이브 링크·폴더명)</label><input class="inp" data-ct="'+k+'.loc" value="'+esc(o.loc||'')+'" placeholder="예: 구글드라이브 > 계약서 > 2026-11"></div>'+
+     '<div class="field"><label class="lb">특이사항 메모</label><textarea class="inp" rows="3" data-ct="'+k+'.memo">'+esc(o.memo||'')+'</textarea></div>'+
+     '<div class="lb">계약서 사진 <span class="dim">(최대 3장 · 자동 압축)</span></div><div class="ctph">'+
+     o.photos.map((u,i)=>'<div class="ctth"><img src="'+u+'" data-ctv="'+k+'.'+i+'"><button data-ctd="'+k+'.'+i+'" aria-label="삭제">×</button></div>').join('')+
+     (o.photos.length<3?'<label class="ctadd">＋<input type="file" accept="image/*" data-ctf="'+k+'" hidden></label>':'')+'</div></div>';
+  }).join('');
+}
+function ctPhoto(k,file){
+  if(!file)return;const rd=new FileReader();
+  rd.onload=()=>{const im=new Image();im.onerror=()=>toast('이미지를 읽지 못했습니다');
+    im.onload=()=>{const m=1100,s=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);const o=S.ct[k];if(o.photos.length>=3){toast('사진은 3장까지');return}
+      o.photos.push(c.toDataURL('image/jpeg',.6));persist();renderContracts()};im.src=rd.result};
+  rd.readAsDataURL(file);
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-cm],[data-ctd],[data-ctv]');if(!b)return;
+  if(b.dataset.cm){const a=b.dataset.cm,v=b.dataset.v;
+    if(a==='view')S.cm.view=!S.cm.view;else if(a==='mode')S.cm.mode=v;else if(a==='fee')S.cm.feePct=+v;else if(a==='base')S.cm.base=v;
+    persist();renderT2();renderT6(true)}
+  else if(b.dataset.ctd){const [k,i]=b.dataset.ctd.split('.');if(confirm('이 사진을 삭제할까요?')){S.ct[k].photos.splice(+i,1);persist();renderContracts()}}
+  else if(b.dataset.ctv){const [k,i]=b.dataset.ctv.split('.'),d=document.createElement('div');d.className='ctlb';d.innerHTML='<img src="'+S.ct[k].photos[+i]+'">';d.onclick=()=>d.remove();document.body.appendChild(d)}
+});
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset.cmi){const k=el.dataset.cmi,n=parseFloat(el.value)||0;
+    if(k==='rate'){S.rate=n;$('#s_rate').value=n}else if(k==='etc'){S.etc=n;$('#s_etc').value=n}else if(k==='feePct'){S.cm.feePct=n;$$('.cmchip').forEach(x=>x.classList.toggle('on',+x.dataset.v===n))}
+    persist();renderT2()}
+  else if(el.dataset.ct){const [k,f]=el.dataset.ct.split('.');S.ct[k][f]=el.value;persist()}
+});
+document.addEventListener('change',e=>{const el=e.target;if(el.dataset&&el.dataset.ctf){ctPhoto(el.dataset.ctf,el.files[0]);el.value=''}});
 
 /* ============================ 3D 엔진 (Three.js 내장) ============================ */
 const T={ready:false,failed:false,orb:{th:0.62,ph:1.1,r:12},tg:{th:0.62,ph:1.1,r:12},speed:1,paused:false,
@@ -2637,13 +2780,14 @@ async function importDB(file){
 /* ============================ 전체 렌더 / 탭 ============================ */
 function renderAll(){
   renderT1Inputs();renderT1Results();renderT2();
-  if(curTab===3)renderT3();if(curTab===4)renderT4();if(curTab===5)renderT5();
+  if(curTab===3)renderT3();if(curTab===4)renderT4();if(curTab===5)renderT5();if(curTab===6)renderT6(true);
   updateDataChip();
 }
 function showTab(n){
   curTab=+n;
   $$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.v===String(n)));
   $$('.tabpane').forEach(p=>p.classList.add('hidden'));$('#t'+n).classList.remove('hidden');
+  if(n==6)renderT6(true);
   if(n==2){
     renderT2();
     if(!T.ready){initThree();syncCargo('all')}
