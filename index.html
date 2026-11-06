@@ -427,6 +427,18 @@ html.mob textarea.doc{font-size:15.5px!important;line-height:2.1!important;paddi
 .li .liedit .cellinp{width:88px}
 .li.editing{outline:1px solid var(--gold);background:rgba(211,184,143,.06)}
 
+/* 멀티 컨테이너 */
+.ctabs{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+.ctab{position:relative;overflow:hidden;display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--line2);background:rgba(255,248,235,.03);color:var(--tx2);cursor:pointer;font:600 13px var(--font);min-width:132px}
+.ctab .cn{color:var(--gold);font-size:15px}.ctab .cp{margin-left:auto;color:var(--mut);font-size:12px}
+.ctab i{position:absolute;left:0;bottom:0;height:3px;background:#9fb59a}
+.ctab.on{border-color:var(--gold);background:rgba(211,184,143,.1);color:#fff}
+.ctab.bad i{background:#c9857a}.ctab.bad .cp{color:#c9857a}
+.ctabs .cadd{margin-left:auto;display:flex;gap:6px;align-items:center}
+.tb.plan td,.tb.plan th{text-align:center;white-space:nowrap}.tb.plan td:first-child,.tb.plan th:first-child{text-align:left}
+.tb.plan .cellinp{width:64px;text-align:center}.tb.plan tr.ft td{font-size:12px;color:var(--tx2)}
+.x2{border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:15px;padding:0 2px}.x2:hover{color:#c9857a}
+
 /* ================= 모바일 버전 (html.mob) ================= */
 .hidden{display:none!important}
 .vtog{white-space:nowrap}
@@ -541,6 +553,22 @@ html.mob .sm1 .v{font-size:22px}
 html.mob .sumg{scroll-margin-top:84px}
 html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
 
+/* 컨테이너 배분표: 모바일에서 한눈에 */
+html.mob .tb.plan{font-size:12px}
+html.mob .tb.plan th,html.mob .tb.plan td{padding:7px 4px!important}
+html.mob .tb.plan .cellinp{width:46px!important;padding:6px 2px!important}
+html.mob .tb.plan td:first-child{max-width:84px;white-space:normal;word-break:keep-all;line-height:1.25}
+html.mob .tb.plan .qcol{display:none}
+html.mob .tb.plan .btn{padding:4px 6px!important;font-size:11px!important}
+html.mob .ctab{min-width:0;flex:1 1 40%;padding:9px 8px}
+html.mob .ctabs .cadd{margin-left:0;width:100%}
+html.mob .ctabs .cadd .btn{flex:1}
+html.mob .tb.plan{table-layout:fixed;width:100%;min-width:0!important}
+html.mob .tb.plan th,html.mob .tb.plan td{white-space:normal!important;min-width:0!important;font-size:11px}
+html.mob .tb.plan td:first-child,html.mob .tb.plan th:first-child{width:27%;max-width:none}
+html.mob .tb.plan .cellinp{width:100%!important;max-width:54px}
+html.mob .tb.plan tr.ft td{font-size:10px}
+
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
 <header class="top"><div class="wrap">
@@ -641,6 +669,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
     <div class="stack">
       <div class="card static" id="verdict"></div>
       <div class="card static" id="lcl"></div>
+      <div class="card static hidden" id="cTabs" style="padding:12px 16px"></div>
       <div class="card static"><div class="card-title"><span class="ix">3D</span>적재 시뮬레이션
         <span style="margin-left:auto" class="seg" id="segView"><button data-act="view" data-v="wire"><svg class="ic"><use href="#i-ruler"/></svg> CBM 도면</button><button data-act="view" data-v="real"><svg class="ic"><use href="#i-truck"/></svg> 실물 컨테이너</button></span></div>
         <div id="cv"><div class="cv-prog"><div class="pill"><span id="seqStat">대기</span><div class="bar"><div id="seqBar" style="width:0;background:linear-gradient(90deg,var(--em),var(--em2))"></div></div></div></div><div class="cv-hint"><svg class="ic"><use href="#i-mouse"/></svg> 드래그 회전 · 휠 줌 · 더블클릭 시점 초기화</div></div>
@@ -654,6 +683,7 @@ html.mob .sech{padding:14px 16px}html.mob .secb{padding:0 16px 16px}
         <div class="vbar realonly" id="palBar"><div class="row gap12 wrapf"><div><label class="lb">파렛트 규격</label><select id="palSel" class="inp" style="min-width:260px"></select></div>
           <label class="chk" style="margin-top:20px"><input id="stk2" type="checkbox"> 파렛트 2단 적재 허용</label></div><div class="chips" id="vstat"></div></div>
       </div>
+      <div class="card static hidden" id="plan"></div>
       <div class="card" id="brief"></div>
       <div class="card static" id="eff"></div>
       <div class="card static" id="landed"></div>
@@ -963,8 +993,8 @@ function dataChip(cat,co){
 function resetRates(){R.duty={};R.cost={};R.freight={};R.vat={};R.meta={};R.ins=0.003}
 
 /* ============================ 프로젝트 상태 ============================ */
-const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl','cm','ct'];
-function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:200,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',cm:{mode:'agency',feePct:8,base:'goods',view:false},ct:{fac:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]},cus:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]}},lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
+const PKEYS=['name','client','pdate','sdate','manager','phone','supplier','supplierContact','buyer','incoterm','memo','country','cat','pname','brand','img','cont','rate','freight','etc','useFTA','items','nextId','cap','origin','view','pallet','stack2','wall','q','koEdited','koText','flags','flagsFor','deal','spSet','spP','spCats','mode','lcl','cm','ct','cs','alloc'];
+function blankProject(){return {flags:null,flagsFor:null,name:'새 프로젝트',client:'',pdate:todayISO(),sdate:'',manager:'',phone:'',supplier:'',supplierContact:'',buyer:'ENGEDI INTERNATIONAL',incoterm:'EXW',memo:'',country:'KR',cat:'wood',pname:'',brand:'',img:null,cont:'20',rate:200,freight:getFreight('KR','20'),etc:1200000,useFTA:true,items:[],nextId:1,cap:'',origin:'광저우',view:'wire',pallet:'t11',stack2:false,wall:'inside',q:{},koEdited:false,koText:'',deal:{once:true},spSet:{},spP:{},spCats:[],mode:'fcl',cs:null,alloc:{},cm:{mode:'agency',feePct:8,base:'goods',view:false},ct:{fac:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]},cus:{date:'',amount:'',pay:'',due:'',loc:'',memo:'',photos:[]}},lcl:{perCbm:'',minCbm:'1',fees:[{n:'창고·서류비',v:''},{n:'항만비(THC)',v:''},{n:'',v:''}]}}}
 function sampleProject(){const p=blankProject();p.name='광저우 레스토랑 프로젝트';p.client='광저우 OO 레스토랑 (샘플)';p.pname='Ashwood Dining Chair (애쉬우드 다이닝 체어)';p.items=SAMPLE.map((x,i)=>({...x,id:i+1}));p.nextId=SAMPLE.length+1;return p}
 const S=Object.assign({id:null,diag:null,bid:false,pickFreight:null},blankProject());
 let curTab=1;
@@ -1005,7 +1035,7 @@ function applyProject(p){
   const copy=JSON.parse(JSON.stringify(p));
   PKEYS.forEach(k=>{S[k]=copy[k]!==undefined&&copy[k]!==null?copy[k]:b[k]});
   if(copy.img===null)S.img=null;
-  S.id=p.id;S.diag=null;S.bid=false;S.pickFreight=null;
+  S.id=p.id;S.vci=0;S.diag=null;S.bid=false;S.pickFreight=null;
   S.items.forEach(i=>{if(!i.id)i.id=S.nextId++});
   S.nextId=Math.max(S.nextId,...S.items.map(i=>i.id+1),1);
 }
@@ -1681,8 +1711,8 @@ function calc(){
   const c=CONT[S.cont],vat=getVat(S.country);
   let cbm=0,kg=0,goods=0;
   S.items.forEach(i=>{i.cbm=i.l*i.w*i.h/1e6*i.qty;cbm+=i.cbm;kg+=i.kg*i.qty;goods+=i.price*i.qty*S.rate});
-  const nCont=isLcl()?1:Math.max(1,Math.ceil(cbm/c.cbm-1e-9),Math.ceil(kg/(c.ton*1000)-1e-9));
-  const freight=freightNow()*nCont,ins=(goods+freight)*R.ins;
+  const plan=packPlan(),nCont=isLcl()?1:plan.n;
+  const freight=isLcl()?freightNow():plan.freight,ins=(goods+freight)*R.ins;
   const cats=[...new Set(S.items.map(i=>i.cat))];
   const certTotal=cats.reduce((s,k)=>{const x=getCost(k,S.country);return s+(x[0]+x[1])/2*10000},0);
   const rows=S.items.map(i=>{
@@ -1691,12 +1721,12 @@ function calc(){
     return {i,g,f,n,cif,dr,duty,vat:vt,ce,total,perBox:total/i.qty,perPc:total/i.qty/i.pcs};
   });
   const total=rows.reduce((s,r)=>s+r.total,0);
-  return {c,co:COUNTRIES[S.country],nCont,cbm,kg,goods,freight,ins,certTotal,rows,total,rem:c.cbm-cbm};
+  return {c,co:COUNTRIES[S.country],nCont,plan,capCbm:isLcl()?c.cbm:plan.capCbm,capKg:isLcl()?c.ton*1000:plan.capKg,cbm,kg,goods,freight,ins,certTotal,rows,total,rem:(isLcl()?c.cbm:plan.capCbm)-cbm};
 }
 /* 파렛트 적재: 품목별 파렛트 구성 → 컨테이너 바닥 배치(안쪽→도어) → 필요 시 2단 */
 const PAL_H=0.14;
 function planPallets(){
-  const c=CONT[S.cont],L=c.L,W=c.W,H=c.H,MAXH=H-0.04,P=PALS[S.pallet];
+  const c=CONT[VC()],L=c.L,W=c.W,H=c.H,MAXH=H-0.04,P=PALS[S.pallet];
   const pallets=[],boxes=[],floorList=[];let unplaced=0,fx=0,fz=0,frow=0,ffull=false,floorArea=0;
   const budget=S.stack2?MAXH/2:MAXH;
   function placeFloor(pl,pw){
@@ -1705,7 +1735,8 @@ function planPallets(){
     if(x+pl>L+1e-6){ffull=true;return null}
     fx=x;fz=z+pw;frow=Math.max(rl,pl);return {x,z};
   }
-  S.items.forEach((it,k)=>{
+  VI().forEach((it,k)=>{
+    if(!(it.qty>0))return;
     const l=it.l/100,w=it.w/100,h=it.h/100;
     let pl=P.l,pw=P.w,bl=l,bw=w,nx=0,nz=0,custom=false;
     [[l,w],[w,l]].forEach(([a,b])=>{const ax=Math.floor(P.l/a+1e-6),az=Math.floor(P.w/b+1e-6);if(ax*az>nx*nz){nx=ax;nz=az;bl=a;bw=b}});
@@ -1751,20 +1782,20 @@ function renderLoadList(){
   $('#legend').innerHTML=S.items.map((i,k)=>'<span class="row gap6"><span class="sw" style="background:'+COLORS[k%COLORS.length]+';margin:0"></span>'+esc(i.name)+' <span class="dim">×'+i.qty+'</span></span>').join('')||'<span class="dim">품목을 추가하면 3D로 적재됩니다.</span>';
 }
 function renderT2core(){
-  $$('[data-act=cont]').forEach(b=>b.classList.toggle('on',b.dataset.v===S.cont));
+  $$('[data-act=cont]').forEach(b=>b.classList.toggle('on',b.dataset.v===VC()));
   $$('#segView button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
   $$('#segWall button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.wall));
   $$('.realonly').forEach(e=>e.classList.toggle('hidden',S.view!=='real'));
   renderLoadList();renderEff();
   const r=calc(),c=r.c,lay=getLayout(),real=S.view==='real';
-  const pct=r.cbm/c.cbm*100,wpct=r.kg/(c.ton*1000)*100;
+  const pct=r.cbm/r.capCbm*100,wpct=r.kg/r.capKg*100;
   const col=pct>100?'#c9857a':pct>85?'#d3b88f':'#9fb59a';
   let msg;
   if(!S.items.length)msg='품목을 추가하면 실시간 적재 브리핑이 표시됩니다.';
-  else if(r.rem>=0){const tot=S.items.reduce((s,i)=>s+i.qty,0),avg=r.cbm/tot;msg='현재 '+c.name+' 컨테이너에 <b class="em">'+r.rem.toFixed(1)+' CBM</b> 더 실을 수 있습니다. (표기 용량 기준 · 평균 박스 약 '+Math.floor(r.rem/avg)+'박스 · 잔여 중량 '+fmt(Math.max(0,c.ton*1000-r.kg))+'kg)<br><svg class="ic"><use href="#i-ruler"/></svg> <b>정밀 배치 계산</b>으로는 '+(()=>{const f=fitAnalysis(),b=f.per.filter(p=>p.fin>0).sort((x,y)=>y.cbm-x.cbm)[0];return b?"<b class='em'>"+esc(b.it.name)+' '+b.fin+'박스(+'+b.cbm.toFixed(1)+' CBM)</b>까지 실제로 더 실을 수 있습니다 (빈 틈 포함).':'더 실을 수 있는 공간이 없습니다.'})()}
+  else if(r.rem>=0){const tot=S.items.reduce((s,i)=>s+i.qty,0),avg=r.cbm/tot;msg='현재 '+(r.nCont>1?'컨테이너 '+r.nCont+'대 합계':c.name+' 컨테이너')+'에 <b class="em">'+r.rem.toFixed(1)+' CBM</b> 더 실을 수 있습니다. (표기 용량 기준 · 평균 박스 약 '+Math.floor(r.rem/avg)+'박스 · 잔여 중량 '+fmt(Math.max(0,c.ton*1000-r.kg))+'kg)<br><svg class="ic"><use href="#i-ruler"/></svg> <b>정밀 배치 계산</b>으로는 '+(()=>{const f=fitAnalysis(),b=f.per.filter(p=>p.fin>0).sort((x,y)=>y.cbm-x.cbm)[0];return b?"<b class='em'>"+esc(b.it.name)+' '+b.fin+'박스(+'+b.cbm.toFixed(1)+' CBM)</b>까지 실제로 더 실을 수 있습니다 (빈 틈 포함).':'더 실을 수 있는 공간이 없습니다.'})()}
   else msg='<svg class="ic"><use href="#i-alert"/></svg> '+c.name+' 용량을 <b class="rd">'+(-r.rem).toFixed(1)+' CBM 초과</b>했습니다. '+(S.cont==='20'?'40HQ로 변경하거나 ':'')+'수량을 조정하세요.';
-  if(r.kg>c.ton*1000)msg+='<br><span class="rd"><svg class="ic"><use href="#i-alert"/></svg> 총중량이 컨테이너 허용중량('+c.ton+'톤)을 초과했습니다.</span>';
-  if(r.nCont>1)msg+='<br><b class="gd"><svg class="ic"><use href="#i-truck"/></svg> '+c.name+' '+r.nCont+'대분이 필요합니다. 운임·원가는 '+r.nCont+'대 기준으로 계산했습니다. (40HQ 전환·수량 조정도 검토)</b>';
+  if(r.plan.overCap.length)msg+='<br><span class="rd"><svg class="ic"><use href="#i-alert"/></svg> '+r.plan.overCap.map(i=>CNUM[i]).join(' ')+' 컨테이너가 용적 또는 허용중량 한도를 초과했습니다.</span>';
+  if(r.plan.over)msg='<svg class="ic"><use href="#i-alert"/></svg> 배정되지 않은 박스가 <b class="rd">'+fmt(r.plan.uBox)+'박스('+r.plan.uCbm.toFixed(1)+' CBM)</b> 있습니다. <b>컨테이너 배분</b>에서 컨테이너를 추가하세요. (운임은 '+contLabel(r)+' 기준으로 계산 중)';
   let extra='';
   if(real&&lay.unplaced>0&&r.rem>=0)extra='<div class="note rd mt12"><svg class="ic"><use href="#i-truck"/></svg> CBM상으로는 여유가 있어도, 파렛트 적재 기준으로는 <b>'+lay.unplaced+'박스</b>가 바닥·높이 한계로 실리지 않습니다. 파렛트 규격 변경·2단 적재·40HQ를 검토하세요.</div>';
   const thirdPct=real&&lay.floorUse!=null?lay.floorUse*100:Math.max(0,100-pct);
@@ -1782,7 +1813,7 @@ function renderT2core(){
   const sum=f=>r.rows.reduce((s,x)=>s+f(x),0),parts=[['상품원가',sum(x=>x.g),'#9fb59a'],['운임·보험',sum(x=>x.f+x.n),'#8fa3ad'],['관세',sum(x=>x.duty),'#d3b88f'],['부가세',sum(x=>x.vat),'#a99bb5'],['인증·기타',sum(x=>x.ce),'#c99aa8']];
   const tot=r.total||1;
   $('#landed').innerHTML=landedSummary(r);
-  updateDataChip();renderLclPanel(r);applyCl();
+  updateDataChip();renderLclPanel(r);applyCl();renderCTabs(r);renderPlan(r);
 }
 
 function certBlock(certs,co){
@@ -1871,7 +1902,7 @@ function makeGrid(c,mode){
 /* ---- 도면(바닥) 적재: 틈 메우기 배치. 무거운 품목부터, 안쪽 벽→도어 방향 ---- */
 const _pk={};
 function memo(key,fn){if(_pk[key])return _pk[key];if(Object.keys(_pk).length>24)for(const k in _pk)delete _pk[k];return (_pk[key]=fn())}
-const itemSig=()=>S.items.map(i=>[i.id,i.l,i.w,i.h,i.qty,i.kg]);
+const itemSig=()=>VI().map(i=>[i.id,i.l,i.w,i.h,i.qty,i.kg]);
 const PACK_ORDERS=[
   ['무게순',(A,B)=>(B.kg-A.kg)||(B.l*B.w*B.h-A.l*A.w*A.h)],
   ['높이순',(A,B)=>(B.h-A.h)||(B.l*B.w-A.l*A.w)],
@@ -1879,22 +1910,22 @@ const PACK_ORDERS=[
   ['바닥면적순',(A,B)=>(B.l*B.w-A.l*A.w)],
   ['입력순',(A,B)=>A.__k-B.__k]].flatMap(([n,f])=>[[n+'·층',f,0],[n+'·벽',f,1]]);
 function packFloor(capByCbm){
-  return memo('F'+JSON.stringify([S.cont,!!capByCbm,itemSig()]),()=>{
-    const c=CONT[S.cont];let capLeft=c.cbm;const lim=[];let capCut=0;
-    S.items.forEach(it=>{const vol=it.l*it.w*it.h/1e6;let n=it.qty;if(capByCbm){n=Math.min(n,Math.max(0,Math.floor((capLeft+1e-9)/vol)));capLeft-=n*vol}lim.push(n);capCut+=it.qty-n});
-    const tagged=S.items.map((it,k)=>Object.assign({},it,{__k:k}));
+  return memo('F'+JSON.stringify([VC(),!!capByCbm,itemSig()]),()=>{
+    const c=CONT[VC()],VIt=VI();let capLeft=c.cbm;const lim=[];let capCut=0;
+    VIt.forEach(it=>{const vol=it.l*it.w*it.h/1e6;let n=it.qty;if(capByCbm){n=Math.min(n,Math.max(0,Math.floor((capLeft+1e-9)/vol)));capLeft-=n*vol}lim.push(n);capCut+=it.qty-n});
+    const tagged=VIt.map((it,k)=>Object.assign({},it,{__k:k}));
     let best=null;
     for(const [nm,cmp,mode] of PACK_ORDERS){
-      const g=makeGrid(c,mode),per=new Array(S.items.length);let miss=0,missVol=0;
-      tagged.slice().sort(cmp).forEach(t=>{const k=t.__k,it=S.items[k],out=[];g.fill(it.l/100,it.w/100,it.h/100,lim[k],true,out);per[k]=out;const m=lim[k]-out.length;miss+=m;missVol+=m*it.l*it.w*it.h/1e6});
+      const g=makeGrid(c,mode),per=new Array(VIt.length);let miss=0,missVol=0;
+      tagged.slice().sort(cmp).forEach(t=>{const k=t.__k,it=VIt[k],out=[];g.fill(it.l/100,it.w/100,it.h/100,lim[k],true,out);per[k]=out;const m=lim[k]-out.length;miss+=m;missVol+=m*it.l*it.w*it.h/1e6});
       if(!best||missVol<best.missVol-1e-9)best={per,miss,missVol,nm};
       if(missVol<1e-9)break;
     }
-    const boxes=[];best.per.forEach((arr,k)=>arr.forEach((p,n)=>boxes.push({...p,k,id:S.items[k].id,n,pal:-1})));
+    const boxes=[];best.per.forEach((arr,k)=>arr.forEach((p,n)=>boxes.push({...p,k,id:VIt[k].id,n,pal:-1})));
     return {boxes,pallets:[],unplaced:capCut+best.miss,floorUse:null,order:best.nm};
   });
 }
-function palLayout(){return memo('P'+JSON.stringify([S.cont,S.pallet,S.stack2,itemSig()]),planPallets)}
+function palLayout(){return memo('P'+JSON.stringify([VC(),S.pallet,S.stack2,itemSig()]),planPallets)}
 function physLayout(){return (S.view==='real'&&S.pallet!=='none')?palLayout():packFloor(false)}
 
 /* 남은 빈 공간 중 가장 큰 직육면체(받침 여부 무관) 찾기 — y구간별로 평면 최대 직사각형을 구함 */
@@ -1930,15 +1961,15 @@ function largestFreeBox(g){
 /* ---- 정밀 잔여공간 ---- */
 let _fk='',_fv=null;
 function fitAnalysis(){
-  const key=JSON.stringify([S.cont,S.view,S.pallet,S.stack2,itemSig()]);
+  const key=JSON.stringify([VC(),S.view,S.pallet,S.stack2,itemSig()]);
   if(key===_fk)return _fv;
-  const c=CONT[S.cont],lay=physLayout(),g=makeGrid(c);
+  const c=CONT[VC()],lay=physLayout(),g=makeGrid(c),VIt=VI();
   let placedVol=0,palletVol=0;
   lay.boxes.forEach(b=>{g.mark(b.x,b.y,b.z,b.sx,b.sy,b.sz);placedVol+=b.sx*b.sy*b.sz});
   (lay.pallets||[]).forEach(p=>{g.mark(p.x,p.y,p.z,p.pl,PAL_H,p.pw);palletVol+=p.pl*p.pw*PAL_H});
   const inner=c.L*c.W*c.H,free=Math.max(0,inner-placedVol-palletVol);
-  const totKg=S.items.reduce((s,i)=>s+i.kg*i.qty,0),remKg=Math.max(0,c.ton*1000-totKg);
-  const per=S.items.map((it,k)=>{
+  const totKg=VIt.reduce((s,i)=>s+i.kg*i.qty,0),remKg=Math.max(0,c.ton*1000-totKg);
+  const per=VIt.map((it,k)=>{
     const l=it.l/100,w=it.w/100,h=it.h/100,vol=l*w*h;
     const space=g.fill(l,w,h,3000,false),wcap=it.kg>0?Math.floor(remKg/it.kg+1e-9):Infinity,fin=Math.min(space,wcap);
     return {k,it,vol,space,wcap,fin,cbm:fin*vol,limit:wcap<space?'중량':'공간'};
@@ -1950,9 +1981,9 @@ function fitAnalysis(){
 }
 
 function effAnalysis(r,fit){
-  const c=r.c,vf=r.cbm/c.cbm,wf=r.kg/(c.ton*1000),eff=Math.max(vf,wf);
+  const c=r.c,vf=r.cbm/r.capCbm,wf=r.kg/r.capKg,eff=Math.max(vf,wf);
   let grade,col;
-  if(eff>1){grade='용량 초과';col='#c9857a'}else if(eff>=.85){grade='최적 구간';col='#9fb59a'}else if(eff>=.7){grade='양호';col='#8fa3ad'}else if(eff>=.5){grade='운임 낭비 주의';col='#d3b88f'}else{grade='비효율 (운임 낭비 큼)';col='#c9857a'}
+  if(eff>1||r.plan.over||r.plan.overCap.length){grade='용량 초과';col='#c9857a'}else if(eff>=.85){grade='최적 구간';col='#9fb59a'}else if(eff>=.7){grade='양호';col='#8fa3ad'}else if(eff>=.5){grade='운임 낭비 주의';col='#d3b88f'}else{grade='비효율 (운임 낭비 큼)';col='#c9857a'}
   const dens=r.cbm?r.kg/r.cbm:0,ratio=c.ton*1000/c.cbm;
   const bind=vf>=wf?'부피':'중량';
   const opts=['20','40'].map(k=>{
@@ -1967,7 +1998,7 @@ function effAnalysis(r,fit){
 function renderEff(){
   const el=$('#eff');if(!el)return;
   if(!S.items.length){el.innerHTML='<div class="card-title"><span class="ix"><svg class="ic"><use href="#i-bolt"/></svg></span>작업 효율 · 정밀 잔여공간</div><div class="mut sm">품목을 추가하면 컨테이너 최적도와 실제 더 실을 수 있는 박스 수를 계산합니다.</div>';return}
-  const r=calc(),fit=fitAnalysis(),e=effAnalysis(r,fit),c=r.c;
+  const r=calc(),fit=fitAnalysis(),e=effAnalysis(r,fit),c=fit.c;
   const m3=v=>v.toFixed(2);
   /* 상단: 최적도 */
   const verdictBind=e.bind==='부피'?'부피 제한형 — 컨테이너 용적이 먼저 찹니다':'중량 제한형 — 허용중량이 먼저 찹니다';
@@ -2048,13 +2079,13 @@ function renderLclPanel(r){
   const g=(p,col)=>'<div class="gauge"><i style="width:'+Math.min(100,Math.max(0,p))+'%;background:'+col+'"></i></div>';
   if(!S.items.length){v.innerHTML='<div class="sumg" style="margin:0">'+tile('적재 판정','—','품목을 추가하면 표시됩니다')+'</div>';}
   else if(!lcl){
-    const e=effAnalysis(r,null),vp=r.cbm/c.cbm*100,wp=r.kg/(c.ton*1000)*100;
+    const e=effAnalysis(r,null),vp=r.cbm/r.capCbm*100,wp=r.kg/r.capKg*100;
     let lc='';const L=lnum((S.lcl||{}).perCbm);
     if(L>0){const lt=lclCost(Math.max(r.cbm,r.kg/1000)),ft=e.best.total;lc='<div class="s" style="margin-top:6px;color:'+(lt<ft?'#9fb59a':'#d3b88f')+'">'+(lt<ft?'LCL 견적이 더 저렴: ':'컨테이너가 더 저렴: ')+won(Math.abs(ft-lt))+' 차이</div>'}
     v.innerHTML='<div class="sumg" style="margin:0">'+
-      tile('적재 판정','<span style="color:'+e.col+';font:700 17px var(--font)">'+e.grade+'</span>',(r.nCont>1?'<b class="rd">'+c.name+' '+r.nCont+'대분 필요</b>':c.name+' · 최적도 '+(e.eff*100).toFixed(0)+'%'),e.eff>1?'must':'')+
+      tile('적재 판정','<span style="color:'+e.col+';font:700 17px var(--font)">'+e.grade+'</span>',(r.plan.over?'<b class="rd">미배정 '+fmt(r.plan.uBox)+'박스</b>':contLabel(r)+' · 최적도 '+(e.eff*100).toFixed(0)+'%'),e.eff>1?'must':'')+
       tile('용적 사용',vp.toFixed(0)+'<small>%</small>','여유 '+Math.max(0,r.rem).toFixed(1)+' CBM',vp>100?'must':'',g(vp,vp>100?'#c9857a':vp>85?'#d3b88f':'#9fb59a'))+
-      tile('중량 사용',wp.toFixed(0)+'<small>%</small>','한도 '+c.ton+'톤',wp>100?'must':'',g(wp,wp>100?'#c9857a':'#8fa3ad'))+
+      tile('중량 사용',wp.toFixed(0)+'<small>%</small>','한도 '+fmt(r.capKg/1000)+'톤',wp>100?'must':'',g(wp,wp>100?'#c9857a':'#8fa3ad'))+
       tile('운임 기준 추천','<span style="font:700 15px var(--font)">'+esc(e.best.nm)+'</span>','해운비 '+won(e.best.total)+lc)+'</div>';
   }else{
     const t=itemsTotals(),q=lclCalc(t.cbm,t.kg),ref20=getFreight(S.country,'20'),pct=t.cbm/CONT['20'].cbm*100;
@@ -2066,6 +2097,7 @@ function renderLclPanel(r){
       tile('FCL(20FT) 비교','<span style="font:700 15px var(--font)">'+win+'</span>','20FT 해운비 '+won(ref20))+'</div>';
     renderLclCard(t,q,ref20);
   }
+  if(S.items.length&&!lcl&&r.plan.over)v.innerHTML+=planBanner(r);
 }
 function renderLclCard(t,q,ref20){
   const L=S.lcl||{},ref=lclRef(),bill=Math.max(t.cbm,t.kg/1000);
@@ -2109,7 +2141,7 @@ async function saveShot(){
   x.fillStyle='#efe6d6';x.font='600 '+(22*s)+'px sans-serif';x.fillText((S.name||'')+(S.client?' · '+S.client:''),30*s,88*s);
   x.fillStyle='#a89c85';x.font='500 '+(19*s)+'px sans-serif';
   const e=effAnalysis(r,null);
-  x.fillText((lcl?'LCL · 20FT 대비 '+(r.cbm/CONT['20'].cbm*100).toFixed(0)+'%':c.name+' · 용적 '+(r.cbm/c.cbm*100).toFixed(0)+'% · 중량 '+(r.kg/(c.ton*1000)*100).toFixed(0)+'% · '+e.grade)+'  |  총 '+r.cbm.toFixed(1)+' CBM · '+fmt(r.kg)+' kg · '+S.items.reduce((a,i)=>a+i.qty,0)+'박스',30*s,126*s);
+  x.fillText((lcl?'LCL · 20FT 대비 '+(r.cbm/CONT['20'].cbm*100).toFixed(0)+'%':contLabel(r)+' · 용적 '+(r.cbm/r.capCbm*100).toFixed(0)+'% · 중량 '+(r.kg/r.capKg*100).toFixed(0)+'% · '+e.grade+(r.plan.cs.length>1?' · 아래 3D: '+CNUM[VCI()]+'번 컨테이너':''))+'  |  총 '+r.cbm.toFixed(1)+' CBM · '+fmt(r.kg)+' kg · '+S.items.reduce((a,i)=>a+i.qty,0)+'박스',30*s,126*s);
   x.drawImage(src,0,hd);
   S.items.forEach((i,k)=>{const col=k%3,row=Math.floor(k/3),px=30*s+col*(w-40*s)/3,py=h+hd+(34+row*34)*s;
     x.fillStyle=COLORS[k%COLORS.length];x.fillRect(px,py-14*s,14*s,14*s);x.fillStyle='#d8d0c0';x.font='500 '+(17*s)+'px sans-serif';
@@ -2143,7 +2175,6 @@ function landedSummary(r){
    '<div class="kpi"><div class="k">CBM당</div><div class="v" style="font-size:20px">'+won(c.perCbm)+'</div></div></div>'+
    (r.nCont>1&&!v?'<div class="tiny rd mt12">컨테이너 '+r.nCont+'대분 운임을 반영했습니다.</div>':'')+'<div class="row gap8 mt16"><button class="btn btn-ghost" data-act="tab" data-v="6">상세 보기 ›</button></div>';
 }
-const contLabel=r=>r.c.name+(r.nCont>1?' × '+r.nCont+'대':'');
 function cmRow(l,v,cls){return '<div class="cmrow'+(cls?' '+cls:'')+'"><span>'+l+'</span><span>'+v+'</span></div>'}
 function renderT6(full){
   if(!$('#t6'))return;
@@ -2245,6 +2276,97 @@ document.addEventListener('input',e=>{
 });
 document.addEventListener('change',e=>{const el=e.target;if(el.dataset&&el.dataset.ctf){ctPhoto(el.dataset.ctf,el.files[0]);el.value=''}});
 
+/* ===== 멀티 컨테이너: 박스 배분 계산 · 배분표 · 컨테이너 탭 ===== */
+S.vci=0;
+const csList=()=>{const a=S.cs;return (a&&a.length)?a:[S.cont]};
+const boxCbm=it=>it.l*it.w*it.h/1e6;
+function priceOf(k){return k===S.cont?S.freight:getFreight(S.country,k)}
+let _ppK='',_ppV=null;
+function packPlan(){
+  const cs=csList(),key=JSON.stringify([cs,S.alloc||{},S.items.map(i=>[i.id,i.l,i.w,i.h,i.qty,i.kg]),S.cont,S.freight,S.country]);
+  if(key===_ppK)return _ppV;
+  const n=cs.length,used=cs.map(()=>({cbm:0,kg:0,box:0})),rows={},un={};
+  const cap=cs.map(k=>({cbm:CONT[k].cbm,kg:CONT[k].ton*1000}));
+  const fix=it=>{const a=S.alloc&&S.alloc[it.id];if(!a)return null;let s=0;return cs.map((_,i)=>{const t=Math.max(0,Math.min(Math.floor(+a[i]||0),it.qty-s));s+=t;return t})};
+  S.items.forEach(it=>{const r=fix(it);if(r){rows[it.id]=r;r.forEach((q,i)=>{used[i].cbm+=q*boxCbm(it);used[i].kg+=q*it.kg;used[i].box+=q})}});
+  S.items.forEach(it=>{if(rows[it.id])return;const r=cs.map(()=>0),v=boxCbm(it);let left=it.qty;
+    for(let i=0;i<n&&left>0;i++){
+      const byV=v>0?Math.floor((cap[i].cbm-used[i].cbm+1e-9)/v):left,byK=it.kg>0?Math.floor((cap[i].kg-used[i].kg+1e-9)/it.kg):left;
+      const t=Math.max(0,Math.min(left,byV,byK));r[i]=t;left-=t;used[i].cbm+=t*v;used[i].kg+=t*it.kg;used[i].box+=t}
+    rows[it.id]=r});
+  let uBox=0,uCbm=0,uKg=0;
+  S.items.forEach(it=>{const left=it.qty-rows[it.id].reduce((a,b)=>a+b,0);un[it.id]=left;uBox+=left;uCbm+=left*boxCbm(it);uKg+=left*it.kg});
+  const lastK=cs[n-1],extra=uBox>0?Math.max(1,Math.ceil(uCbm/CONT[lastK].cbm-1e-9),Math.ceil(uKg/(CONT[lastK].ton*1000)-1e-9)):0;
+  const freight=cs.reduce((s,k)=>s+priceOf(k),0)+extra*priceOf(lastK);
+  const capCbm=cs.reduce((s,k)=>s+CONT[k].cbm,0)+extra*CONT[lastK].cbm,capKg=cs.reduce((s,k)=>s+CONT[k].ton*1000,0)+extra*CONT[lastK].ton*1000;
+  const overCap=[];used.forEach((u,i)=>{if(u.cbm>cap[i].cbm+1e-6||u.kg>cap[i].kg+1e-6)overCap.push(i)});
+  return (_ppV=(_ppK=key,{cs,rows,un,used,cap,uBox,uCbm,uKg,extra,n:n+extra,freight,capCbm,capKg,over:uBox>0,overCap,manual:!!(S.alloc&&Object.keys(S.alloc).length)}));
+}
+const VCI=()=>Math.min(Math.max(0,S.vci|0),csList().length-1);
+const VC=()=>csList()[VCI()];
+function VI(){const p=packPlan(),ci=VCI();return S.items.map(it=>Object.assign({},it,{qty:(p.rows[it.id]||[])[ci]||0}))}
+function contLabel(r){
+  const p=r.plan,m={};p.cs.forEach(k=>m[k]=(m[k]||0)+1);if(p.extra)m[p.cs[p.cs.length-1]]=(m[p.cs[p.cs.length-1]]||0)+p.extra;
+  const ks=Object.keys(m);return ks.length===1&&m[ks[0]]===1?CONT[ks[0]].name:ks.map(k=>CONT[k].name+' × '+m[k]+'대').join(' + ');
+}
+const CNUM=['①','②','③','④','⑤','⑥','⑦','⑧'];
+const pct0=(a,b)=>b>0?a/b*100:0;
+function planBanner(r){
+  const p=r.plan;if(isLcl()||!p.over)return '';
+  return '<div class="note rd mt12" style="margin-bottom:0"><svg class="ic"><use href="#i-alert"/></svg> <b>용량 초과 · 미배정 '+fmt(p.uBox)+'박스 ('+p.uCbm.toFixed(1)+' CBM)</b> — 컨테이너 '+p.n+'대분이 필요합니다. 한 대 더 추가하시겠습니까?'+
+   '<div class="row gap8 mt8"><button class="btn btn-gold" data-act="cadd" data-v="20">+ 20FT 추가</button><button class="btn btn-gold" data-act="cadd" data-v="40">+ 40HQ 추가</button></div></div>';
+}
+function renderCTabs(r){
+  const el=$('#cTabs');if(!el)return;
+  if(isLcl()||!S.items.length){el.classList.add('hidden');return}
+  el.classList.remove('hidden');const p=r.plan,vi=VCI();
+  el.innerHTML='<div class="ctabs">'+p.cs.map((k,i)=>{const u=p.used[i],a=pct0(u.cbm,p.cap[i].cbm),w=pct0(u.kg,p.cap[i].kg),m=Math.max(a,w);
+    return '<button class="ctab'+(i===vi?' on':'')+(m>100?' bad':'')+'" data-act="cview" data-v="'+i+'"><span class="cn">'+CNUM[i]+'</span><span class="ct">'+CONT[k].name+'</span><span class="cp">'+m.toFixed(0)+'%</span><i style="width:'+Math.min(100,m)+'%"></i></button>'}).join('')+
+   '<span class="cadd"><button class="btn btn-ghost" data-act="cadd" data-v="20">+ 20FT</button><button class="btn btn-ghost" data-act="cadd" data-v="40">+ 40HQ</button></span></div>';
+}
+function renderPlan(r){
+  const el=$('#plan');if(!el)return;
+  const p=r.plan;
+  if(isLcl()||!S.items.length||(p.cs.length<2&&!p.over)){el.classList.add('hidden');el.innerHTML='';return}
+  el.classList.remove('hidden');
+  const head=p.cs.map((k,i)=>'<th>'+CNUM[i]+' '+CONT[k].name.replace(' Dry','')+(p.cs.length>1?' <button class="x2" data-act="cdel" data-v="'+i+'" title="이 컨테이너 삭제">×</button>':'')+'</th>').join('');
+  const body=S.items.map((it,k)=>{
+    const row=p.rows[it.id],sum=row.reduce((a,b)=>a+b,0),left=it.qty-sum;
+    return '<tr><td><span class="sw" style="background:'+COLORS[k%COLORS.length]+'"></span>'+esc(it.name)+'</td><td class="qcol">'+it.qty+'</td>'+
+      row.map((q,i)=>'<td><input class="cellinp" type="number" min="0" max="'+it.qty+'" data-al="'+it.id+':'+i+'" value="'+q+'"></td>').join('')+
+      '<td class="'+(left>0?'rd b':'dim')+'">'+left+'</td><td>'+((S.alloc&&S.alloc[it.id])?'<button class="btn btn-ghost sm2" data-act="aauto" data-v="'+it.id+'">자동</button>':'<span class="tiny dim">자동</span>')+'</td></tr>'}).join('');
+  const foot=(lab,f)=>'<tr class="ft"><td>'+lab+'</td><td class="qcol"></td>'+p.cs.map((k,i)=>'<td>'+f(i)+'</td>').join('')+'<td colspan="2"></td></tr>';
+  const gauge=(a,col)=>'<div class="gauge"><i style="width:'+Math.min(100,a)+'%;background:'+(a>100?'#c9857a':col)+'"></i></div>';
+  el.innerHTML='<div class="card-title"><span class="ix">▤</span>컨테이너 배분 <small>칸의 박스 수를 직접 조정</small></div>'+
+   (p.over?planBanner(r):'')+
+   '<div class="tbw mt12"><table class="tb plan"><thead><tr><th>품목</th><th class="qcol">수량</th>'+head+'<th>미배정</th><th></th></tr></thead><tbody>'+body+
+   foot('용적(CBM)',i=>p.used[i].cbm.toFixed(1)+' / '+p.cap[i].cbm+gauge(pct0(p.used[i].cbm,p.cap[i].cbm),'#9fb59a'))+
+   foot('중량(kg)',i=>fmt(p.used[i].kg)+' / '+fmt(p.cap[i].kg)+gauge(pct0(p.used[i].kg,p.cap[i].kg),'#8fa3ad'))+'</tbody></table></div>'+
+   '<div class="row gap8 mt12 wrapf"><button class="btn btn-ghost" data-act="aauto" data-v="all">자동 배정으로 초기화</button><span class="tiny dim f1" style="min-width:200px">'+(p.overCap.length?'<span class="rd">'+p.overCap.map(i=>CNUM[i]).join(' ')+' 컨테이너가 용적 또는 중량 한도를 넘었습니다.</span>':'직접 고친 품목은 ‘자동’ 버튼으로 되돌릴 수 있습니다. 배정은 계산상 합계 용량 기준이며 실제 적재는 현장 확인이 필요합니다.')+'</span></div>';
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,v=b.dataset.v;
+  if(a==='cview'){S.vci=+v;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
+  else if(a==='cadd'){S.cs=csList().slice();if(S.cs.length>=8){toast('컨테이너는 최대 8대까지');return}S.cs.push(v);S.vci=S.cs.length-1;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant');toast(CONT[v].name+'를 추가했습니다 ('+S.cs.length+'대)')}
+  else if(a==='cdel'){
+    const i=+v,cs=csList().slice();if(cs.length<2)return;
+    const used=packPlan().used[i].box;
+    if(used>0){const ok=await ask({title:CNUM[i]+' 컨테이너를 삭제하시겠습니까?',msg:'이 컨테이너에 배정된 '+used+'박스는 다른 컨테이너로 자동 재배정되며, 자리가 없으면 미배정으로 표시됩니다.',yes:'YES · 삭제',no:'NO · 아니오'});if(!ok)return}
+    cs.splice(i,1);S.cs=cs;
+    Object.keys(S.alloc||{}).forEach(id=>{const r=(S.alloc[id]||[]).slice();r.splice(i,1);S.alloc[id]=r});
+    if(i===0){S.cont=cs[0];S.freight=getFreight(S.country,S.cont);$('#s_freight').value=S.freight}
+    S.vci=Math.min(S.vci,cs.length-1);if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
+  else if(a==='aauto'){if(v==='all')S.alloc={};else if(S.alloc)delete S.alloc[v];cargoRefresh('instant')}
+});
+document.addEventListener('change',e=>{
+  const el=e.target;if(!(el.dataset&&el.dataset.al))return;
+  const [id,ci]=el.dataset.al.split(':'),it=S.items.find(x=>x.id===+id);if(!it)return;
+  const p=packPlan(),row=p.rows[it.id].slice(),other=row.reduce((s,q,i)=>i===+ci?s:s+q,0);
+  let n=Math.max(0,Math.floor(parseFloat(el.value)||0));
+  if(n>it.qty-other){n=it.qty-other;toast('이 품목은 총 '+it.qty+'박스입니다 (다른 컨테이너 '+other+'박스 배정됨)')}
+  row[+ci]=n;S.alloc=S.alloc||{};S.alloc[it.id]=row;cargoRefresh('instant');
+});
+
 /* ============================ 3D 엔진 (Three.js 내장) ============================ */
 const T={ready:false,failed:false,orb:{th:0.62,ph:1.1,r:12},tg:{th:0.62,ph:1.1,r:12},speed:1,paused:false,
   boxes:[],pallets:[],queue:[],anim:[],acc:0,last:0,interval:80,done:new Set(),cfg:null,L:5.9,W:2.35,H:2.39,
@@ -2312,11 +2434,11 @@ function initThree(){
     console.error(err);el.insertAdjacentHTML('beforeend','<div style="padding:28px;color:#94a3b8;font-size:13px">3D 렌더러를 시작할 수 없습니다(WebGL 미지원).</div>');T.ready=true;T.failed=true;
   }
 }
-function viewPreset(n){const P={iso:[0.62,1.1],door:[0.0,1.3],side:[Math.PI/2,1.38],top:[0.5,0.16],back:[Math.PI,1.2]}[n]||[0.62,1.1];T.tg.th=P[0];T.tg.ph=P[1];T.tg.r=CONT[S.cont].L>8?19:11.5}
+function viewPreset(n){const P={iso:[0.62,1.1],door:[0.0,1.3],side:[Math.PI/2,1.38],top:[0.5,0.16],back:[Math.PI,1.2]}[n]||[0.62,1.1];T.tg.th=P[0];T.tg.ph=P[1];T.tg.r=CONT[VC()].L>8?19:11.5}
 
 /* ---- 도면(와이어) / 실물 컨테이너 셸 ---- */
 function buildShells(){
-  const c=CONT[S.cont];T.L=c.L;T.W=c.W;T.H=c.H;
+  const c=CONT[VC()];T.L=c.L;T.W=c.W;T.H=c.H;
   disposeGroup(T.shellWire);disposeGroup(T.shellReal);
   buildWire(c);buildReal(c);
   T.target.set(0,c.H*0.42,0);T.tg.r=c.L>8?19:11.5;T.orb.r=T.tg.r;
@@ -2402,7 +2524,7 @@ function flushBoxes(){if(!T.mBody)return;T.mBody.instanceMatrix.needsUpdate=true
 /* mode: 'instant' 즉시 / 'new' 새 박스만 순차 / 'all' 처음부터 순차 */
 function syncCargo(mode){
   if(!T.ready||T.failed)return;
-  const real=S.view==='real',cfg=[S.view,S.cont,S.pallet,S.stack2?1:0].join('|');
+  const real=S.view==='real',cfg=[S.view,VC(),VCI(),S.pallet,S.stack2?1:0].join('|');
   if(cfg!==T.cfg){T.done=new Set();if(mode==='new')mode='instant'}
   if(mode==='all')T.done=new Set();
   const lay=getLayout();clearCargo();T.lay=lay;
@@ -2849,7 +2971,8 @@ document.addEventListener('click',async e=>{
   else if(a==='mode'){S.mode=v;if(v==='lcl'&&S.cont!=='20'){const nf=await adoptFreight(S.country,'20');S.cont='20';S.freight=nf;$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells()}renderLclInputs();cargoRefresh('instant')}
   else if(a==='shot')saveShot();
   else if(a==='cl'){T2UI[v]=!T2UI[v];applyCl()}
-  else if(a==='cont'){const nf=await adoptFreight(S.country,v);S.cont=v;S.freight=nf;$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
+  else if(a==='cont'){if(S.cs&&S.cs.length>1&&VCI()>0){S.cs=S.cs.slice();S.cs[VCI()]=v;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant');return}
+    const nf=await adoptFreight(S.country,v);S.cont=v;if(S.cs&&S.cs.length){S.cs=S.cs.slice();S.cs[0]=v}S.freight=nf;$('#s_freight').value=S.freight;S.pickFreight=null;if(T.ready&&!T.failed)buildShells();cargoRefresh('instant')}
   else if(a==='view'){S.view=v;if(T.ready&&!T.failed)setViewMode();cargoRefresh('instant')}
   else if(a==='vpre'){if(T.ready)viewPreset(v)}
   else if(a==='wall'){S.wall=v;applyWall();renderT2();persist()}
@@ -2868,11 +2991,11 @@ document.addEventListener('click',async e=>{
   else if(a==='reset'){
     if(!S.items.length){toast('이미 비어 있습니다');return}
     const ok=await ask({title:'전체를 리셋하시겠습니까?',msg:'적재 목록의 모든 품목('+S.items.length+'개)이 삭제되고 컨테이너가 비워집니다. 이 작업은 되돌릴 수 없습니다.',item:'총 '+S.items.reduce((s,i)=>s+i.qty,0)+'박스',yes:'YES · 전체 삭제',no:'NO · 아니오'});
-    if(!ok)return;S.items=[];cargoRefresh('instant');toast('컨테이너를 비웠습니다');
+    if(!ok)return;S.items=[];S.alloc={};S.vci=0;if(S.cs&&S.cs.length)S.cs=[S.cs[0]];cargoRefresh('instant');toast('컨테이너를 비웠습니다');
   }
   else if(a==='sample'){
     if(S.items.length){const ok=await ask({icon:'box',warn:true,title:'샘플로 교체할까요?',msg:'현재 적재 목록이 광저우 레스토랑 샘플 품목으로 대체됩니다.',yes:'YES · 교체',no:'NO · 취소'});if(!ok)return}
-    S.items=SAMPLE.map(x=>({...x,id:S.nextId++}));cargoRefresh('all');toast('광저우 레스토랑 샘플을 불러왔습니다');
+    S.items=SAMPLE.map(x=>({...x,id:S.nextId++}));S.alloc={};S.vci=0;if(S.cs&&S.cs.length)S.cs=[S.cs[0]];cargoRefresh('all');toast('광저우 레스토랑 샘플을 불러왔습니다');
   }
   else if(a==='copyzh')copyZhChecked(false);
   else if(a==='spdeal'){if(!await spGuard())return;const cur=spCtx().deals.has(v);S.deal=Object.assign({},S.deal||{});S.deal[v]=!cur;renderT3();persist()}
@@ -2925,7 +3048,7 @@ function addItem(){
   const it={est,id:S.nextId++,name:$('#a_name').value.trim()||'품목 '+(S.items.length+1),cat:$('#a_cat').value,l:L,w:W,h:H,kg:v('a_kg')||0,qty:Math.floor(v('a_qty')),price:v('a_price')||0,pcs:Math.max(1,Math.floor(v('a_pcs')||1))};
   if(!(it.l>0&&it.w>0&&it.h>0&&it.qty>0)){toast('가로·세로·높이(또는 박스당 CBM)와 수량을 입력하세요');return}
   if(it.qty>3000){toast('수량은 3,000박스 이하로 입력하세요');return}
-  if(S.edit&&S.items.some(x=>x.id===S.edit)){const k=S.items.findIndex(x=>x.id===S.edit);it.id=S.edit;S.nextId--;S.items[k]=it;editReset();cargoRefresh('instant');toast('"'+it.name+'" 수정했습니다');return}
+  if(S.edit&&S.items.some(x=>x.id===S.edit)){const k=S.items.findIndex(x=>x.id===S.edit);it.id=S.edit;S.nextId--;if(S.alloc)delete S.alloc[it.id];S.items[k]=it;editReset();cargoRefresh('instant');toast('"'+it.name+'" 수정했습니다');return}
   S.items.push(it);['a_name','a_l','a_w','a_h','a_cbm','a_kg','a_qty','a_price'].forEach(i=>$('#'+i).value='');$('#a_pcs').value=1;
   cargoRefresh('new');
 }
@@ -2941,7 +3064,7 @@ document.addEventListener('change',e=>{
   const el=e.target;
   if(el.dataset&&el.dataset.li){
     const [id,f]=el.dataset.li.split(':'),it=S.items.find(x=>x.id===+id);if(!it)return;const n=parseFloat(el.value);
-    if(f==='qty'){if(!(n>=1&&n<=3000)){toast('수량은 1~3,000박스로 입력하세요');renderLoadList();return}it.qty=Math.floor(n)}
+    if(f==='qty'){if(!(n>=1&&n<=3000)){toast('수량은 1~3,000박스로 입력하세요');renderLoadList();return}it.qty=Math.floor(n);if(S.alloc)delete S.alloc[it.id]}
     else{if(!(n>=0)){toast('단가는 0 이상으로 입력하세요');renderLoadList();return}it.price=n}
     cargoRefresh('instant');return}
   if(el.dataset&&el.dataset.q){const [id,f]=el.dataset.q.split(':');S.q=S.q||{};S.q[id]=Object.assign(S.q[id]||{},{[f]:el.value});persist();renderBids()}
