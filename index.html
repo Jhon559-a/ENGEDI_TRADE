@@ -578,6 +578,49 @@ html.mob .tb.plan .cellinp{width:100%!important;max-width:54px}
 html.mob .tb.plan tr.ft td{font-size:10px}
 html.mob .estbadge{bottom:56px;font-size:11px}
 
+/* ===== 가독성 정비 (다크 유지) ===== */
+:root{--tx:#f3ede3;--tx2:#ddd5c8;--mut:#b4ac9f;--dim:#8f897f;--gt:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard','Malgun Gothic','Noto Sans KR',sans-serif;--ok:#7fc79a;--warn:#e7a95a;--err:#e5786b}
+body{font-family:var(--gt)!important;font-size:14.5px;color:var(--tx)}
+/* 제목: 세리프·넓은 자간 → 고딕 */
+.eyebrow{font:600 11.5px var(--gt)!important;letter-spacing:1.6px!important;color:#a99f90!important}
+.page-head h2{font:700 26px/1.3 var(--gt)!important;letter-spacing:-.3px!important;color:#fff!important;word-break:keep-all}
+.page-head p,.page-head .sub{color:var(--tx2)!important;font-size:14px}
+.card-title{font:700 15.5px var(--gt)!important;letter-spacing:-.1px!important;text-transform:none!important;color:#fff!important}
+.card-title small{font:400 12.5px var(--gt)!important;letter-spacing:0!important;color:#a8a094!important}
+.card-title .ix{border-color:rgba(211,184,143,.6)!important}
+.tab{font-family:var(--gt)!important;letter-spacing:0!important;font-size:14px!important}
+/* 보조 글씨 밝기 */
+.lb{font-size:13px!important;letter-spacing:0!important;color:#c3bbae!important;font-weight:600}
+.tiny{font-size:12.5px!important;line-height:1.55}
+.mut{color:var(--mut)!important}.dim{color:var(--dim)!important}
+.kpi .k{letter-spacing:0!important;color:#bdb5a8!important;font-size:12.5px;font-weight:600}
+/* 입력칸 */
+.inp,.cellinp,select.inp{background:#18171b!important;border:1px solid #3d3931!important;color:#fff!important;font-size:15px!important;font-family:var(--gt)!important}
+.inp:focus,.cellinp:focus{border-color:#d3b88f!important;outline:0}
+/* 카드 위계 */
+.card{background:rgba(255,248,235,.03)!important;border:1px solid rgba(232,217,197,.12)!important;border-radius:6px!important}
+/* 핵심 숫자: 금색은 결과 카드에만 */
+.kpi .v{font-family:var(--num)!important;font-weight:600!important;color:#fff!important;-webkit-text-fill-color:#fff!important;background:none!important}
+.kpi.gold{background:linear-gradient(180deg,rgba(211,184,143,.14),rgba(211,184,143,.05))!important;border:1px solid rgba(211,184,143,.5)!important;border-radius:6px}
+.kpi.gold .v{font-size:28px!important;color:#ecd7b2!important;-webkit-text-fill-color:#ecd7b2!important}
+.kpi.gold .k{color:#e0cba6!important}
+.cmbig{border:1px solid rgba(211,184,143,.5)!important;background:linear-gradient(180deg,rgba(211,184,143,.14),rgba(211,184,143,.04))!important;border-radius:6px}
+.cmbig .v{font-size:32px!important;font-weight:700!important;color:#ecd7b2!important;-webkit-text-fill-color:#ecd7b2!important}
+.cmrow{font-size:14.5px}
+/* 상태색: 확인=초록, 주의=주황, 오류=빨강 */
+.chip.em{color:var(--ok)!important;border-color:rgba(127,199,154,.45)!important}
+.chip.gd{color:var(--warn)!important;border-color:rgba(231,169,90,.45)!important}
+.warnbox{border-color:var(--err)!important;color:#f3c2ba!important}
+.rd{color:var(--err)!important}
+/* 표 */
+.tb th{font-family:var(--gt)!important;letter-spacing:0!important;color:#c3bbae!important;font-size:12.5px}
+.tb td{font-size:13.5px}
+/* 모바일 하단 메뉴: 6개를 한 줄로 */
+html.mob .nav{grid-template-columns:repeat(6,1fr)!important}
+html.mob .tab::after{font-family:var(--gt);font-size:10px!important;letter-spacing:0!important}
+html.mob .tab .n{width:22px!important;height:22px!important}
+html.mob .page-head h2{font-size:23px!important}
+
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21l-4-4z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol><symbol id="i-rew" viewBox="0 0 24 24"><path d="M19 5v14l-10-7 10-7z"/><path d="M5 5v14"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-fwd" viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M19 5v14"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol><symbol id="i-ul" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15 9.5A6 6 0 1 1 9.5 15"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 2 8M4 4v5h5"/></symbol></defs></svg>
 <header class="top"><div class="wrap">
